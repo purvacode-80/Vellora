@@ -1,0 +1,143 @@
+/* General Section Styling */
+.testimonials.section {
+    padding: 60px 20px;
+    background-color: white;
+    text-align: center;
+  }
+  
+  .section-title h2 {
+    font-size: 35px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: black;
+  }
+  
+  .section-title p {
+    font-size: 18px;
+    color: black;
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  /* Testimonial Item Styling */
+  .testimonial-item {
+    background: #7b257b;
+    padding: 30px 20px;
+    margin: 10px;
+    border-radius: 12px;
+    box-shadow: 0 4px 25px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s ease;
+    max-width: 95%;
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+  
+  .testimonial-item:hover {
+    transform: translateY(-10px);
+  }
+  
+  .testimonial-item p {
+    font-style: italic;
+    color: white;
+    margin-bottom: 20px;
+    position: relative;
+    font-size: 15px;
+    line-height: 1.6;
+  }
+  
+  .quote-icon-left,
+  .quote-icon-right {
+    color: white;
+    font-size: 18px;
+    margin: 0 5px;
+  }
+  
+  .testimonial-img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 10px auto;
+    display: block;
+    border: 3px solid #ddd;
+  }
+  
+  .testimonial-item h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 10px 0 5px;
+    color: white;
+  }
+  
+  .testimonial-item h4 {
+    font-size: 14px;
+    font-weight: 400;
+    color: white;
+    margin-bottom: 0;
+  }
+  
+  /* Light background utility */
+  .light-background {
+    background-color: #f9f9f9;
+  }
+  
+  /* Slick carousel dots customization (optional) */
+  .slick-dots li button:before {
+    color: #aaa;
+    font-size: 12px;
+  }
+  
+  .slick-dots li.slick-active button:before {
+    color: #000;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 992px) {
+    .section-title h2 {
+      font-size: 28px;
+    }
+  
+    .testimonial-item {
+      padding: 25px 15px;
+    }
+  
+    .testimonial-item p {
+      font-size: 14px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .testimonial-img {
+      width: 70px;
+      height: 70px;
+    }
+  
+    .testimonial-item h3 {
+      font-size: 16px;
+    }
+  
+    .testimonial-item h4 {
+      font-size: 13px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .section-title h2 {
+      font-size: 24px;
+    }
+  
+    .section-title p {
+      font-size: 14px;
+    }
+  
+    .testimonial-item {
+      padding: 20px 10px;
+    }
+  
+    .testimonial-item p {
+      font-size: 13px;
+    }
+  }
+  
