@@ -1,12 +1,8 @@
-/**
- * CRM Webpage Section with Theme Support (Hidden Toggle Button for Future)
- */
 import React, { useState } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaUserFriends, FaComments, FaChartLine } from 'react-icons/fa';
-
-// Dynamic Data for CRM Website Section
+// first container data
 const offerings = [
   {
     icon: <FaUserFriends size={35} />,
@@ -24,7 +20,7 @@ const offerings = [
     description: 'Make better decisions with built-in analytics and insights for your growth.',
   },
 ];
-
+// second container data
 const featureData = [
   {
     title: 'Live chat functionality includes two different room categories',
@@ -50,143 +46,98 @@ const featureData = [
 const Home = () => {
   const [theme, setTheme] = useState('light');
 
+  const toggleTheme = () => {
+    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
+  };
+
   const themes = {
     light: {
-      backgroundColor: '#ffffff',
-      textColor: '#000000',
-      cardBg: '#f8f9fa',
-      cardShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
-      highlight: '#6a1b9a',
-      border: '1px solid #6a1b9a',
+      backgroundColor: 'var(--bg-light)',
+      textColor: 'var(--text-light)',
+      cardBg: 'var(--card-bg-light)',
     },
     dark: {
-      backgroundColor: '#1e1e2f',
-      textColor: '#ffffff',
-      cardBg: '#2c2c3c',
-      cardShadow: '0 4px 12px rgba(0, 0, 0, 0.3)',
-      highlight: '#6a1b9a',
-      border: '1px solid #6a1b9a',
+      backgroundColor: 'var(--bg-dark)',
+      textColor: 'var(--text-dark)',
+      cardBg: 'var(--card-bg-dark)',
     },
   };
 
   const current = themes[theme];
 
   return (
-    <div style={{ backgroundColor: current.backgroundColor, minHeight: '100vh', padding: '60px 20px', color: current.textColor }}>
-      <Container >
-        {/* First Container - What We Offer */}
+    <div className="home-container" style={{ backgroundColor: current.backgroundColor, color: current.textColor }}>
+        {/* first container */}
+      <Container>
         <div className="text-center mb-5">
-          <h2
-            style={{
-                fontFamily:"cursive",
-              fontWeight: '800',
-              fontSize: '2.5rem',
-              color: current.textColor,
-              letterSpacing: '1px',
-              textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
-            }}
-          >
-            What We Offer
-          </h2>
-          <p style={{ maxWidth: '650px', margin: '10px auto', fontSize: '16px' }}>
+          <h2 className="section-title" style={{ color: current.textColor }}>What We Offer</h2>
+          <p className="section-desc">
             From foundational courses that lay the groundwork for your educational journey to advanced specializations.
           </p>
         </div>
         <Row>
           {offerings.map((item, index) => (
             <Col key={index} md={6} lg={4} className="d-flex justify-content-center">
-              <Card
-                style={{
-                  backgroundColor: current.cardBg,
-                  color: current.textColor,
-                  borderRadius: '20px',
-                  padding: '30px 20px',
-                  textAlign: 'center',
-                  boxShadow: current.cardShadow,
-                  transition: '0.3s ease',
-                  width: '100%',
-                  border: current.border,
-                }}
-                className="mb-4"
-              >
-                <div className="mb-3" style={{ color: current.highlight }}>{item.icon}</div>
+              <Card className={`card-custom ${theme === 'dark' ? 'card-custom-dark' : ''} mb-4`} style={{ backgroundColor: current.cardBg, color: current.textColor }}>
+                <div className="mb-3" style={{ color: 'var(--highlight)' }}>{item.icon}</div>
                 <Card.Body>
-                  <Card.Title style={{ fontWeight: 'bold', fontSize: '18px' }}>{item.title}</Card.Title>
-                  <Card.Text style={{ fontSize: '15px' }}>{item.description}</Card.Text>
-                  <Button style={{ backgroundColor: current.highlight, border: 'none' }}>Learn More</Button>
+                  <Card.Title className="card-title-custom">{item.title}</Card.Title>
+                  <Card.Text className="card-text-custom">{item.description}</Card.Text>
+                  <Button className="button-purple">Learn More</Button>
                 </Card.Body>
               </Card>
             </Col>
           ))}
         </Row>
-        <br /><br />
-
-        {/* Second Container - Features Section */}
+             </Container>
+             <br/>
+             {/* second container */}
+             <Container>
         <div className="text-center mt-5 mb-4">
-          <h2
-            style={{
-             fontFamily:"cursive", 
-             fontWeight: '800',
-              fontSize: '2.5rem',
-              color: current.textColor,
-              letterSpacing: '1px',
-              textShadow: '1px 1px 2px rgba(0,0,0,0.1)',
-            }}
-          >
-            We Have Various Features <br/>That Can Help You
+          <h2 className="section-title" style={{ color: current.textColor }}>
+            We Have Various Features <br />That Can Help You
           </h2>
-          <p style={{ maxWidth: '650px', margin: '10px auto', fontSize: '16px' }}>
+          <p className="section-desc">
             From foundational courses that lay the groundwork for your educational journey to advanced specializations.
           </p>
-        </div><br />
+        </div>
+
         {featureData.map((feature, index) => (
           <Row key={index} className="justify-content-center mb-5">
             <Col md={12}>
-              <Card
-                style={{
-                  backgroundColor: current.cardBg,
-                  color: current.textColor,
-                  borderRadius: '20px',
-                  padding: '20px 30px',
-                  boxShadow: current.cardShadow,
-                  border: current.border,
-                }}
-              >
+              <Card className={`feature-card ${theme === 'dark' ? 'feature-card-dark' : ''}`} style={{ backgroundColor: current.cardBg, color: current.textColor }}>
                 <Card.Body>
                   <Row className="align-items-center">
                     {feature.imageBelow ? (
-                      <Col md={12}>
-                        <h3 style={{ color: current.textColor, fontSize: '2rem', fontWeight: '700' }}>{feature.title}</h3>
-                        <p style={{ fontSize: '16px' }}>{feature.description}</p>
-                        <img
-                          src={feature.image}
-                          alt="Feature"
-                          style={{ width: '100%', height: '300px', objectFit: 'cover', borderRadius: '12px' }}
-                        />
+                      <Col md={12} className="feature-content">
+                        <h3
+                          style={{
+                            color: current.textColor,
+                            textAlign: feature.title === "Dashboard Overview" ? "center" : "left"
+                          }}
+                        >
+                          {feature.title}
+                        </h3>
+                        <p>{feature.description}</p>
+                        <img src={feature.image} alt="Feature" className="feature-img feature-img-large" />
                       </Col>
                     ) : (
                       <>
                         {feature.imageLeft && (
                           <Col md={6} className="mb-4">
-                            <img
-                              src={feature.image}
-                              alt="Feature"
-                              style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '12px' }}
-                            />
+                            <img src={feature.image} alt="Feature" className="feature-img" />
                           </Col>
                         )}
-                        <Col md={6} className="mb-4">
-                          <h3 style={{ color: current.textColor, fontSize: '2rem', fontWeight: '700' }}>{feature.title}</h3>
-                          <p style={{ fontSize: '16px' }}>{feature.description}</p>
-                          <Button style={{ backgroundColor: current.highlight, border: 'none' }}>Explore</Button>
+                        <Col md={6} className="mb-4 feature-content text-center">
+                          <h3 style={{ color: current.textColor }}>{feature.title}</h3>
+                          <p>{feature.description}</p>
+                          <div className="d-flex justify-content-center">
+                            <Button className="button-purple">Explore</Button>
+                          </div>
                         </Col>
                         {!feature.imageLeft && (
                           <Col md={6} className="mb-4">
-                            <img
-                              src={feature.image}
-                              alt="Feature"
-                              style={{ width: '100%', height: '250px', objectFit: 'cover', borderRadius: '12px' }}
-                            />
+                            <img src={feature.image} alt="Feature" className="feature-img" />
                           </Col>
                         )}
                       </>
