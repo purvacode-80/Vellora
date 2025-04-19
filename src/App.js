@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-// import "slick-carousel/slick/slick.css"; 
-// import "slick-carousel/slick/slick-theme.css";
-import './App.css';
-=======
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
-
->>>>>>> 6a191bd2c08a590c5dfdd3bd16ccd1a2c3a52d6a
+import Home from "../src/Home";
 import Testimonials from "./Components/testimonials";
 import Faqquestion from "./Components/faqquestion";
 import Footer from "./Components/footer";
@@ -25,7 +17,7 @@ function App() {
      <Faqquestion/>
      <Footer/> */}
       <Routes>
-          <Route path="/home" element={<ProtectedRoutes> <Faqquestion /> </ProtectedRoutes>}/>
+          <Route path="/home" element={<ProtectedRoutes> <Home /> <Testimonials /> <Faqquestion /> <Footer /> </ProtectedRoutes>}/>
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
       </Routes>
