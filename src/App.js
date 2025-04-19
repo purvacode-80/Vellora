@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-// import "slick-carousel/slick/slick.css"; 
-// import "slick-carousel/slick/slick-theme.css";
-import './App.css';
-=======
-import "slick-carousel/slick/slick.css"; 
-import "slick-carousel/slick/slick-theme.css";
-
->>>>>>> 6a191bd2c08a590c5dfdd3bd16ccd1a2c3a52d6a
 import Testimonials from "./Components/testimonials";
 import Faqquestion from "./Components/faqquestion";
 import Footer from "./Components/footer";
