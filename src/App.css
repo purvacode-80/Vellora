@@ -1,0 +1,11 @@
+/* App.css */
+@import './Components/Testimonials.css';
+@import './Components/Faq.css';
+@import './Components/Footer.css';
+
+
+/* You can still write global styles below if needed */
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
