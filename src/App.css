@@ -1,38 +1,54 @@
-.App {
+/* Login & Register */
+
+.form-container { 
+  padding: 2em;
+  max-width: 400px;
+  margin: 0 auto;
   text-align: center;
+  /* border: 1px solid black; */
+  /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0 5px 10px rgba(148, 0, 211, 0.1);
+  background-color: white;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.form-container h3 {
+  color: darkviolet;
+  font-family: "Ga Maamli", sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.form-container input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.form-container button {
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 1.2em;
+  width: 50%;
+  border-radius: 40px;
+  background-color: darkviolet;
+  border: none;
+  cursor: pointer;
   color: white;
+  transition: background-color 0.3s ease-out;
 }
 
-.App-link {
-  color: #61dafb;
+.form-container button:hover {
+  background-color: blueviolet;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.form-container a {
+  color: darkviolet;
+  text-decoration: none;
+}
+
+.form-container .form-control:focus {
+  border-color: rgba(179, 0, 255, 0.2) !important; 
+  box-shadow: 0 0 10px rgba(179, 0, 255, 0.2) !important; 
+  outline: none !important;
 }
