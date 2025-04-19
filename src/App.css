@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* Login & Register */
 
 .form-container { 
@@ -19,14 +20,10 @@
 .form-container input {
   width: 100%;
   padding: 12px 20px;
-  display: inline;
+  margin: 8px 0;
+  display: inline-block;
   border: 1px solid #ccc;
   box-sizing: border-box;
-}
-
-.form-container .form-label {
-  /* font-size: 1.2em; */
-  margin: auto 0;
 }
 
 .form-container button {
