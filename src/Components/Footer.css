@@ -1,0 +1,103 @@
+.footer {
+    background-color: var(--footer-bg, #7b257b);
+    color: var(--footer-text, white);
+    font-size: 20px;
+    padding: 40px 30px 20px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .footer-grid {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
+  }
+  
+  .footer-col {
+    flex: 1 1 250px;
+    min-width: 200px;
+  }
+  
+  .footer-logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+  }
+  
+  .footer-description {
+    font-size: 1rem;
+    color: var(--footer-description, white);
+    line-height: 1.5;
+    max-width: 300px;
+  }
+  
+  .footer-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  
+  .footer-col p {
+    font-size: 0.95rem;
+    margin: 6px 0;
+    color: var(--footer-description, white);
+  }
+  
+  /* Social media */
+  .footer-socials {
+    display: flex;
+    gap: 12px;
+    margin-top: 10px;
+  }
+  
+  .social {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    transition: transform 0.2s ease;
+  }
+  
+  .social:hover {
+    transform: scale(1.1);
+  }
+  
+  .linkedin { background-color: #0077b5; }
+  .instagram { background-color: #e1306c; }
+  .facebook { background-color: #1877f2; }
+  .twitter { background-color: #1da1f2; }
+  
+  /* Footer bottom */
+  .footer-bottom {
+    text-align: center;
+    font-size: 0.9rem;
+    margin-top: 30px;
+    padding-top: 15px;
+    border-top: 1px solid var(--footer-border,white);
+    color: var(--footer-muted, white);
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .footer-grid {
+      flex-direction: column;
+      text-align: left;
+      gap: 30px;
+    }
+  
+    .footer-logo {
+      font-size: 1.5rem;
+    }
+  
+    .footer-description,
+    .footer-col p {
+      font-size: 0.95rem;
+    }
+  }
+  
