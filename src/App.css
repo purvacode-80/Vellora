@@ -1,10 +1,54 @@
-/* App.css */
-@import './Components/Testimonials.css';
-@import './Components/Faq.css';
-@import './Components/Footer.css';
+/* Login & Register */
 
+.form-container { 
+  padding: 2em;
+  max-width: 400px;
+  margin: 0 auto;
+  text-align: center;
+  /* border: 1px solid black; */
+  /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); */
+  box-shadow: 0 5px 10px rgba(148, 0, 211, 0.1);
+  background-color: white;
+}
 
-/* You can still write global styles below if needed */
-body {
-  margin: 0;
+.form-container h3 {
+  color: darkviolet;
+  font-family: "Ga Maamli", sans-serif;
+}
+
+.form-container input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  box-sizing: border-box;
+}
+
+.form-container button {
+  padding: 10px;
+  margin: 10px 0;
+  font-size: 1.2em;
+  width: 50%;
+  border-radius: 40px;
+  background-color: darkviolet;
+  border: none;
+  cursor: pointer;
+  color: white;
+  transition: background-color 0.3s ease-out;
+}
+
+.form-container button:hover {
+  background-color: blueviolet;
+}
+
+.form-container a {
+  color: darkviolet;
+  text-decoration: none;
+}
+
+.form-container .form-control:focus {
+  border-color: rgba(179, 0, 255, 0.2) !important; 
+  box-shadow: 0 0 10px rgba(179, 0, 255, 0.2) !important; 
+  outline: none !important;
 }

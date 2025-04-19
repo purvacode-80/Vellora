@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Form } from 'react-bootstrap';
+import { Form, Row, Col } from 'react-bootstrap';
 import { toast, ToastContainer } from 'react-toastify';
 
 function Login() {
@@ -34,13 +34,13 @@ function Login() {
       <div className='login-container form-container my-5'>
         <h3> Login </h3>
         <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1"> 
-            <Form.Label> Email </Form.Label> 
-            <Form.Control type="email" name="email" value={user.email} onChange={handleChange} required placeholder="Enter your email" /> 
+          <Form.Group as={Row} className="mb-3" controlId="exampleForm.ControlInput1"> 
+            <Col md={3}> <Form.Label> Email </Form.Label> </Col>
+            <Col md={9}> <Form.Control type="email" name="email" value={user.email} onChange={handleChange} required placeholder="Enter your email" /> </Col>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput2"> 
-            <Form.Label> Password </Form.Label> 
-            <Form.Control type="password" name="password" value={user.password} onChange={handleChange} id="inputPassword5" required placeholder="Enter Password" /> 
+          <Form.Group as={Row} className="mb-3" controlId="exampleForm.ControlInput2"> 
+            <Col md={3}> <Form.Label> Password </Form.Label> </Col> 
+            <Col md={9}> <Form.Control type="password" name="password" value={user.password} onChange={handleChange} id="inputPassword5" required placeholder="Enter Password" /> </Col>
           </Form.Group>
           <center> <button type="submit"> Login </button> </center>
         </Form>
