@@ -1,3 +1,4 @@
+import Navbar from "./Components/Navigation"
 import Home from "../src/Home";
 import Testimonials from "./Components/testimonials";
 import Faqquestion from "./Components/faqquestion";
@@ -7,21 +8,37 @@ import ProtectedRoutes from "./Security/ProtectedRoute";
 import { AuthProvider } from "./Security/AuthContext";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
+import { ThemeProvider } from "./Components/ThemeContext";
+import { useEffect } from "react";
 
 function App() {
+
+  const token = localStorage.getItem("token");
+  useEffect(() => {
+    if (token) {
+      console.log("Token exists:", token);
+    } else {
+      console.log("No token found in localStorage.");
+    }
+  }, [token]);
+
   return (
     <>
     <BrowserRouter>
+    <ThemeProvider>
+      
     <AuthProvider>
      {/* <Testimonials/>
      <Faqquestion/>
      <Footer/> */}
+      <Navbar />
       <Routes>
-          <Route path="/home" element={<ProtectedRoutes> <Home /> <Testimonials /> <Faqquestion /> <Footer /> </ProtectedRoutes>}/>
+          <Route path="/home" element={<ProtectedRoutes> <> <Home /> <Testimonials /> <Faqquestion /> <Footer /> </> </ProtectedRoutes>}/>
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
       </Routes>
     </AuthProvider>
+    </ThemeProvider>
     </BrowserRouter>
     </>
   );
