@@ -10,6 +10,7 @@ import Login from "./Components/Login";
 import Register from "./Components/Register";
 import { ThemeProvider } from "./Components/ThemeContext";
 import { useEffect } from "react";
+import AddTask from "./Components/AddTask";
 
 function App() {
 
@@ -36,6 +37,7 @@ function App() {
           <Route path="/home" element={<ProtectedRoutes> <> <Home /> <Testimonials /> <Faqquestion /> <Footer /> </> </ProtectedRoutes>}/>
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
+          <Route path="/addtask" element={<AddTask/>}/>
       </Routes>
     </AuthProvider>
     </ThemeProvider>
