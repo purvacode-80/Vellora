@@ -26,6 +26,7 @@ function CRMNavbar() {
             <Nav.Link as={Link} to="/leads">Leads</Nav.Link>
             <Nav.Link as={Link} to="/contacts">Contacts</Nav.Link>
             <Nav.Link as={Link} to="/deals">Deals</Nav.Link>
+            <Nav.Link as={Link} to="/addtask">Add task</Nav.Link>
           </Nav>
           <Nav>
             <NavDropdown title="Account" id="account-nav-dropdown" align="end">
