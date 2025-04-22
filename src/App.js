@@ -10,6 +10,7 @@ import Faqquestion from "./Components/faqquestion";
 import Footer from "./Components/footer";
 import Login from "./Components/Login";
 import Register from "./Components/Register";
+// import Main from "./Components/Main";
 
 import ProtectedRoutes from "./Security/ProtectedRoute";
 import { AuthProvider } from "./Security/AuthContext";
@@ -39,6 +40,7 @@ function App() {
               element={
                 <ProtectedRoutes>
                   <>
+                    {/* <Main/> */}
                     <Home />
                     <Testimonials />
                     <Faqquestion />
