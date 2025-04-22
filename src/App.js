@@ -11,8 +11,10 @@ import Register from "./Components/Register";
 import { ThemeProvider } from "./Components/ThemeContext";
 import { useEffect } from "react";
 import ContactList from "./Components/ContactList";
+import ContactDetails from "./Components/ContactDetails";
 import AddContact from "./Components/AddContact";
 import LeadList from "./Components/LeadList";
+import LeadDetails from "./Components/LeadDetails";
 import AddLead from "./Components/AddLead";
 
 function App() {
@@ -41,8 +43,10 @@ function App() {
           <Route path="/login" element={<Login />}/>
           <Route path="/register" element={<Register />}/>
           <Route path="/contacts" element={<ProtectedRoutes> <ContactList /> </ProtectedRoutes> } />
+          <Route path="/contact/:id" element={<ProtectedRoutes> <ContactDetails /> </ProtectedRoutes> } />
           <Route path="/add-contact" element={<ProtectedRoutes> <AddContact /> </ProtectedRoutes> } />
           <Route path="/leads" element={<ProtectedRoutes> <LeadList /> </ProtectedRoutes> } />
+          <Route path="/lead/:id" element={<ProtectedRoutes> <LeadDetails /> </ProtectedRoutes> } />
           <Route path="/add-lead" element={<ProtectedRoutes> <AddLead /> </ProtectedRoutes> } />
       </Routes>
     </AuthProvider>

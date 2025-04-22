@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Table, Container, Button, Modal } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 
 const ContactList = () => {
   const [contacts, setContacts] = useState([]);
-  const [selectedContact, setSelectedContact] = useState(null);
-  const [show, setShow] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     try {
@@ -20,16 +20,12 @@ const ContactList = () => {
     }
   }, []);
 
-  const handleShow = (contact) => {
-    setSelectedContact(contact);
-    setShow(true);
-  };
-
-  const handleClose = () => setShow(false);
+  const handleDetails = (id) => navigate(`/contact/${id}`);
 
   return (
     <Container className="mt-4">
       <h2>Contact List</h2>
+      <Button variant="primary" onClick={() => navigate("/add-contact")}>Add Contact</Button>
       <Table striped bordered hover responsive>
         <thead>
           <tr>
@@ -47,32 +43,12 @@ const ContactList = () => {
               <td>{contact.email}</td>
               <td>{contact.phone}</td>
               <td>{contact.company}</td>
-              <td><Button onClick={() => handleShow(contact)}>Show Details</Button></td>
+              <td><Button onClick={() => handleDetails(contact._id)}>Show Details</Button></td>
             </tr>
           ))}
         </tbody>
       </Table>
 
-      <Modal show={show} onHide={handleClose} centered>
-        <Modal.Header closeButton>
-          <Modal.Title>Contact Details</Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-          {selectedContact && (
-            <>
-              <p><strong>Name:</strong> {selectedContact.name}</p>
-              <p><strong>Email:</strong> {selectedContact.email}</p>
-              <p><strong>Phone:</strong> {selectedContact.phone}</p>
-              <p><strong>Position:</strong> {selectedContact.position}</p>
-              <p><strong>Company:</strong> {selectedContact.company}</p>
-              <p><strong>Address:</strong> {selectedContact.address}</p>
-              <p><strong>Notes:</strong> {selectedContact.notes}</p>
-              <p><strong>LinkedIn:</strong> <a href={selectedContact.linkedin} target="_blank" rel="noopener noreferrer">Profile</a></p>
-              <p><strong>Status:</strong> {selectedContact.status}</p>
-            </>
-          )}
-        </Modal.Body>
-      </Modal>
     </Container>
   );
 };
