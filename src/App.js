@@ -14,7 +14,7 @@ import ContactList from "./Components/ContactList";
 import AddContact from "./Components/AddContact";
 import LeadList from "./Components/LeadList";
 import AddLead from "./Components/AddLead";
-
+import ContactProfileEdit from "./Components/Contactprofileedit";
 import ProtectedRoutes from "./Security/ProtectedRoute";
 import { AuthProvider } from "./Security/AuthContext";
 import { ThemeProvider } from "./Components/ThemeContext";
@@ -54,6 +54,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/contacts" element={<ProtectedRoutes> <ContactList /> </ProtectedRoutes>} />
+            <Route path="/contactprofileedit/:id" element={<ProtectedRoutes> <ContactProfileEdit /> </ProtectedRoutes>} />
             <Route path="/add-contact" element={<ProtectedRoutes> <AddContact /> </ProtectedRoutes>} />
             <Route path="/leads" element={<ProtectedRoutes> <LeadList /> </ProtectedRoutes>} />
             <Route path="/add-lead" element={<ProtectedRoutes> <AddLead /> </ProtectedRoutes>} />
