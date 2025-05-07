@@ -1,6 +1,7 @@
+import "./Login_register.css";
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Row, Col } from 'react-bootstrap';
 
 function Register() {
   const [user, setUser] = useState({
@@ -16,7 +17,7 @@ function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post("http://localhost:5000/users/register", user)
+    axios.post("http://localhost:8000/users/register", user)
       .then(() => {
         alert("Registration Successful...!"); 
       })
@@ -31,21 +32,21 @@ function Register() {
       <div className='register-container form-container my-5'>
         <h3> Register </h3>
         <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput1"> 
-            <Form.Label> Full Name </Form.Label> 
-            <Form.Control type="text" name="fullName" value={user.fullName} onChange={handleChange} required placeholder="Enter your Full Name" /> 
+          <Form.Group as={Row} className="mb-3" controlId="exampleForm.ControlInput1"> 
+            <Col md={3} xs={4}> <Form.Label> Full Name </Form.Label> </Col>
+            <Col md={9} xs={8}> <Form.Control type="text" name="fullName" value={user.fullName} onChange={handleChange} required placeholder="Enter your Full Name" /> </Col>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput2"> 
-            <Form.Label> Work Email </Form.Label> 
-            <Form.Control type="email" name="email" value={user.email} onChange={handleChange} required placeholder="Enter your Email" /> 
+          <Form.Group as={Row} className="mb-3" controlId="exampleForm.ControlInput2"> 
+            <Col md={3} xs={4}> <Form.Label> Work Email </Form.Label> </Col>
+            <Col md={9} xs={8}> <Form.Control type="email" name="email" value={user.email} onChange={handleChange} required placeholder="Enter your Email" /> </Col>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput3"> 
-            <Form.Label> Phone No </Form.Label> 
-            <Form.Control type="tel" name="phone_no" value={user.phone_no} onChange={handleChange} required placeholder="Enter Phone No "/> 
+          <Form.Group as={Row} className="mb-3" controlId="exampleForm.ControlInput3"> 
+            <Col md={3} xs={4}> <Form.Label> Phone No </Form.Label> </Col>
+            <Col md={9} xs={8}> <Form.Control type="tel" name="phone_no" value={user.phone_no} onChange={handleChange} required placeholder="Enter Phone No "/> </Col>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="exampleForm.ControlInput4"> 
-            <Form.Label> Password </Form.Label> 
-            <Form.Control type="password" name="password" value={user.password} onChange={handleChange} id="inputPassword5" required placeholder="Enter Password" /> 
+          <Form.Group as={Row} className="mb-3" controlId="exampleForm.ControlInput4"> 
+            <Col md={3} xs={4}> <Form.Label> Password </Form.Label> </Col>
+            <Col md={9} xs={8}> <Form.Control type="password" name="password" value={user.password} onChange={handleChange} id="inputPassword5" required placeholder="Enter Password" /> </Col>
           </Form.Group>
           <center> <button type="submit"> Register </button> </center>
         </Form>
