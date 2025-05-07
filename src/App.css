@@ -1,3 +1,119 @@
+
+/* === COLOR THEMES === */
+:root {
+  /* Light Theme Colors */
+  --bg-light: #ffffff;                 /* Light background */
+  --text-light: #000000;              /* Dark text on light background */
+  --card-bg-light: #f8f9fa;           /* Light card background */
+  --card-shadow-light: 0 2px 10px rgba(0, 0, 0, 0.1);  /* Light shadow for cards */
+
+  /* Dark Theme Colors */
+  --bg-dark: #1e1e2f;                 /* Dark background */
+  --text-dark: #ffffff;               /* Light text on dark background */
+  --card-bg-dark: #2c2c3c;            /* Dark card background */
+  --card-shadow-dark: 0 4px 12px rgba(0, 0, 0, 0.3);  /* Dark shadow for cards */
+
+  /* Accent Color */
+  --highlight: #7b257b;               /* Bright purple for buttons and accents */
+  --border: 1px solid var(--highlight); /* Border style using highlight */
+
+  /* Typography Sizes */
+  --font-title: 2.5rem;               /* Title font size */
+  --font-subtitle: 2rem;              /* Subtitle font size */
+  --font-text: 16px;                  /* Normal text font size */
+  --font-small: 15px;                 /* Smaller text font size */
+}
+
+/* === GENERAL PAGE STYLING === */
+.home-container {
+  min-height: 100vh;                  /* Full screen height */
+  padding: 60px 20px;                 /* Top/bottom and side padding */
+}
+
+/* === SECTION TITLES === */
+.section-title {
+  font-family: cursive;               /* Fun cursive font */
+  font-weight: 800;                   /* Bold */
+  font-size: var(--font-title);       /* Using root title font size */
+  letter-spacing: 1px;                /* Slight spacing between letters */
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Light shadow effect */
+}
+
+/* === SECTION DESCRIPTION TEXT === */
+.section-desc {
+  max-width: 650px;                   /* Limit the width */
+  margin: 10px auto;                  /* Center it horizontally */
+  font-size: var(--font-text);        /* Use standard font size */
+}
+
+/* === CUSTOM CARD STYLES === */
+.card-custom {
+  border-radius: 20px;                /* Rounded corners */
+  padding: 30px 20px;                 /* Padding inside the card */
+  text-align: center;                 /* Center content */
+  box-shadow: var(--card-shadow-light); /* Light shadow */
+  border: var(--border);              /* Highlight-colored border */
+  transition: 0.3s ease;              /* Smooth hover or theme transitions */
+}
+
+/* Dark variant of the card */
+.card-custom-dark {
+  box-shadow: var(--card-shadow-dark);
+}
+
+/* Card Title Styling */
+.card-title-custom {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+/* Card Text Styling */
+.card-text-custom {
+  font-size: var(--font-small);
+}
+
+/* === PURPLE BUTTON STYLES === */
+.button-purple {
+  background-color: var(--highlight) !important;  /* Purple background */
+  border: none !important;                        /* Remove default border */
+}
+
+/* === FEATURE CARD STYLES === */
+.feature-card {
+  border-radius: 20px;
+  padding: 20px 30px;
+  box-shadow: var(--card-shadow-light);
+  border: var(--border);
+}
+
+/* Dark version of feature card */
+.feature-card-dark {
+  box-shadow: var(--card-shadow-dark);
+}
+
+/* === FEATURE CONTENT TEXT === */
+.feature-content h3 {
+  font-size: var(--font-subtitle);
+  font-weight: 700;
+}
+
+.feature-content p {
+  font-size: var(--font-text);
+  text-align: center;               /* Centered paragraph text */
+}
+
+/* === FEATURE IMAGE STYLING === */
+.feature-img {
+  width: 100%;                      /* Take full width of container */
+  height: 250px;                    /* Fixed height */
+  object-fit: cover;                /* Crop to cover without distortion */
+  border-radius: 12px;              /* Rounded corners */
+}
+
+/* For larger feature images (like in Dashboard section) */
+.feature-img-large {
+  height: 300px;
+}
 /* Login & Register */
 
 .form-container { 
@@ -51,4 +167,5 @@
   border-color: rgba(179, 0, 255, 0.2) !important; 
   box-shadow: 0 0 10px rgba(179, 0, 255, 0.2) !important; 
   outline: none !important;
+
 }

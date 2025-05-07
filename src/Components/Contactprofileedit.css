@@ -1,0 +1,128 @@
+/* Base styles */
+:root {
+    --primary-color: #7b257b;
+    --secondary-color: #6c757d;
+    --background-color-light: #f8f9fa;
+    --background-color-dark: #343a40;
+    --text-color-light: #212529;
+    --text-color-dark: #f8f9fa;
+    --form-border-color: #7b257b;
+  }
+  
+  body {
+    background-color: var(--background-color-light);
+    color: var(--text-color-light);
+    font-family: 'Arial', sans-serif;
+    transition: all 0.3s ease;
+  }
+  
+  /* Dark mode variables */
+  body[data-theme='dark'] {
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+  }
+  
+  /* Contact Profile Edit Form */
+  .contact-profile-edit {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: var(--background-color-light);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+  
+  body[data-theme='dark'] .contact-profile-edit {
+    background-color: var(--background-color-dark);
+    color: var(--text-color-dark);
+  }
+  
+  .contact-profile-edit h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--primary-color);
+  }
+  
+  /* Form Group */
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-label {
+    font-weight: 600;
+    color: var(--primary-color);
+  }
+  
+  .form-control {
+    border: 1px solid var(--form-border-color);
+    border-radius: 5px;
+    padding: 10px;
+    width: 100%;
+    font-size: 1rem;
+    background-color: var(--background-color-light);
+  }
+  
+  body[data-theme='dark'] .form-control {
+    background-color: #495057;
+    border-color: var(--form-border-color);
+    color: #f8f9fa;
+  }
+  
+  .form-control:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.25);
+  }
+  
+  button[type='submit'] {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  button[type='submit']:hover {
+    background-color: #a52ba5;
+  }
+  
+  button[type='submit']:active {
+    background-color: #004085;
+  }
+  
+  /* Dark mode styles */
+  body[data-theme='dark'] button[type='submit'] {
+    background-color: #7b257b;
+  }
+  
+  body[data-theme='dark'] button[type='submit']:hover {
+    background-color: #7b257b;
+  }
+  
+  body[data-theme='dark'] button[type='submit']:active {
+    background-color: #7b257b;
+  }
+  
+  .container {
+    padding-top: 30px;
+  }
+  
+  /* Optional: Custom switch for dark mode toggle */
+  .dark-mode-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    cursor: pointer;
+  }
+  
+  .dark-mode-toggle:hover {
+    background-color: #0056b3;
+  }
+  
