@@ -137,7 +137,7 @@ const ContactList = () => {
               </p>
 
               <div className="text-end">
-                <Button variant="primary" onClick={handleUpdateNavigate}>
+                <Button className="update-contact-btn" onClick={handleUpdateNavigate}>
                   Update Contact Details
                 </Button>
               </div>

@@ -24,25 +24,26 @@
   }
   
   /* General body styling */
-  .contact-list {
+  .lead-list {
     background-color: var(--primary-bg-color);
     color: var(--primary-text-color);
+    padding: 0 20px;
   }
   
-  .contact-list-title {
+  .lead-list-title {
     color: var(--primary-text-color);
   }
   
-  .contact-table th {
+  .lead-table th {
     background-color: var(--primary-button-bg);
     color: var(--primary-button-text);
   }
   
-  .contact-table tbody tr:nth-child(even) {
+  .lead-table tbody tr:nth-child(even) {
     background-color: #7b257b;
   }
   
-  .contact-table tbody tr:hover {
+  .lead-table tbody tr:hover {
     background-color: #f1f1f1;
   }
   
