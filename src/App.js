@@ -22,6 +22,7 @@ import { AuthProvider } from "./Security/AuthContext";
 import { ThemeProvider } from "./Components/ThemeContext";
 import { useEffect } from "react";
 import TaskBoard from "./Components/CRMTaskBoard";
+import AddTask from "./Components/AddTask";
 import TaskDetail from "./Components/TaskDetailPage";
 import TaskUpdateForm from "./Components/TaskUpdateForm";
 
@@ -62,9 +63,12 @@ function App() {
             <Route path="/contacts" element={<ProtectedRoutes> <ContactList /> </ProtectedRoutes>} />
             <Route path="/contactprofileedit/:id" element={<ProtectedRoutes> <ContactProfileEdit /> </ProtectedRoutes>} />
             <Route path="/add-contact" element={<ProtectedRoutes> <AddContact /> </ProtectedRoutes>} />
+            <Route path="/contacts/:id" element={<ProtectedRoutes> <ContactDetails /> </ProtectedRoutes>} />
             <Route path="/leads" element={<ProtectedRoutes> <LeadList /> </ProtectedRoutes>} />
+            <Route path="/lead/:id" element={<ProtectedRoutes> <LeadDetails /> </ProtectedRoutes>} />
             <Route path="/add-lead" element={<ProtectedRoutes> <AddLead /> </ProtectedRoutes>} />
             <Route path="/task" element={<ProtectedRoutes> <TaskBoard/> </ProtectedRoutes>} />
+            <Route path="/add-task" element={<ProtectedRoutes> <AddTask /> </ProtectedRoutes>} />
             <Route path="/tasks/:id" element={<ProtectedRoutes> <TaskDetail /> </ProtectedRoutes>} />
             <Route path="/tasks/update/:id" element={<ProtectedRoutes> <TaskUpdateForm /> </ProtectedRoutes>} />
           </Routes>
