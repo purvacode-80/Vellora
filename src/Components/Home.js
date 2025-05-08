@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaUserFriends, FaComments, FaChartLine } from 'react-icons/fa';
+import '../css/Homecss.css';
 // first container data
 const offerings = [
   {
