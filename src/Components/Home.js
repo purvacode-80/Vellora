@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+// Home.jsx
+import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaUserFriends, FaComments, FaChartLine } from 'react-icons/fa';
 import '../css/Homecss.css';
-// first container data
+
 const offerings = [
   {
     icon: <FaUserFriends size={35} />,
@@ -21,7 +22,7 @@ const offerings = [
     description: 'Make better decisions with built-in analytics and insights for your growth.',
   },
 ];
-// second container data
+
 const featureData = [
   {
     title: 'Live chat functionality includes two different room categories',
@@ -51,36 +52,28 @@ const Home = () => {
     setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
   };
 
-  const themes = {
-    light: {
-      backgroundColor: 'var(--bg-light)',
-      textColor: 'var(--text-light)',
-      cardBg: 'var(--card-bg-light)',
-    },
-    dark: {
-      backgroundColor: 'var(--bg-dark)',
-      textColor: 'var(--text-dark)',
-      cardBg: 'var(--card-bg-dark)',
-    },
-  };
-
-  const current = themes[theme];
+  useEffect(() => {
+    document.body.classList.remove('theme-light', 'theme-dark');
+    document.body.classList.add(`theme-${theme}`);
+  }, [theme]);
 
   return (
-    <div className="home-container" style={{ backgroundColor: current.backgroundColor, color: current.textColor }}>
-        {/* first container */}
+    <div className="home-container">
       <Container>
         <div className="text-center mb-5">
-          <h2 className="section-title" style={{ color: current.textColor }}>What We Offer</h2>
+          <h2 className="section-title">What We Offer</h2>
           <p className="section-desc">
             From foundational courses that lay the groundwork for your educational journey to advanced specializations.
           </p>
+          <Button variant="outline-secondary" onClick={toggleTheme}>
+            Switch to {theme === "light" ? "Dark" : "Light"} Mode
+          </Button>
         </div>
         <Row>
           {offerings.map((item, index) => (
             <Col key={index} md={6} lg={4} className="d-flex justify-content-center">
-              <Card className={`card-custom ${theme === 'dark' ? 'card-custom-dark' : ''} mb-4`} style={{ backgroundColor: current.cardBg, color: current.textColor }}>
-                <div className="mb-3" style={{ color: 'var(--highlight)' }}>{item.icon}</div>
+              <Card className={`card-custom mb-4`}>
+                <div className="mb-3" style={{ color: "white" }}>{item.icon}</div>
                 <Card.Body>
                   <Card.Title className="card-title-custom">{item.title}</Card.Title>
                   <Card.Text className="card-text-custom">{item.description}</Card.Text>
@@ -90,33 +83,26 @@ const Home = () => {
             </Col>
           ))}
         </Row>
-             </Container>
-             <br/>
-             {/* second container */}
-             <Container>
+      </Container>
+      <br />
+      <Container>
         <div className="text-center mt-5 mb-4">
-          <h2 className="section-title" style={{ color: current.textColor }}>
+          <h2 className="section-title">
             We Have Various Features <br />That Can Help You
           </h2>
           <p className="section-desc">
             From foundational courses that lay the groundwork for your educational journey to advanced specializations.
           </p>
         </div>
-
         {featureData.map((feature, index) => (
           <Row key={index} className="justify-content-center mb-5">
             <Col md={12}>
-              <Card className={`feature-card ${theme === 'dark' ? 'feature-card-dark' : ''}`} style={{ backgroundColor: current.cardBg, color: current.textColor }}>
+              <Card className={`feature-card`}>
                 <Card.Body>
                   <Row className="align-items-center">
                     {feature.imageBelow ? (
                       <Col md={12} className="feature-content">
-                        <h3
-                          style={{
-                            color: current.textColor,
-                            textAlign: feature.title === "Dashboard Overview" ? "center" : "left"
-                          }}
-                        >
+                        <h3 style={{ textAlign: feature.title === "Dashboard Overview" ? "center" : "left" }}>
                           {feature.title}
                         </h3>
                         <p>{feature.description}</p>
@@ -130,7 +116,7 @@ const Home = () => {
                           </Col>
                         )}
                         <Col md={6} className="mb-4 feature-content text-center">
-                          <h3 style={{ color: current.textColor }}>{feature.title}</h3>
+                          <h3>{feature.title}</h3>
                           <p>{feature.description}</p>
                           <div className="d-flex justify-content-center">
                             <Button className="button-purple">Explore</Button>

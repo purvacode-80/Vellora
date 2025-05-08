@@ -1,0 +1,85 @@
+:root {
+    /* Light Theme Colors */
+    --bg-light: #ffffff;                 /* Light background */
+    --text-light: #000000;              /* Dark text on light background */
+    --card-bg-light: #f8f9fa;           /* Light card background */
+    --card-shadow-light: 0 2px 10px rgba(0, 0, 0, 0.1);  /* Light shadow for cards */
+  
+    /* Dark Theme Colors */
+    --bg-dark: #1e1e2f;                 /* Dark background */
+    --text-dark: #ffffff;               /* Light text on dark background */
+    --card-bg-dark: #2c2c3c;            /* Dark card background */
+    --card-shadow-dark: 0 4px 12px rgba(0, 0, 0, 0.3);  /* Dark shadow for cards */
+  
+    /* Accent Color */
+    --highlight: #7b257b;               /* Bright purple for buttons and accents */
+    --border: 1px solid var(--highlight); /* Border style using highlight */
+  
+    /* Typography Sizes */
+    --font-title: 2.5rem;               /* Title font size */
+    --font-subtitle: 2rem;              /* Subtitle font size */
+    --font-text: 16px;                  /* Normal text font size */
+    --font-small: 15px;                 /* Smaller text font size */
+  }
+  
+  /* === GENERAL PAGE STYLING === */
+  .home-container {
+    min-height: 100vh;                  /* Full screen height */
+    padding: 60px 20px;                 /* Top/bottom and side padding */
+  }
+
+  /* Login & Register */
+  
+  .form-container { 
+    padding: 2em;
+    max-width: 400px;
+    margin: 0 auto;
+    text-align: center;
+    /* border: 1px solid black; */
+    /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); */
+    box-shadow: 0 5px 10px rgba(148, 0, 211, 0.1);
+    background-color: white;
+  }
+  
+  .form-container h3 {
+    color: darkviolet;
+    font-family: "Ga Maamli", sans-serif;
+  }
+  
+  .form-container input {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+  
+  .form-container button {
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 1.2em;
+    width: 50%;
+    border-radius: 40px;
+    background-color: darkviolet;
+    border: none;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.3s ease-out;
+  }
+  
+  .form-container button:hover {
+    background-color: blueviolet;
+  }
+  
+  .form-container a {
+    color: darkviolet;
+    text-decoration: none;
+  }
+  
+  .form-container .form-control:focus {
+    border-color: rgba(179, 0, 255, 0.2) !important; 
+    box-shadow: 0 0 10px rgba(179, 0, 255, 0.2) !important; 
+    outline: none !important;
+  
+  }
