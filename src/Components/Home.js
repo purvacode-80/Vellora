@@ -103,53 +103,33 @@ const Home = () => {
           </p>
         </div>
 
-        {featureData.map((feature, index) => (
-          <Row key={index} className="justify-content-center mb-5">
-            <Col md={12}>
-              <Card className={`feature-card ${theme === 'dark' ? 'feature-card-dark' : ''}`} style={{ backgroundColor: current.cardBg, color: current.textColor }}>
-                <Card.Body>
-                  <Row className="align-items-center">
-                    {feature.imageBelow ? (
-                      <Col md={12} className="feature-content">
-                        <h3
-                          style={{
-                            color: current.textColor,
-                            textAlign: feature.title === "Dashboard Overview" ? "center" : "left"
-                          }}
-                        >
-                          {feature.title}
-                        </h3>
-                        <p>{feature.description}</p>
-                        <img src={feature.image} alt="Feature" className="feature-img feature-img-large" />
-                      </Col>
-                    ) : (
-                      <>
-                        {feature.imageLeft && (
-                          <Col md={6} className="mb-4">
-                            <img src={feature.image} alt="Feature" className="feature-img" />
-                          </Col>
-                        )}
-                        <Col md={6} className="mb-4 feature-content text-center">
-                          <h3 style={{ color: current.textColor }}>{feature.title}</h3>
-                          <p>{feature.description}</p>
-                          <div className="d-flex justify-content-center">
-                            <Button className="button-purple">Explore</Button>
-                          </div>
-                        </Col>
-                        {!feature.imageLeft && (
-                          <Col md={6} className="mb-4">
-                            <img src={feature.image} alt="Feature" className="feature-img" />
-                          </Col>
-                        )}
-                      </>
-                    )}
-                  </Row>
-                </Card.Body>
-              </Card>
+       {featureData.map((feature, index) => (
+          <Row key={index} className="align-items-center mb-5">
+            {feature.imageLeft && (
+              <Col md={6}>
+                <img src={feature.image} alt={feature.title} className={`feature-img ${feature.imageBelow ? 'feature-img-large' : ''}`} />
+              </Col>
+            )}
+            <Col md={6}>
+              <div className="feature-content">
+                <h3>{feature.title}</h3>
+                <p>{feature.description}</p>
+              </div>
             </Col>
+            {!feature.imageLeft && (
+              <Col md={6}>
+                <img src={feature.image} alt={feature.title} className={`feature-img ${feature.imageBelow ? 'feature-img-large' : ''}`} />
+              </Col>
+            )}
           </Row>
         ))}
       </Container>
+
+      <div className="text-center mt-5">
+        <Button className="button-purple" onClick={toggleTheme}>
+          Toggle Theme
+        </Button>
+      </div>
     </div>
   );
 };

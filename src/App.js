@@ -25,6 +25,7 @@ import TaskBoard from "./Components/CRMTaskBoard";
 import TaskDetail from "./Components/TaskDetailPage";
 import TaskUpdateForm from "./Components/TaskUpdateForm";
 
+
 function App() {
   const token = localStorage.getItem("token");
 
@@ -55,7 +56,7 @@ function App() {
                 </ProtectedRoutes>
               } 
             />
-            <Route path="/" element={<> <Home /> <Testimonials /> <Faqquestion /> <Footer /> </>} />
+            <Route path="/" element={<><Home /> <Testimonials /> <Faqquestion /> <Footer /> </>} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route path="/contacts" element={<ProtectedRoutes> <ContactList /> </ProtectedRoutes>} />
