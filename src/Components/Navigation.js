@@ -15,7 +15,7 @@ function CRMNavbar() {
   
   return (
     <Navbar expand="lg" className={`shadow-sm ${isDark ? 'bg-black navbar-dark' : 'bg-white navbar-light'}`}>
-      <Container>
+      <Container className='p-0'>
         <Navbar.Brand as={Link} to="/" style={{ color: '#9c27b0' }}>
           VELLORA
         </Navbar.Brand>

@@ -1,7 +1,6 @@
 // Home.jsx
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { FaUserFriends, FaComments, FaChartLine } from 'react-icons/fa';
 import '../css/Homecss.css';
 
@@ -65,9 +64,9 @@ const Home = () => {
           <p className="section-desc">
             From foundational courses that lay the groundwork for your educational journey to advanced specializations.
           </p>
-          <Button variant="outline-secondary" onClick={toggleTheme}>
+          {/* <Button variant="outline-secondary" onClick={toggleTheme}>
             Switch to {theme === "light" ? "Dark" : "Light"} Mode
-          </Button>
+          </Button> */}
         </div>
         <Row>
           {offerings.map((item, index) => (
