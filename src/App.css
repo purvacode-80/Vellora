@@ -1,33 +1,7 @@
-:root {
-    /* Light Theme Colors */
-    --bg-light: #ffffff;                 /* Light background */
-    --text-light: #000000;              /* Dark text on light background */
-    --card-bg-light: #f8f9fa;           /* Light card background */
-    --card-shadow-light: 0 2px 10px rgba(0, 0, 0, 0.1);  /* Light shadow for cards */
-  
-    /* Dark Theme Colors */
-    --bg-dark: #1e1e2f;                 /* Dark background */
-    --text-dark: #ffffff;               /* Light text on dark background */
-    --card-bg-dark: #2c2c3c;            /* Dark card background */
-    --card-shadow-dark: 0 4px 12px rgba(0, 0, 0, 0.3);  /* Dark shadow for cards */
-  
-    /* Accent Color */
-    --highlight: #7b257b;               /* Bright purple for buttons and accents */
-    --border: 1px solid var(--highlight); /* Border style using highlight */
-  
-    /* Typography Sizes */
-    --font-title: 2.5rem;               /* Title font size */
-    --font-subtitle: 2rem;              /* Subtitle font size */
-    --font-text: 16px;                  /* Normal text font size */
-    --font-small: 15px;                 /* Smaller text font size */
+ /* For larger feature images (like in Dashboard section) */
+ .feature-img-large {
+    height: 300px;
   }
-  
-  /* === GENERAL PAGE STYLING === */
-  .home-container {
-    min-height: 100vh;                  /* Full screen height */
-    padding: 60px 20px;                 /* Top/bottom and side padding */
-  }
-
   /* Login & Register */
   
   .form-container { 
@@ -83,3 +57,4 @@
     outline: none !important;
   
   }
+  
