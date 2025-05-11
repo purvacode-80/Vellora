@@ -4,34 +4,33 @@
     --modal-background: #ffffff;
     --column-bg: #e9f2f7;
     --text-color: #222;
-    --highlight: #7b257b;
-    --highlight-dark: #5b0f5b;
+    /* --text-color: #7b257b; */
+    /* --text-color-dark: #5b0f5b; */
     --font-main: 'Segoe UI', sans-serif;
-    
-      --secondary-color: #6c757d; 
-      --secondary-dark: #5a6268; 
-  }
-  
-  body {
-    font-family: var(--font-main);
-    background-color: var(--background-light);
-    color: var(--text-color);
+    --secondary-color: #6c757d; 
+
+    --light-grey : #1d1d1d;
+    --text-color : #ffffff;
+    --dark-card-bg : #2d2d30;
+    --secondary-dark: #37373c; 
+    --purple-color : rgb(194, 151, 247);
+    --voilet-color : rgb(232, 119, 255);
   }
   
   .task-board {
-    padding: 40px 20px;
-    background-color: var(--background-light);
+    /* padding: 40px 20px; */
+    background-color: var(--light-grey);
     box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
     border-radius: 15px;
   }
   
   .board-title {
-    font-size: 3rem;
+    font-size: 2rem;
     font-weight: bold;
-    color: var(--highlight);
-    border-bottom: 4px solid var(--highlight);
+    color: var(--purple-color);
+    border-bottom: 4px solid var(--text-color);
     padding-bottom: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     text-align: center;
     text-shadow: 2px 2px 10px rgba(108, 99, 255, 0.3);
     font-family: 'Courier New', Courier, monospace;
@@ -44,15 +43,15 @@
   
   /* Column container */
   .column-container {
-    background-color: var(--column-bg);
-    border-radius: 18px;
+    background-color: var(--dark-card-bg);
+    border-radius: 20px;
     padding: 20px;
     min-width: 280px;
     margin-right: 15px;
     margin-left: 15px;
     max-height: 75vh;
     overflow-y: auto;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 5px 5px rgb(245, 187, 255); */
     min-height: 400px;
     display: flex;
     flex-direction: column;
@@ -62,7 +61,7 @@
   
   .column-container:hover {
     transform: translateY(-10px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+    box-shadow: 5px 5px 5px rgb(245, 187, 255);
   }
   
   /* Column header */
@@ -70,9 +69,9 @@
     font-size: 1.7rem;
     font-weight: bold;
     margin-bottom: 15px;
-    color: var(--highlight);
+    color: var(--voilet-color);
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     text-transform: initial;
     letter-spacing: 1px;
@@ -80,17 +79,18 @@
   
   /* Badge */
   .count {
-    background-color: var(--highlight);
-    color: white;
+    background-color: var(--card-background);
+    color: rgb(203, 30, 233) !important;
     border-radius: 30px;
     padding: 5px 12px;
     font-size: 1rem;
     margin-left: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 10px rgb(245, 187, 255); */
   }
   
   .task-column {
-    background-color: var(--card-background);
+    background-color: var(--dark-card-bg);
+    border: var(--background-light) 1px solid;
     border-radius: 14px;
     padding: 10px;
     min-height: 400px;
@@ -99,7 +99,7 @@
     gap: 10px;
     overflow-y: auto;
     max-height: 500px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    /* box-shadow: 0 4px 12px rgb(245, 187, 255); */
   }
   
   /* Task column scrollbars */
@@ -108,7 +108,7 @@
   }
   
   .task-column::-webkit-scrollbar-thumb {
-    background-color: var(--highlight);
+    background-color: var(--text-color);
     border-radius: 6px;
   }
   
@@ -118,25 +118,26 @@
   
   /* Task Card */
   .task-card {
-    background-color: var(--card-background);
-    border-left: 6px solid var(--highlight);
+    background-color: var(--secondary-dark) !important;
+    border-left: 6px solid var(--card-background) !important;
     border: 1px solid rgba(0, 0, 0, 0.1);
     border-radius: 14px;
     transition: transform 0.3s, box-shadow 0.3s;
     cursor: pointer;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    /* box-shadow: 0 2px 8px rgba(255, 255, 255) !important; */
     overflow: hidden;
     flex-shrink: 0;
+    padding: 10px !important;
     margin-bottom: -20px;
   }
   
   .task-card:hover {
-    transform: scale(1.05);
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    transform: scale(1.02);
+    box-shadow: 5px 5px 5px rgba(255, 255, 255) !important;
   }
   
   .task-title {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     font-weight: bold;
     color: var(--text-color);
     text-transform: capitalize;
@@ -144,15 +145,16 @@
   }
   
   .task-data{
-    margin-top: -25px;
-    margin-bottom: -25px;
-    
+    /* margin-top: -25px; */
+    /* margin-bottom: -25px; */
+    padding: 5px !important;
+    color: var(--background-light) !important;
   }
   
   /* Empty state */
   .no-task {
     text-align: center;
-    color: #aaa;
+    color: var(--background-light);
     font-style: italic;
     margin-top: 20px;
     font-size: 1.2rem;
@@ -170,14 +172,14 @@
   }
   
   .button-update-custom {
-    background-color: var(--highlight) !important;  /* Force your highlight color */
+    background-color: var(--text-color) !important;  /* Force your highlight color */
     color: white !important;
-    border: 2px solid var(--highlight) !important;
+    border: 2px solid var(--text-color) !important;
   }
   
   .button-update-custom:hover {
-    background-color: var(--highlight-dark) !important;  
-    border-color: var(--highlight-dark) !important;
+    background-color: var(--text-color-dark) !important;  
+    border-color: var(--text-color-dark) !important;
   }
   
   /* General Button Styles */
@@ -208,14 +210,14 @@
   
   /* Save Button Styles */
   .button-save {
-    background-color: var(--highlight) !important; 
+    background-color: var(--text-color) !important; 
     color: white !important;
     border: none !important;
     width: 100%;
   }
   
   .button-save:hover {
-    background-color: var(--highlight-dark) !important;
+    background-color: var(--text-color-dark) !important;
     width: 100%;
   
   }
@@ -296,7 +298,7 @@
   
   form.card .form-control:focus,
   form.card .form-select:focus {
-    border-color: var(--highlight);
+    border-color: var(--text-color);
     box-shadow: 0 0 0 0.2rem rgba(123, 37, 123, 0.25);
     outline: none;
   }
@@ -334,7 +336,7 @@
   
   input[type="date"]:focus,
   select.form-control:focus {
-    border-color: var(--highlight);
+    border-color: var(--text-color);
     box-shadow: 0 0 10px rgba(123, 37, 123, 0.4);
   }
   

@@ -27,6 +27,11 @@ import AddContact from './AddContact';
 import LeadList from './LeadList';
 import AddLead from './AddLead';
 import Taskboard from './CRMTaskBoard'
+import AddTask from './AddTask';
+import TaskDetails from './TaskDetailPage'
+import GoogleCalendar from './GoogleCalendar';
+import CalendarView from './CalendarView';
+import CreateCalendarEvent from './CreateCalendarEvent';
 // import other components as needed
 
 const NAVIGATION = [
@@ -67,7 +72,24 @@ const NAVIGATION = [
 ];
 
 const demoTheme = createTheme({
-  colorSchemes: { light: true, dark: true },
+  colorSchemes: {
+    dark: {
+      palette: {
+        mode: 'dark',
+        primary: {
+          main: '#bb86fc',
+        },
+        background: {
+          default: '#1f1f1f',  //Page bg
+          paper: '#1c1c1c',   // Card or sidebar bg
+        },
+        text: {
+          primary: '#ffffff',
+          secondary: '#bbbbbb',
+        },
+      }
+    }
+  }
 });
 
 function PageContent() {
@@ -82,6 +104,10 @@ function PageContent() {
         <Route path="/leads" element={<LeadList />} />
         <Route path="/add-lead" element={<AddLead />} />
         <Route path="/tasks" element={<Taskboard />} />
+        <Route path="/add-task" element={<AddTask />} />
+        <Route path="/tasks/:taskId" element={<TaskDetails />} />
+        <Route path="/calendar" element={<CalendarView/>} />
+        <Route path="/add-calendar-event" element={<CreateCalendarEvent />} />
         {/* Add more routes here */}
         <Route path="*" element={<Typography>Page not found: {location.pathname}</Typography>} />
       </Routes>
@@ -98,7 +124,7 @@ function DashboardLayoutBasic(props) {
       navigation={NAVIGATION}
       // onNavigate={(path) => navigate(path)}  // ✅ Tell Toolpad to use React Router navigation
       branding={{
-        logo: <img src={logo} alt="vellora logo" style={{ height: 32 }} />,
+        logo: <img src={logo} alt="Vellora logo" style={{ height: 32 }} />,
         title: 'Vellora',
         homeUrl: '/dashboard',
       }}
