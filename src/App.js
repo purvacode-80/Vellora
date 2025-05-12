@@ -14,6 +14,8 @@ function App() {
 
       {/* Dashboard Route */}
       <Route path="/dashboard/*" element={<Dashboard />} />
+            <Route path="/home/" element={<Home/>} />
+
     </Routes>
   );
 }
