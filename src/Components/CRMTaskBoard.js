@@ -18,7 +18,7 @@ const CRMTaskBoard = () => {
   }, []);
 
   return (
-    <Container fluid className="task-board py-4">
+    <Container fluid className="task-board">
       <h2 className="board-title text-center mb-4">📋TASK BOARD</h2>
       <Row className="gx-4 gy-4 d-flex flex-nowrap overflow-auto">
         {statuses.map(status => (
@@ -34,7 +34,7 @@ const CRMTaskBoard = () => {
                 <Card
                   key={task._id}
                   className="task-card shadow-sm"
-                  onClick={() => navigate(`/tasks/${task._id}`)} 
+                  onClick={() => navigate(`/dashboard/tasks/${task._id}`)} 
                   style={{ cursor: 'pointer' }}
                 >
                   <Card.Body className='task-data'>
@@ -45,7 +45,7 @@ const CRMTaskBoard = () => {
                 </Card>
               ))}
               {tasks.filter(t => t.status === status).length === 0 && (
-                <div className="no-task text-muted">No tasks</div>
+                <div className="no-task">No tasks</div>
               )}
             </div>
           </Col>

@@ -6,19 +6,19 @@ import '../css/Taskbord.css';
 
 
 const TaskDetailPage = () => {
-  const { id } = useParams();
+  const { taskId } = useParams();
   const [task, setTask] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/task/${id}`)
+    axios.get(`http://localhost:8000/task/${taskId}`)
       .then(res => setTask(res.data))
       .catch(err => console.error('Error fetching task details:', err));
-  }, [id]);
+  }, [taskId]);
 
   const handleDelete = () => {
     if (window.confirm('Are you sure you want to delete this task?')) {
-      axios.delete(`http://localhost:8000/task/${id}`)
+      axios.delete(`http://localhost:8000/task/${taskId}`)
         .then(() => {
           alert('Task deleted');
           navigate('/');
@@ -28,7 +28,7 @@ const TaskDetailPage = () => {
   };
 
   return (
-    <Container className="p-4">
+    <Container>
       <h3 className="board-title text-center mb-4">📝 Task Details</h3>
       {task && (
          <Card className="task-detail-card">
@@ -42,7 +42,7 @@ const TaskDetailPage = () => {
          <p><strong>Assigned Date:</strong> {task.assigneddate}</p>
    
          <div className="d-flex gap-3 mt-4">
-           <Button className="button button-update-custom" onClick={() => navigate(`/tasks/update/${id}`)}>
+           <Button className="button button-update-custom" onClick={() => navigate(`/tasks/update/${taskId}`)}>
              Update
            </Button>
            <Button className="button button-delete" onClick={handleDelete}>

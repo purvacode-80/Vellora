@@ -3,6 +3,7 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
 import { toast, ToastContainer } from 'react-toastify';
+import GoogleLoginAuth from "./GoogleLogin";
 
 function Login() {
   const [user, setUser] = useState({
@@ -21,7 +22,7 @@ function Login() {
         const token = response.data.token; // Extract token from response
         console.log("Token : ", token); // Print token in console
         localStorage.setItem("token", token); // Store token in localStorage
-        toast.success("Login Successful...! Ready to explore ...", { autoClose: 3000 , onClose: () => window.location.href = "/home"}); // Redirect to home page after 3 seconds
+        toast.success("Login Successful...! Ready to explore ...", { autoClose: 3000 , onClose: () => window.location.href = "/dashboard"}); // Redirect to dashboard after 3 seconds
       })
       .catch((err) => {
         console.error("Invalid Credentials:", err);
@@ -45,6 +46,7 @@ function Login() {
           </Form.Group>
           <center> <button type="submit"> Login </button> </center>
         </Form>
+        <GoogleLoginAuth />
         <h6> Don't have an account? <a href="/register"> Register </a> </h6>
       </div>
     </div>
