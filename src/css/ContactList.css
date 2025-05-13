@@ -19,27 +19,29 @@ body {
   color: var(--text-dark);
 }
 
-.lead-list {
+/* Contact List Container */
+.contact-list {
+
   padding: 40px 20px;
   background-color: var(--background-light);
 }
 
-.board-title {
+/* Contact List Title */
+.contact-list-title {
   font-size: 2rem;
   font-weight: 600;
   color: var(--highlight);
+  margin-top: -110px;
+  margin-bottom: 20px;
 }
 
-
-/* Table Container */
+/* Table Wrapper */
 .table-wrapper {
-  
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
 }
 
 /* Table Styling */
-
 .custom-table {
   border-collapse: collapse; /* Changed from 'separate' */
   width: 100%;
@@ -60,39 +62,28 @@ body {
   padding: 12px;
   text-align: center;
   vertical-align: middle;
-    font-size: 1.rem;
-
+  font-size: 1rem;
 }
 
 .custom-table tbody tr:hover {
   background-color: #f6f3ff;
 }
 
-/* Badges */
-.badge {
-  padding: 6px 10px;
-  border-radius: 12px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  display: inline-block;
-  min-width: 70px;
-}
-
 /* Highlighted Show Button */
-.btn-details {
- font-family: var(--font-main);
+.btn-show-details {
+  font-family: var(--font-main);
   padding: 10px 20px;
   font-size: 1rem;
   border-radius: 8px;
   border: none;
   transition: all 0.3s ease;
   font-weight: 600;
-   background-color: var(--highlight) !important;
+  background-color: var(--highlight) !important;
   color: var(--text-light) !important;
   border: 1px solid var(--highlight) !important;
 }
 
-.btn-details:hover {
+.btn-show-details:hover {
   background-color: var(--highlight-hover);
   transform: scale(1.05);
 }

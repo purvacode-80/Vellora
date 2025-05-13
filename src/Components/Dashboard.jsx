@@ -33,7 +33,9 @@ import TaskDetails from './TaskDetailPage'
 import CalendarView from './CalendarView';
 import CreateCalendarEvent from './CreateCalendarEvent';
 import TaskUpdateForm from './TaskUpdateForm';
-import TaskUpdate from './TaskUpdateForm';
+import LeadDetails from './LeadDetails';
+import ContactDetails from './ContactDetails';
+import LeadProfileEdit from './LeadProfileEdit';
 // import other components as needed
 
 const NAVIGATION = [
@@ -157,6 +159,15 @@ function PageContent() {
         <Route path="/tasks/:taskId" element={<TaskDetails />} />
         <Route path="/calendar" element={<CalendarView/>} />
         <Route path="/add-calendar-event" element={<CreateCalendarEvent />} />
+        <Route path="/tasks/update/:id" element={<TaskUpdateForm />} />
+        <Route path="/lead/:id" element={<LeadDetails />} />
+        <Route path="/contact/:id" element={<ContactDetails />} />
+        <Route path="/leads/update/:id" element={<LeadProfileEdit />} />
+
+
+
+
+
         {/* Add more routes here */}
         <Route path="*" element={<Typography>Page not found: {location.pathname}</Typography>} />
       </Routes>
