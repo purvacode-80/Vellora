@@ -1,6 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Form, Button, Container } from "react-bootstrap";
+import { toast, ToastContainer } from "react-toastify";
 
 const AddContact = () => {
   const [form, setForm] = useState({
@@ -22,7 +23,12 @@ const AddContact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8000/contact/", form);
+      await axios.post("http://localhost:8000/contact/", form,{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+      // Reset form fields after successful submission
       setForm({
         name: "",
         email: "",
@@ -34,7 +40,13 @@ const AddContact = () => {
         linkedin: "",
         status: "Active"
       });
-      alert("Contact Added Successfully!");
+      toast.success("Contact added successfully!",
+        {
+          onClose: () => {
+            window.location.href = "/dashboard/contacts";
+          }
+        }
+      );
     }
     catch (error) {
       console.error("Error adding contact : ", error);
@@ -44,6 +56,7 @@ const AddContact = () => {
 
   return (
     <Container className="mt-4">
+      <ToastContainer autoClose={2000} />
       <h2>Add Contact</h2>
       <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3">

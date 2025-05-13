@@ -42,7 +42,7 @@ const TaskDetailPage = () => {
          <p><strong>Assigned Date:</strong> {task.assigneddate}</p>
    
          <div className="d-flex gap-3 mt-4">
-           <Button className="button button-update-custom" onClick={() => navigate(`/tasks/update/${taskId}`)}>
+           <Button className="button button-update-custom" onClick={() => navigate(`/dashboard/tasks/update/${taskId}`)}>
              Update
            </Button>
            <Button className="button button-delete" onClick={handleDelete}>
