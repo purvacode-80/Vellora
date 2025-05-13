@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Form, Button, Container } from "react-bootstrap";
 import '../css/Forms.css'; // Make sure you import your Forms.css here too
+import { toast, ToastContainer } from "react-toastify";
 
 const AddContact = () => {
   const [form, setForm] = useState({
@@ -23,7 +24,12 @@ const AddContact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8000/contact/", form);
+      await axios.post("http://localhost:8000/contact/", form,{
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+      // Reset form fields after successful submission
       setForm({
         name: "",
         email: "",
@@ -35,22 +41,22 @@ const AddContact = () => {
         linkedin: "",
         status: "Active"
       });
-      alert("✅ Contact Added Successfully!");
-    } catch (error) {
+      alert("Contact Added Successfully!");
+    }
+    catch (error) {
       console.error("Error adding contact : ", error);
       alert("❌ Failed to add contact. Please try again.");
     }
   };
 
   return (
-    <Container className="p-4">
-      <h3 className="board-title text-center mb-4">📞 Add Contact</h3>
-      <Form onSubmit={handleSubmit} className="card1">
-        <div className="form-container1">
-          <Form.Group className="mb-3">
-            <Form.Label>Name</Form.Label>
-            <Form.Control type="text" name="name" value={form.name} onChange={handleChange} placeholder="Full Name" />
-          </Form.Group>
+    <Container className="mt-4">
+      <h2>Add Contact</h2>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group className="mb-3">
+          <Form.Label>Name</Form.Label>
+          <Form.Control type="text" name="name" value={form.name} onChange={handleChange} placeholder="Full Name" />
+        </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Email</Form.Label>
@@ -94,6 +100,7 @@ const AddContact = () => {
           <Button type="submit" className="button button-save">💾 Add Contact</Button>
         </div>
       </Form>
+  
     </Container>
   );
 };

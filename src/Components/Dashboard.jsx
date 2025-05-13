@@ -29,10 +29,11 @@ import AddLead from './AddLead';
 import Taskboard from './CRMTaskBoard'
 import AddTask from './AddTask';
 import TaskDetails from './TaskDetailPage'
-import GoogleCalendar from './GoogleCalendar';
+// import GoogleCalendar from './GoogleCalendar';
 import CalendarView from './CalendarView';
 import CreateCalendarEvent from './CreateCalendarEvent';
 import TaskUpdateForm from './TaskUpdateForm';
+import TaskUpdate from './TaskUpdateForm';
 // import other components as needed
 
 const NAVIGATION = [
@@ -156,8 +157,6 @@ function PageContent() {
         <Route path="/tasks/:taskId" element={<TaskDetails />} />
         <Route path="/calendar" element={<CalendarView/>} />
         <Route path="/add-calendar-event" element={<CreateCalendarEvent />} />
-        <Route path="/tasks/update/:id" element={<TaskUpdateForm />} />
-
         {/* Add more routes here */}
         <Route path="*" element={<Typography>Page not found: {location.pathname}</Typography>} />
       </Routes>

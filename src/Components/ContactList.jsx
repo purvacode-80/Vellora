@@ -17,16 +17,24 @@ const ContactList = () => {
   const navigate = useNavigate(); // ✅ initialize useNavigate
 
   useEffect(() => {
+  const fetchContacts = async () => {
     try {
-      const fetchContacts = async () => {
-        const response = await axios.get("http://localhost:8000/contact/all");
-        setContacts(response.data);
-      };
-      fetchContacts();
+      const response = await axios.get('http://localhost:8000/contact/all', {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+      setContacts(response.data);
+      // console.log("Token : ", localStorage.getItem('token'));
+      // console.log("Contacts : ", response.data);
     } catch (error) {
-      console.error("Error fetching contacts: ", error);
+      console.error("Error fetching contacts: ", error.response?.data || error.message);
     }
-  }, []);
+  };
+
+  fetchContacts();
+}, []);
+
 
   const handleShow = (contact) => {
     setSelectedContact(contact);
