@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Form, Button, Card } from 'react-bootstrap';
+import { Form, Button, Container, Card } from 'react-bootstrap';
+import '../css/Forms.css'; // Import external CSS file
 
 const AddTask = () => {
   const [formData, setFormData] = useState({
@@ -21,7 +22,7 @@ const AddTask = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8000/Task', formData);
+      await axios.post('http://localhost:8000/task/addTask', formData);
       alert('✅ Task added successfully!');
       setFormData({
         taskname: '',
@@ -39,11 +40,11 @@ const AddTask = () => {
   };
 
   return (
-    <div className="container mt-5">
-      <Card className="p-4 shadow-lg border-0 rounded-4 bg-white dark:bg-dark text-dark dark:text-white">
-        <h2 className="text-center mb-4 text-purple-600 dark:text-purple-400">Add New Task</h2>
-        <Form onSubmit={handleSubmit}>
-          <Form.Group className="mb-3" controlId="taskname">
+    <Container className="p-4">
+      <h3 className="board-title text-center mb-4">📋Add New Task</h3>
+      <Form onSubmit={handleSubmit} className="card1">
+        <div className="form-container1">
+          <Form.Group className="mb-3">
             <Form.Label>Task Name</Form.Label>
             <Form.Control
               type="text"
@@ -101,9 +102,8 @@ const AddTask = () => {
             >
               <option value="">Select Status</option>
               <option>Not Started</option>
-              <option>Started</option>
+              <option>Deferred</option>
               <option>In Progress</option>
-              <option>Pending</option>
               <option>Completed</option>
             </Form.Select>
           </Form.Group>
@@ -140,13 +140,13 @@ const AddTask = () => {
           <Button
             variant="primary"
             type="submit"
-            className="w-100 bg-purple-600 border-0 hover:bg-purple-700"
+            className="button-save w-100"
           >
-            Add Task
+           💾 Add Task
           </Button>
-        </Form>
-      </Card>
-    </div>
+        </div>
+      </Form>
+    </Container>
   );
 };
 

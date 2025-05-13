@@ -1,0 +1,115 @@
+:root {
+  --background-light: #ebe9f1;     /* Soft lavender background */
+  --sidebar-bg: #1e1b2e;            /* White sidebar for clean look */
+  --topbar-bg: #1e1b2e;             /* Light violet topbar */
+  --column-bg: #ffffff;             /* White columns */
+  --card-bg: #ffffff;               /* White cards */
+  --highlight: #9d4edd;             /* Purple highlight */
+  --highlight-hover: #7b2cbf;       /* Deeper purple hover */
+  --text-dark: #2d2d2d;             /* Dark gray text */
+  --text-light: #ffffff;            /* White text */
+  --font-main: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-main);
+  background-color: var(--background-light);
+  color: var(--text-dark);
+}
+  
+.form-container1 {
+ background-color: var(--card-bg);
+  padding: 30px;
+  box-shadow: 0 6px 20px rgba(157, 78, 221, 0.15);
+  font-family: var(--font-main);
+  color: var(--text-dark);
+  box-shadow: 0 6px 20px rgba(157, 78, 221, 0.15), 0 0 5px var(--highlight); /* Added highlight box-shadow */
+  transition: transform 0.3s;
+  width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 16px !important;
+}
+
+.form-container1:hover {
+  transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(157, 78, 221, 0.15), 0 0 10px var(--highlight); /* Increased highlight shadow on hover */
+}
+
+/* Form Group */
+.form-container1 .form-group {
+  margin-bottom: 20px;
+}
+
+/* Labels */
+.form-container1 label {
+  font-weight: 520;
+  margin-bottom: 8px;
+  color: var(--text-dark);
+  font-size: 1.2rem;
+}
+
+/* Inputs */
+.form-container1 input,
+.form-container1 select,
+.form-container1 textarea {
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  padding: 12px 15px;
+  font-size: 1rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-container1 input:focus,
+.form-container1 select:focus,
+.form-container1 textarea:focus {
+  border-color: var(--highlight);
+  box-shadow: 0 0 5px rgba(157, 78, 221, 0.5);
+}
+
+/* Save Button */
+.button-save {
+  background-color: var(--highlight) !important;
+  color: var(--text-light);
+  border: 1px solid var(--highlight) !important;
+  border-radius: 10px;
+  padding: 12px 25px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-top: 20px;
+  transition: background-color 0.3s, transform 0.2s;
+  width: 100%; 
+}
+
+.button-save:hover {
+  background-color: var(--highlight-hover);
+  transform: translateY(-2px);
+}
+
+
+/* Heading */
+.board-title {
+  font-size: 2rem;
+  color: var(--highlight);
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin-top: -80px;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .update-form-container {
+    padding: 20px 15px;
+  }
+  .form-container input,
+  .form-container select,
+  .form-container textarea {
+    font-size: 0.95rem;
+    padding: 10px 12px;
+  }
+}

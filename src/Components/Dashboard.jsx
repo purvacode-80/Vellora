@@ -32,6 +32,7 @@ import TaskDetails from './TaskDetailPage'
 import GoogleCalendar from './GoogleCalendar';
 import CalendarView from './CalendarView';
 import CreateCalendarEvent from './CreateCalendarEvent';
+import TaskUpdateForm from './TaskUpdateForm';
 // import other components as needed
 
 const NAVIGATION = [
@@ -71,25 +72,72 @@ const NAVIGATION = [
   },
 ];
 
+
 const demoTheme = createTheme({
-  colorSchemes: {
-    dark: {
-      palette: {
-        mode: 'dark',
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#bb86fc',
+    },
+    background: {
+      default: '#1f1f1f',  // Page background
+      paper: '#1c1c1c',    // Sidebar background
+    },
+    text: {
+      primary: '#ffffff',
+      secondary: '#bbbbbb',
+    },
+  },
+  components: {
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#1f1f1f', // Top bar background
+          boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
+        },
+      },
+    },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          backgroundColor: '#1c1c1c', // Sidebar background
+          color: '#ffffff',           // Sidebar text color
+          borderRight: '1px solid #ddd',
+        },
+      },
+    },
+    MuiListItem: {
+      styleOverrides: {
+        root: {
+          margin: '8px 0',
+          borderRadius: '10px',
+          transition: 'background 0.3s',
+          '&:hover': {
+            backgroundColor: '#333333', // Hover color for sidebar items
+          },
+        },
+      },
+    },
+    MuiListItemText: {
+      styleOverrides: {
         primary: {
-          main: '#bb86fc',
+          fontSize: '0.95rem',
+          fontWeight: 500,
+          color: '#ffffff',
         },
-        background: {
-          default: '#1f1f1f',  //Page bg
-          paper: '#1c1c1c',   // Card or sidebar bg
+      },
+    },
+    MuiListItemIcon: {
+      styleOverrides: {
+        root: {
+          color: '#ffffff',
+          '& svg': {
+            color: '#ffffff',
+          },
         },
-        text: {
-          primary: '#ffffff',
-          secondary: '#bbbbbb',
-        },
-      }
-    }
-  }
+      },
+    },
+  },
 });
 
 function PageContent() {
@@ -108,6 +156,8 @@ function PageContent() {
         <Route path="/tasks/:taskId" element={<TaskDetails />} />
         <Route path="/calendar" element={<CalendarView/>} />
         <Route path="/add-calendar-event" element={<CreateCalendarEvent />} />
+        <Route path="/tasks/update/:id" element={<TaskUpdateForm />} />
+
         {/* Add more routes here */}
         <Route path="*" element={<Typography>Page not found: {location.pathname}</Typography>} />
       </Routes>
