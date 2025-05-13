@@ -24,6 +24,8 @@ import logo from '../Assets/logo-removebg-preview.png';
 
 import ContactList from './ContactList';
 import AddContact from './AddContact';
+import ContactDetails from './ContactDetails';
+import Contactprofileedit from './Contactprofileedit';
 import LeadList from './LeadList';
 import AddLead from './AddLead';
 import Taskboard from './CRMTaskBoard'
@@ -34,7 +36,6 @@ import CalendarView from './CalendarView';
 import CreateCalendarEvent from './CreateCalendarEvent';
 import TaskUpdateForm from './TaskUpdateForm';
 import LeadDetails from './LeadDetails';
-import ContactDetails from './ContactDetails';
 import LeadProfileEdit from './LeadProfileEdit';
 // import other components as needed
 
@@ -151,6 +152,8 @@ function PageContent() {
       <Routes>
         <Route path="/dashboard" element={<Typography>Welcome to the Dashboard</Typography>} />
         <Route path="/contacts" element={<ContactList />} />
+        <Route path="/contact/:id" element={<ContactDetails />} />
+        <Route path="/contact/update/:id" element={<Contactprofileedit />} />
         <Route path="/add-contact" element={<AddContact />} />
         <Route path="/leads" element={<LeadList />} />
         <Route path="/add-lead" element={<AddLead />} />
@@ -161,7 +164,6 @@ function PageContent() {
         <Route path="/add-calendar-event" element={<CreateCalendarEvent />} />
         <Route path="/tasks/update/:id" element={<TaskUpdateForm />} />
         <Route path="/lead/:id" element={<LeadDetails />} />
-        <Route path="/contact/:id" element={<ContactDetails />} />
         <Route path="/leads/update/:id" element={<LeadProfileEdit />} />
 
 

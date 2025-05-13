@@ -9,10 +9,32 @@ const ContactDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/contact/${id}`)
-      .then(response => setContact(response.data))
-      .catch(error => console.error("Error fetching contact details:", error));
+    axios.get(`http://localhost:8000/contact/${id}`,{
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+    .then(response => setContact(response.data))
+    .catch(error => console.error("Error fetching contact details:", error));
   }, [id]);
+
+  const handleDelete = (id) => {
+    if (window.confirm("Are you sure you want to delete this contact?")) {
+      axios.delete(`http://localhost:8000/delete-contact/${id}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
+      .then(() => {
+        alert("Contact deleted successfully");
+        navigate("/dashboard/contacts");
+      })
+      .catch(error => {
+        console.error("Error deleting contact:", error);
+        alert("Failed to delete contact");
+      });
+    }
+  };
 
   if (!contact) return <p>Loading...</p>;
 
@@ -33,6 +55,8 @@ const ContactDetails = () => {
           )}
         </Card.Body>
         <div className="text-end px-3 pb-2">
+          <Button variant="primary" onClick={() => navigate(`/dashboard/contact/update/${contact._id}`)}> Update </Button>
+          <Button variant="danger" onClick={() => {handleDelete(contact._id)}}> Delete </Button>
           <Button variant="secondary" onClick={() => navigate(-1)}>Back</Button>
         </div>
       </Card>
