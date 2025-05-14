@@ -10,21 +10,35 @@ const LeadDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/lead/${id}`, {
-      headers: {
-        Authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    })
-      .then(response => setLead(response.data))
-      .catch(error => console.error("Error fetching lead details:", error));
+    const fetchLead = async () => {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        console.error("❌ User not authenticated");
+        return;
+      }
+
+      try {
+        const response = await axios.get(`http://localhost:8000/lead/${id}`, {
+          headers: {
+            Authorization: `Bearer ${token}`, // ✅ Add token here
+          },
+        });
+        setLead(response.data);
+      } catch (error) {
+        console.error("Error fetching lead details:", error);
+      }
+    };
+
+    fetchLead();
   }, [id]);
 
   if (!lead) return <p>Loading...</p>;
 
   return (
     <Container className="p-4">
-      <h3 className="board-title" style={{ textAlign: 'center', marginBottom: '1.5rem' }}>🏢 Lead Details</h3>
-      <Card className="task-detail-card">
+      <h3 className="board-title text-center mb-4">🏢 Lead Details</h3>
+      <Card className="task-detail-card p-3">
         <p><strong>Company Name:</strong> {lead.companyName}</p>
         <p><strong>Contact Person:</strong> {lead.contactPerson}</p>
         <p><strong>Email:</strong> {lead.email}</p>
@@ -38,10 +52,16 @@ const LeadDetails = () => {
         <p><strong>Notes:</strong> {lead.notes}</p>
 
         <div className="d-flex gap-3 mt-4">
-          <Button className="button button-update-custom" onClick={() => navigate(`/dashboard/leads/update/${id}`)}>
+          <Button
+            className="button button-update-custom"
+            onClick={() => navigate(`/dashboard/leads/update/${id}`)}
+          >
             Update
           </Button>
-          <Button className="button button-secondary" onClick={() => navigate(-1)}>
+          <Button
+            className="button button-secondary"
+            onClick={() => navigate(-1)}
+          >
             Back
           </Button>
         </div>

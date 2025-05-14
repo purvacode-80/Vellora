@@ -2,7 +2,6 @@
   /* Colors */
   --primary-bg: white;
   --background-color: rgb(253, 252, 253);
-  --card-bg: #8556ac;
   --text-main: black;
   --text-light: white;
   --quote-icon: white;
@@ -67,7 +66,7 @@
 
 /* Testimonial Item Styling */
 .testimonial-item {
-  background: var(--card-bg);
+  background: #8556ac;
   padding: var(--card-padding);
   margin: var(--card-margin);
   border-radius: var(--card-radius);

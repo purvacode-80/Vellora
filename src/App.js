@@ -7,7 +7,7 @@ import FAQS from './Components/faqquestion';
 import Footer from './Components/footer';
 import Login from './Components/Login';
 import Register from './Components/Register';
-import ProtectedRoute from './Security/ProtectedRoute'
+import ProtectedRoute from './Security/ProtectedRoute';
 import Dashboard from './Components/Dashboard';
 import Testimonials from './Components/testimonials';
 import MyNavbar from './Components/Navbar';
@@ -20,7 +20,7 @@ function App() {
       {/* Public Routes */}
       <Route path="/" element={<> 
         {isLoading ? (
-        <Preloader onDone={() => setIsLoading(false)} />
+          <Preloader onDone={() => setIsLoading(false)} />
         ) : (
           <> <MyNavbar/><Main /> <Home /> <Testimonials /> <FAQS /> <Footer /> </>
         )}
@@ -28,8 +28,9 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
 
-      {/* Dashboard Route */}
-      <Route path="/dashboard/*" element={<ProtectedRoute> <Dashboard /> </ProtectedRoute>} />
+      {/* Protected and Additional Routes */}
+      <Route path="/dashboard/*" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+      <Route path="/home/" element={<Home />} />
     </Routes>
   );
 }
