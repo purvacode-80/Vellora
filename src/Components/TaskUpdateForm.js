@@ -12,7 +12,11 @@ const TaskUpdateForm = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/task/${id}`)
+    axios.get(`http://localhost:8000/task/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
       .then(res => {
         const t = res.data;
         setTask({
@@ -30,7 +34,11 @@ const TaskUpdateForm = () => {
   };
 
   const handleSubmit = () => {
-  axios.put(`http://localhost:8000/task/${id}`, task)
+  axios.put(`http://localhost:8000/task/${id}`, task, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  })
     .then(() => {
       alert("✅ Task updated successfully!");
       navigate("/dashboard/tasks"); // 👈 This goes to Taskboard

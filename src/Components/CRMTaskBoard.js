@@ -12,7 +12,11 @@ const CRMTaskBoard = () => {
   const navigate = useNavigate(); 
 
   useEffect(() => {
-    axios.get('http://localhost:8000/task/all')
+    axios.get('http://localhost:8000/task/all', {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
       .then(res => setTasks(res.data))
       .catch(err => console.error('Error fetching tasks:', err));
   }, []);

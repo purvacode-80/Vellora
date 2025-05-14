@@ -29,7 +29,7 @@ function GoogleLoginAuth() {
 
   return (
     <div>
-      <h3>Login with Google</h3>
+      <h5> OR </h5>
       <GoogleLogin onSuccess={handleSuccess} onError={handleError} useOneTap auto_select={false} />
     </div>
   );

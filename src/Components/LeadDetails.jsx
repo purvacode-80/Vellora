@@ -10,7 +10,11 @@ const LeadDetails = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/lead/${id}`)
+    axios.get(`http://localhost:8000/lead/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
       .then(response => setLead(response.data))
       .catch(error => console.error("Error fetching lead details:", error));
   }, [id]);

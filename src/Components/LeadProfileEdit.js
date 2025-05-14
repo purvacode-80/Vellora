@@ -25,7 +25,11 @@ const LeadProfileEdit = () => {
   useEffect(() => {
     const fetchLead = async () => {
       try {
-        const res = await axios.get(`http://localhost:8000/lead/${id}`);
+        const res = await axios.get(`http://localhost:8000/lead/${id}`,{
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
         setLead(res.data);
       } catch (error) {
         console.error("Error fetching lead: ", error);
@@ -45,7 +49,11 @@ const LeadProfileEdit = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:8000/lead/editlead/${id}`, lead);
+      await axios.put(`http://localhost:8000/lead/editlead/${id}`, lead, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
       alert("Lead profile updated successfully!");
       navigate("/dashboard/leads");
     } catch (error) {

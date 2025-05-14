@@ -25,7 +25,11 @@ const AddLead = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8000/lead/", form);
+      await axios.post("http://localhost:8000/lead/", form, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`
+        }
+      });
       setForm({
         companyName: "",
         contactPerson: "",

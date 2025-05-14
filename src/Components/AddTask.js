@@ -22,7 +22,11 @@ const AddTask = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post('http://localhost:8000/task/addTask', formData);
+      await axios.post('http://localhost:8000/task/addTask', formData, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
       alert('✅ Task added successfully!');
       setFormData({
         taskname: '',
@@ -87,6 +91,18 @@ const AddTask = () => {
               name="contact"
               placeholder="Enter contact number"
               value={formData.contact}
+              onChange={handleChange}
+              required
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3" controlId="contact">
+            <Form.Label>Assigned To</Form.Label>
+            <Form.Control
+              type="text"
+              name="assignedto"
+              placeholder="Enter Assignee name"
+              value={formData.assignedto}
               onChange={handleChange}
               required
             />

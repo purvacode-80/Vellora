@@ -11,7 +11,11 @@ const LeadList = () => {
   useEffect(() => {
     const fetchLeads = async () => {
       try {
-        const response = await axios.get("http://localhost:8000/lead/all");
+        const response = await axios.get("http://localhost:8000/lead/all", {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        });
         setLeads(response.data);
       } catch (error) {
         console.error("Error fetching leads:", error);

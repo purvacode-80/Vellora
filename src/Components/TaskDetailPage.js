@@ -10,14 +10,22 @@ const TaskDetailPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/task/${taskId}`)
+    axios.get(`http://localhost:8000/task/${taskId}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
       .then(res => setTask(res.data))
       .catch(err => console.error('Error fetching task details:', err));
   }, [taskId]);
 
   const handleDelete = () => {
     if (window.confirm('Are you sure you want to delete this task?')) {
-      axios.delete(`http://localhost:8000/task/${taskId}`)
+      axios.delete(`http://localhost:8000/task/${taskId}`, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      })
         .then(() => {
           alert('Task deleted');
           navigate('/');
