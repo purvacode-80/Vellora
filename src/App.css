@@ -63,3 +63,24 @@
 /* .css-8f57v9 {
   padding: 0px !important;
 } */
+
+
+.gradient-text {
+  background: linear-gradient(90deg, #ec4899, #8b5cf6, #6366f1, #ec4899);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 700;
+  font-size: 2rem;
+  animation: gradientFlow 4s ease-in-out infinite;
+  
+  /* Optional glow/shadow */
+  text-shadow: 2px 2px 5px rgba(139, 92, 246, 0.3);
+}
+
+@keyframes gradientFlow {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+

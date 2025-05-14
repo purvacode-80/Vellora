@@ -1,8 +1,8 @@
 :root {
   /* Colors */
   --primary-bg: white;
-  --section-bg: #f9f9f9;
-  --card-bg: #7b257b;
+  --background-color: rgb(253, 252, 253);
+  --card-bg: #8556ac;
   --text-main: black;
   --text-light: white;
   --quote-icon: white;
@@ -42,24 +42,27 @@
 /* General Section Styling */
 .testimonials.section {
   padding: var(--section-padding);
-  background-color: var(--primary-bg);
+  background-color: rgb(253, 252, 253);
   text-align: center;
 }
 
-.section-title h2 {
-  font-size: var(--h2-font);
-  font-weight: bold;
-  margin-bottom: 10px;
-  color: var(--text-main);
+.section-title{
+  margin-top: -25px;
+  font-weight: 800;
+  font-size: 2.5rem;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+  font-family: cursive;
 }
 
-.section-title p {
-  font-size: var(--p-font);
-  color: var(--text-main);
-  margin-bottom: 40px;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+
+.section-desc{
+  
+  font-size: 1rem;
+  max-width: 700px;
+  margin: 0 auto 30px;
+  color: #3b3b3b;
+
 }
 
 /* Testimonial Item Styling */

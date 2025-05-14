@@ -2,7 +2,7 @@ import React from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "./Testimonials.css"
+import "../css/Testimonials.css"
 
 
 import testimonials1 from "../Assets/testimonials1.jpg";
@@ -78,9 +78,9 @@ const Testimonials = () => {
 
   return (
     <section id="testimonials" className="testimonials section light-background">
-      <div className="container section-title">
-        <h2>Businesses We're Proud to Serve</h2>
-        <p>We’re proud to support a diverse range of businesses who trust our CRM to drive growth and streamline their operations. Here's a look at the companies currently powering up with us.
+      <div className="container">
+        <h2 className="section-title">Businesses We're Proud to Serve</h2>
+        <p className="section-desc">We’re proud to support a diverse range of businesses who trust our CRM to drive growth and streamline their operations. Here's a look at the companies currently powering up with us.
 
 </p>
       </div>

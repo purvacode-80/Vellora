@@ -1,22 +1,22 @@
 // Home.jsx
 import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
-import { FaUserFriends, FaComments, FaChartLine } from 'react-icons/fa';
+import { FaUserFriends, FaComments, FaChartLine  } from 'react-icons/fa';
 import '../css/Homecss.css';
 
 const offerings = [
   {
-    icon: <FaUserFriends size={35} />,
+    icon: <FaUserFriends size={35} style={{color:"#9d4edd"}} />,
     title: 'User-friendly platform to learn more',
     description: 'Packed with modern tech, classroom learning which used to be done conventionally.',
   },
   {
-    icon: <FaComments size={35} />,
+    icon: <FaComments size={35} style={{color:"#9d4edd"}}/>,
     title: 'Seamless Communication Tools',
     description: 'Stay connected with your team and clients with powerful and easy-to-use tools.',
   },
   {
-    icon: <FaChartLine size={35} />,
+    icon: <FaChartLine size={35} style={{color:"#9d4edd"}}/>,
     title: 'Data-Driven Insights',
     description: 'Make better decisions with built-in analytics and insights for your growth.',
   },
@@ -83,7 +83,7 @@ const Home = () => {
           ))}
         </Row>
       </Container>
-      <br />
+      <br /><br/>
       <Container>
         <div className="text-center mt-5 mb-4">
           <h2 className="section-title">
@@ -95,33 +95,45 @@ const Home = () => {
         </div>
 
        {featureData.map((feature, index) => (
-          <Row key={index} className="align-items-center mb-5">
-            {feature.imageLeft && (
-              <Col md={6}>
-                <img src={feature.image} alt={feature.title} className={`feature-img ${feature.imageBelow ? 'feature-img-large' : ''}`} />
-              </Col>
-            )}
-            <Col md={6}>
-              <div className="feature-content">
-                <h3>{feature.title}</h3>
-                <p>{feature.description}</p>
-              </div>
-            </Col>
-            {!feature.imageLeft && (
-              <Col md={6}>
-                <img src={feature.image} alt={feature.title} className={`feature-img ${feature.imageBelow ? 'feature-img-large' : ''}`} />
-              </Col>
-            )}
-          </Row>
-        ))}
+  <div key={index} className="feature-box-wrapper">
+    <Row className="align-items-center mb-2">
+      {feature.imageLeft && (
+        <Col md={6}>
+          <img
+            src={feature.image}
+            alt={feature.title}
+            className={`feature-img ${feature.imageBelow ? 'feature-img-large' : ''}`}
+          />
+        </Col>
+      )}<br/>
+      <Col md={6}>
+  <div className="feature-content">
+    <h3>{feature.title}</h3>
+    <p>{feature.description}</p>
+     <div className="d-flex justify-content-center mt-3">
+    <Button variant="primary" className="explore-btn mt-3">
+      Explore
+    </Button>
+    </div>
+  </div>
+</Col><br/>
+      {!feature.imageLeft && (
+        <Col md={6}>
+          <img
+            src={feature.image}
+            alt={feature.title}
+            className={`feature-img ${feature.imageBelow ? 'feature-img-large' : ''}`}
+          />
+        </Col>
+      )}<br/>
+    </Row>
+  </div>
+))}
       </Container>
 
-      <div className="text-center mt-5">
-        <Button className="button-purple" onClick={toggleTheme}>
-          Toggle Theme
-        </Button>
+      
       </div>
-    </div>
+    
   );
 };
 

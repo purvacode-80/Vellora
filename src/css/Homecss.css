@@ -1,112 +1,153 @@
 :root {
-    --bg-light: #ffffff;                 /* Light background */
-    --text-light: #000000;              /* Dark text on light background */
-    --card-bg-light: #f8f9fa;           /* Light card background */
-    --card-shadow-light: 0 2px 10px rgba(0, 0, 0, 0.1);  /* Light shadow for cards */
+  --background-light: #f4dbfe;
+  --sidebar-bg: #1e1b2e;
+  --topbar-bg: #1e1b2e;
+  --column-bg: #ffffff;
+  --card-bg: #ffffff;
+  --highlight: #9d4edd;
+  --highlight-hover: #7b2cbf;
+  --text-dark: #2d2d2d;
+  --text-light: #ffffff;
+  --font-main: 'Poppins', sans-serif;
+}
+
+body.theme-light {
+  background-color: rgb(253, 252, 253);
+  color: var(--text-dark);
+}
+
+.home-container {
+  font-family: var(--font-main);
+  padding: 60px 20px;
+}
+
+.section-title {
+  font-weight: 800;
+  font-size: 2.5rem;
+  color: var(--text-dark);
+  margin-bottom: 0.5rem;
+  font-family: cursive;
+}
+
+.section-desc {
+  font-size: 1rem;
+  max-width: 700px;
+  margin: 0 auto 30px;
+  color: #3b3b3b;
+}
+
+.card-custom {
+  background-color:white !important;
+  border: none;
+  border-radius: 20px !important;
+  padding: 30px 20px;
+  text-align: center;
+  transition: transform 0.3s;
+  box-shadow: 0 6px 20px rgba(157, 78, 221, 0.15), 0 0 4px var(--highlight); /* Added highlight box-shadow */
   
-    /* Dark Theme Colors */
-    --bg-dark: #1e1e2f;                 /* Dark background */
-    --text-dark: #ffffff;               /* Light text on dark background */
-    --card-bg-dark: #2c2c3c;            /* Dark card background */
-    --card-shadow-dark: 0 4px 12px rgba(0, 0, 0, 0.3);  /* Dark shadow for cards */
-  
-    /* Accent Color */
-    --highlight: #7b257b;               /* Bright purple for buttons and accents */
-    --border: 1px solid var(--highlight); /* Border style using highlight */
-  
-    /* Typography Sizes */
-    --font-title: 2.5rem;               /* Title font size */
-    --font-subtitle: 2rem;              /* Subtitle font size */
-    --font-text: 16px;                  /* Normal text font size */
-    --font-small: 15px;                 /* Smaller text font size */
-  }
-  
-  /* === GENERAL PAGE STYLING === */
-  .home-container {
-    min-height: 100vh;                  /* Full screen height */
-    padding: 60px 20px;                 /* Top/bottom and side padding */
-  }
-  
-  /* === SECTION TITLES === */
-  .section-title {
-    font-family: cursive;               /* Fun cursive font */
-    font-weight: 800;                   /* Bold */
-    font-size: var(--font-title);       /* Using root title font size */
-    letter-spacing: 1px;                /* Slight spacing between letters */
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1); /* Light shadow effect */
-    
-  }
-  
-  /* === SECTION DESCRIPTION TEXT === */
-  .section-desc {
-    max-width: 650px;                   /* Limit the width */
-    margin: 10px auto;                  /* Center it horizontally */
-    font-size: var(--font-text);        /* Use standard font size */
-  }
-  
-  /* === CUSTOM CARD STYLES === */
-  .card-custom {
-    border-radius: 20px;                /* Rounded corners */
-    padding: 30px 20px;                 /* Padding inside the card */
-    text-align: center;                 /* Center content */
-    box-shadow: var(--card-shadow-light); /* Light shadow */
-    border: var(--border);              /* Highlight-colored border */
-    transition: 0.3s ease;              /* Smooth hover or theme transitions */
-    
-  }
-  
-  /* Dark variant of the card */
-  .card-custom-dark {
-    box-shadow: var(--card-shadow-dark);
-  }
-  
-  /* Card Title Styling */
-  .card-title-custom {
-    font-weight: bold;
-    font-size: 18px;
-  }
-  
-  /* Card Text Styling */
-  .card-text-custom {
-    font-size: var(--font-small);
-  }
-  
-  /* === PURPLE BUTTON STYLES === */
-  .button-purple {
-    background-color: var(--highlight) !important;  /* Purple background */
-    border: none !important;                        /* Remove default border */
-  }
-  
-  /* === FEATURE CARD STYLES === */
-  .feature-card {
-    border-radius: 20px;
-    padding: 20px 30px;
-    box-shadow: var(--card-shadow-light);
-    border: var(--border);
-  }
-  
-  /* Dark version of feature card */
-  .feature-card-dark {
-    box-shadow: var(--card-shadow-dark);
-  }
-  
-  /* === FEATURE CONTENT TEXT === */
-  .feature-content h3 {
-    font-size: var(--font-subtitle);
-    font-weight: 700;
-  }
-  
-  .feature-content p {
-    font-size: var(--font-text);
-    text-align: center;               /* Centered paragraph text */
-  }
-  
-  /* === FEATURE IMAGE STYLING === */
-  .feature-img {
-    width: 100%;                      /* Take full width of container */
-    height: 250px;                    /* Fixed height */
-    object-fit: cover;                /* Crop to cover without distortion */
-    border-radius: 12px;              /* Rounded corners */
-  }
-  
- 
+}
+
+.card-custom:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 6px 20px rgba(157, 78, 221, 0.15), 0 0 10px var(--highlight); /* Increased highlight shadow on hover */
+
+}
+
+.card-title-custom {
+  font-size: 1.2rem;
+  font-weight: 600 !important;
+  margin-top: 15px;
+  color: var(--text-dark);
+}
+
+.card-text-custom {
+  font-size: 0.95rem;
+  color:  #3b3b3b !important;
+  margin: 10px 0 20px;
+}
+
+.button-purple {
+  background-color: var(--highlight) !important;
+  color: white !important;
+  border: none !important;
+  padding: 10px 20px;
+  font-weight: 500 !important;
+  border-radius: 30px;
+  transition: background-color 0.3s;
+}
+
+.button-purple:hover {
+  background-color: var(--highlight-hover) !important;
+}
+
+
+.feature-box-wrapper {
+  border: 1px solid black; 
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 25px;
+  background-color: white;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 6px 20px rgba(157, 78, 221, 0.15), 0 0 4px var(--highlight); /* Added highlight box-shadow */
+   
+}
+
+.feature-box-wrapper:hover {
+  transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(157, 78, 221, 0.15), 0 0 10px var(--highlight); /* Increased highlight shadow on hover */
+}
+
+.feature-content h3 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-dark);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.feature-content p {
+  font-size: 1rem;
+  color: #3b3b3b;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.feature-img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  transition: transform 0.3s ease;
+}
+
+.feature-img:hover {
+  transform: scale(1.03);
+}
+
+.feature-img-large {
+  height: 320px;
+}
+
+.text-center .button-purple {
+  margin-top: 40px;
+}
+
+.explore-btn {
+  background-color: var(--highlight) !important;
+  border: 1 px solid var(--highlight) !important;
+  padding: 10px 20px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  place-items: center !important;
+}
+
+.explore-btn:hover {
+  background-color: var(--highlight-hover) !important;
+  border: 1 px solid var(--highlight-hover) !important;
+  transform: translateY(-2px);
+}
+
