@@ -10,13 +10,26 @@ const LeadList = () => {
 
   useEffect(() => {
     const fetchLeads = async () => {
+      const token = localStorage.getItem("token");
+
+      if (!token) {
+        console.error("User not authenticated");
+        return;
+      }
+
       try {
-        const response = await axios.get("http://localhost:8000/lead/all");
-        setLeads(response.data);
+        const response = await axios.get("http://localhost:8000/lead/all", {
+          headers: {
+            Authorization: `Bearer ${token}`, // ✅ Send token for authentication
+          },
+        });
+
+        setLeads(response.data); // ✅ Set leads returned by backend
       } catch (error) {
         console.error("Error fetching leads:", error);
       }
     };
+
     fetchLeads();
   }, []);
 
@@ -25,16 +38,16 @@ const LeadList = () => {
       <h2 className="board-title text-center">📋 Lead List</h2>
       <div className="table-wrapper">
         <Table bordered hover responsive className="custom-table">
-          <thead> 
+          <thead>
             <tr>
-              <th style={{backgroundColor:"#9b6ada",color:"white"}}>#</th>
-              <th style={{backgroundColor:"#9b6ada",color:"white"}}>Company</th>
-              <th style={{backgroundColor:"#9b6ada",color:"white"}}>Contact Person</th>
-              <th style={{backgroundColor:"#9b6ada",color:"white"}}>Email</th>
-              <th style={{backgroundColor:"#9b6ada",color:"white"}}>Phone</th>
-              <th style={{backgroundColor:"#9b6ada",color:"white"}}>Status</th>
-              <th style={{backgroundColor:"#9b6ada",color:"white"}}>Priority</th>
-              <th style={{backgroundColor:"#9b6ada",color:"white"}}>Details</th>
+              <th style={{ backgroundColor: "#9b6ada", color: "white" }}>#</th>
+              <th style={{ backgroundColor: "#9b6ada", color: "white" }}>Company</th>
+              <th style={{ backgroundColor: "#9b6ada", color: "white" }}>Contact Person</th>
+              <th style={{ backgroundColor: "#9b6ada", color: "white" }}>Email</th>
+              <th style={{ backgroundColor: "#9b6ada", color: "white" }}>Phone</th>
+              <th style={{ backgroundColor: "#9b6ada", color: "white" }}>Status</th>
+              <th style={{ backgroundColor: "#9b6ada", color: "white" }}>Priority</th>
+              <th style={{ backgroundColor: "#9b6ada", color: "white" }}>Details</th>
             </tr>
           </thead>
           <tbody>
@@ -45,13 +58,8 @@ const LeadList = () => {
                 <td>{lead.contactPerson}</td>
                 <td>{lead.email}</td>
                 <td>{lead.phone}</td>
-                <td>
-                    {lead.status}
-                  
-                </td>
-                <td>
-                    {lead.priority}
-                </td>
+                <td>{lead.status}</td>
+                <td>{lead.priority}</td>
                 <td>
                   <Button
                     className="btn-details"

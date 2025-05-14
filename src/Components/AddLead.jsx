@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Form, Button, Container } from "react-bootstrap";
-import "../css/Forms.css"; // 👈 make sure to import your Forms.css here too
+import "../css/Forms.css"; // Ensure your form CSS is linked
 
 const AddLead = () => {
   const [form, setForm] = useState({
@@ -24,8 +24,21 @@ const AddLead = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const token = localStorage.getItem("token"); // 🟢 Assuming you're storing JWT in localStorage
+
+    if (!token) {
+      alert("❌ User not authenticated. Please log in.");
+      return;
+    }
+
     try {
-      await axios.post("http://localhost:8000/lead/", form);
+      await axios.post("http://localhost:8000/lead/", form, {
+        headers: {
+          Authorization: `Bearer ${token}` // ✅ Send token to backend
+        }
+      });
+
       setForm({
         companyName: "",
         contactPerson: "",
@@ -39,6 +52,7 @@ const AddLead = () => {
         nextActionDate: "",
         notes: ""
       });
+
       alert("✅ Lead Added");
     } catch (error) {
       console.error("Error adding lead:", error);
@@ -53,32 +67,72 @@ const AddLead = () => {
         <div className="form-container1">
           <Form.Group className="mb-3">
             <Form.Label>Company Name</Form.Label>
-            <Form.Control type="text" name="companyName" value={form.companyName} onChange={handleChange} placeholder="Company Name" />
+            <Form.Control
+              type="text"
+              name="companyName"
+              value={form.companyName}
+              onChange={handleChange}
+              placeholder="Company Name"
+              required
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Contact Person</Form.Label>
-            <Form.Control type="text" name="contactPerson" value={form.contactPerson} onChange={handleChange} placeholder="Contact Person" />
+            <Form.Control
+              type="text"
+              name="contactPerson"
+              value={form.contactPerson}
+              onChange={handleChange}
+              placeholder="Contact Person"
+              required
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Email</Form.Label>
-            <Form.Control type="email" name="email" value={form.email} onChange={handleChange} placeholder="Email" />
+            <Form.Control
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              placeholder="Email"
+              required
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Phone</Form.Label>
-            <Form.Control type="tel" name="phone" value={form.phone} onChange={handleChange} placeholder="Phone" />
+            <Form.Control
+              type="tel"
+              name="phone"
+              value={form.phone}
+              onChange={handleChange}
+              placeholder="Phone"
+              required
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Industry</Form.Label>
-            <Form.Control type="text" name="industry" value={form.industry} onChange={handleChange} placeholder="Industry" />
+            <Form.Control
+              type="text"
+              name="industry"
+              value={form.industry}
+              onChange={handleChange}
+              placeholder="Industry"
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Lead Source</Form.Label>
-            <Form.Control type="text" name="leadSource" value={form.leadSource} onChange={handleChange} placeholder="Lead Source" />
+            <Form.Control
+              type="text"
+              name="leadSource"
+              value={form.leadSource}
+              onChange={handleChange}
+              placeholder="Lead Source"
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
@@ -102,17 +156,34 @@ const AddLead = () => {
 
           <Form.Group className="mb-3">
             <Form.Label>Last Contacted</Form.Label>
-            <Form.Control type="date" name="lastContacted" value={form.lastContacted} onChange={handleChange} />
+            <Form.Control
+              type="date"
+              name="lastContacted"
+              value={form.lastContacted}
+              onChange={handleChange}
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Next Action Date</Form.Label>
-            <Form.Control type="date" name="nextActionDate" value={form.nextActionDate} onChange={handleChange} />
+            <Form.Control
+              type="date"
+              name="nextActionDate"
+              value={form.nextActionDate}
+              onChange={handleChange}
+            />
           </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Notes</Form.Label>
-            <Form.Control as="textarea" rows={3} name="notes" value={form.notes} onChange={handleChange} placeholder="Notes" />
+            <Form.Control
+              as="textarea"
+              rows={3}
+              name="notes"
+              value={form.notes}
+              onChange={handleChange}
+              placeholder="Notes"
+            />
           </Form.Group>
 
           <Button className="button button-save" type="submit">💾 Add</Button>

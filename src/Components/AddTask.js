@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import { Form, Button, Container, Card } from 'react-bootstrap';
-import '../css/Forms.css'; // Import external CSS file
+import { Form, Button, Container } from 'react-bootstrap';
+import '../css/Forms.css'; // Custom styles
 
 const AddTask = () => {
   const [formData, setFormData] = useState({
@@ -21,9 +21,17 @@ const AddTask = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem('token'); // 🔐 Get token from local storage
+
     try {
-      await axios.post('http://localhost:8000/task/addTask', formData);
+      await axios.post('http://localhost:8000/task/addtask', formData, {
+        headers: {
+          Authorization: `Bearer ${token}` // ✅ Send token in header
+        }
+      });
+
       alert('✅ Task added successfully!');
+      // Clear form
       setFormData({
         taskname: '',
         description: '',
@@ -41,7 +49,7 @@ const AddTask = () => {
 
   return (
     <Container className="p-4">
-      <h3 className="board-title text-center mb-4">📋Add New Task</h3>
+      <h3 className="board-title text-center mb-4">📋 Add New Task</h3>
       <Form onSubmit={handleSubmit} className="card1">
         <div className="form-container1">
           <Form.Group className="mb-3">
@@ -56,7 +64,7 @@ const AddTask = () => {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="description">
+          <Form.Group className="mb-3">
             <Form.Label>Description</Form.Label>
             <Form.Control
               as="textarea"
@@ -69,7 +77,7 @@ const AddTask = () => {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="duedate">
+          <Form.Group className="mb-3">
             <Form.Label>Due Date</Form.Label>
             <Form.Control
               type="date"
@@ -80,7 +88,7 @@ const AddTask = () => {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="contact">
+          <Form.Group className="mb-3">
             <Form.Label>Contact Number</Form.Label>
             <Form.Control
               type="number"
@@ -92,7 +100,7 @@ const AddTask = () => {
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="status">
+          <Form.Group className="mb-3">
             <Form.Label>Status</Form.Label>
             <Form.Select
               name="status"
@@ -108,8 +116,8 @@ const AddTask = () => {
             </Form.Select>
           </Form.Group>
 
-          {formData.status !== "Not Started" && (
-            <Form.Group className="mb-3" controlId="assignedto">
+          {formData.status !== 'Not Started' && (
+            <Form.Group className="mb-3">
               <Form.Label>Assigned To</Form.Label>
               <Form.Control
                 type="text"
@@ -122,7 +130,7 @@ const AddTask = () => {
             </Form.Group>
           )}
 
-          <Form.Group className="mb-4" controlId="priority">
+          <Form.Group className="mb-4">
             <Form.Label>Priority</Form.Label>
             <Form.Select
               name="priority"
@@ -142,7 +150,7 @@ const AddTask = () => {
             type="submit"
             className="button-save w-100"
           >
-           💾 Add Task
+            💾 Add Task
           </Button>
         </div>
       </Form>
