@@ -1,5 +1,5 @@
 :root {
-  --background-light: #ebe9f1;     /* Soft lavender background */
+  --background-light: #ebe9f1 !important;     /* Soft lavender background */
   --sidebar-bg: #1e1b2e;            /* White sidebar for clean look */
   --topbar-bg: #1e1b2e;             /* Light violet topbar */
   --column-bg: #ffffff;             /* White columns */
@@ -16,7 +16,7 @@ body {
   margin: 0;
   padding: 0;
   font-family: var(--font-main);
-  background-color: var(--background-light);
+  background-color: #ebe9f1;
   color: var(--text-dark);
 }
   
