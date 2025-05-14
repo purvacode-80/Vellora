@@ -9,6 +9,7 @@
   --text-dark: #2d2d2d;             /* Dark gray text */
   --text-light: #ffffff;            /* White text */
   --font-main: 'Poppins', sans-serif;
+  color: #3b3b3b;
 }
 
 body {

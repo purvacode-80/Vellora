@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import "./Faq.css"; // Import external CSS
+import "../css/Faq.css"; // Import external CSS
 
 const faqs = [
   {

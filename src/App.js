@@ -9,7 +9,8 @@ import Login from './Components/Login';
 import Register from './Components/Register';
 import ProtectedRoute from './Security/ProtectedRoute'
 import Dashboard from './Components/Dashboard';
-
+import Testimonials from './Components/testimonials';
+import MyNavbar from './Components/Navbar';
 function App() {
 
   //For preloader
@@ -21,7 +22,7 @@ function App() {
         {isLoading ? (
         <Preloader onDone={() => setIsLoading(false)} />
         ) : (
-          <> <Main /> <Home /> <FAQS /> <Footer /> </>
+          <> <MyNavbar/><Main /> <Home /> <Testimonials /> <FAQS /> <Footer /> </>
         )}
       </>} />
       <Route path="/login" element={<Login />} />

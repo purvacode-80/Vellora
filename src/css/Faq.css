@@ -39,6 +39,7 @@
   font-weight: bold;
   text-align: center;
   margin-bottom: var(--faq-margin-bottom);
+  font-family: cursive;
 }
 
 .faq-list {
@@ -50,8 +51,10 @@
 .faq-item {
   border: 1px solid var(--faq-border);
   border-radius: var(--faq-border-radius);
-  box-shadow: var(--faq-shadow);
+  /* box-shadow: var(--faq-shadow); */
   background-color: var(--faq-bg);
+    box-shadow: 0 6px 20px rgba(157, 78, 221, 0.15), 0 0 2px var(--highlight); /* Added highlight box-shadow */
+
 }
 
 .faq-question {
