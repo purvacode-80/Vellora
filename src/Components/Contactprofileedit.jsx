@@ -23,7 +23,11 @@ const ContactProfileEdit = () => {
   useEffect(() => {
     const fetchContact = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/contact/${id}`);
+        const response = await axios.get(`http://localhost:8000/contact/${id}`,{
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
         setContact(response.data);  // Set the fetched contact data to the state
       } catch (error) {
         console.error("Error fetching contact: ", error);
@@ -44,9 +48,13 @@ const ContactProfileEdit = () => {
     e.preventDefault();
     try {
       // Update the contact using PUT request
-      await axios.put(`http://localhost:8000/contact/editcontact/${id}`, contact);
+      await axios.put(`http://localhost:8000/contact/editcontact/${id}`, contact, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
       alert("Profile updated successfully!");
-      navigate("/contacts");  // Redirect back to the contact list after updating
+      navigate("/dashboard/contacts");  // Redirect back to the contact list after updating
     } catch (error) {
       console.error("Error updating profile: ", error);
       alert("Failed to update profile.");

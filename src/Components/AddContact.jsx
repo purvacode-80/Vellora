@@ -1,6 +1,8 @@
 import { useState } from "react";
 import axios from "axios";
 import { Form, Button, Container } from "react-bootstrap";
+import '../css/Forms.css'; 
+import { toast, ToastContainer } from "react-toastify";
 
 const AddContact = () => {
   const [form, setForm] = useState({
@@ -22,7 +24,11 @@ const AddContact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:8000/contact/", form);
+      await axios.post("http://localhost:8000/contact/", form, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
       setForm({
         name: "",
         email: "",
@@ -38,14 +44,14 @@ const AddContact = () => {
     }
     catch (error) {
       console.error("Error adding contact : ", error);
-      alert("Failed to add contact. Please try again.");
+      alert("❌ Failed to add contact. Please try again.");
     }
   };
 
   return (
-    <Container className="mt-4">
-      <h2>Add Contact</h2>
-      <Form onSubmit={handleSubmit}>
+    <Container className="p-4">
+      <h3 className="board-title text-center mb-4">📇 Add Contact</h3>
+      <Form onSubmit={handleSubmit} className="form-container1">
         <Form.Group className="mb-3">
           <Form.Label>Name</Form.Label>
           <Form.Control type="text" name="name" value={form.name} onChange={handleChange} placeholder="Full Name" />
@@ -82,6 +88,11 @@ const AddContact = () => {
         </Form.Group>
 
         <Form.Group className="mb-3">
+          <Form.Label>LinkedIn</Form.Label>
+          <Form.Control type="text" name="linkedin" value={form.linkedin} onChange={handleChange} placeholder="LinkedIn Profile URL" />
+        </Form.Group>
+
+        <Form.Group className="mb-3">
           <Form.Label>Status</Form.Label>
           <Form.Select name="status" value={form.status} onChange={handleChange}>
             <option>Active</option>
@@ -90,7 +101,7 @@ const AddContact = () => {
           </Form.Select>
         </Form.Group>
 
-        <Button variant="primary" type="submit">Add</Button>
+        <Button type="submit" className="button button-save">💾 Add Contact</Button>
       </Form>
     </Container>
   );

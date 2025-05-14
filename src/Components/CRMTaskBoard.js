@@ -29,7 +29,7 @@ const CRMTaskBoard = () => {
                 {tasks.filter(t => t.status === status).length}
               </span>
             </div>
-            <div className="task-column d-flex flex-column gap-3">
+            <div className="task-column d-flex flex-column gap-0">
               {tasks.filter(t => t.status === status).map(task => (
                 <Card
                   key={task._id}

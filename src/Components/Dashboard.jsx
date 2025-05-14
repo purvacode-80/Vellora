@@ -24,14 +24,19 @@ import logo from '../Assets/logo-removebg-preview.png';
 
 import ContactList from './ContactList';
 import AddContact from './AddContact';
+import ContactDetails from './ContactDetails';
+import Contactprofileedit from './Contactprofileedit';
 import LeadList from './LeadList';
 import AddLead from './AddLead';
 import Taskboard from './CRMTaskBoard'
 import AddTask from './AddTask';
 import TaskDetails from './TaskDetailPage'
-import GoogleCalendar from './GoogleCalendar';
+// import GoogleCalendar from './GoogleCalendar';
 import CalendarView from './CalendarView';
 import CreateCalendarEvent from './CreateCalendarEvent';
+import TaskUpdateForm from './TaskUpdateForm';
+import LeadDetails from './LeadDetails';
+import LeadProfileEdit from './LeadProfileEdit';
 // import other components as needed
 
 const NAVIGATION = [
@@ -71,25 +76,72 @@ const NAVIGATION = [
   },
 ];
 
+
 const demoTheme = createTheme({
-  colorSchemes: {
-    dark: {
-      palette: {
-        mode: 'dark',
+  palette: {
+    mode: 'dark',
+    primary: {
+      main: '#bb86fc',
+    },
+    background: {
+      default: '#1f1f1f',  // Page background
+      paper: '#1c1c1c',    // Sidebar background
+    },
+    text: {
+      primary: '#ffffff',
+      secondary: '#bbbbbb',
+    },
+  },
+  components: {
+    MuiAppBar: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#1f1f1f', // Top bar background
+          boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
+        },
+      },
+    },
+    MuiDrawer: {
+      styleOverrides: {
+        paper: {
+          backgroundColor: '#1c1c1c', // Sidebar background
+          color: '#ffffff',           // Sidebar text color
+          borderRight: '1px solid #ddd',
+        },
+      },
+    },
+    MuiListItem: {
+      styleOverrides: {
+        root: {
+          margin: '8px 0',
+          borderRadius: '10px',
+          transition: 'background 0.3s',
+          '&:hover': {
+            backgroundColor: '#333333', // Hover color for sidebar items
+          },
+        },
+      },
+    },
+    MuiListItemText: {
+      styleOverrides: {
         primary: {
-          main: '#bb86fc',
+          fontSize: '0.95rem',
+          fontWeight: 500,
+          color: '#ffffff',
         },
-        background: {
-          default: '#1f1f1f',  //Page bg
-          paper: '#1c1c1c',   // Card or sidebar bg
+      },
+    },
+    MuiListItemIcon: {
+      styleOverrides: {
+        root: {
+          color: '#ffffff',
+          '& svg': {
+            color: '#ffffff',
+          },
         },
-        text: {
-          primary: '#ffffff',
-          secondary: '#bbbbbb',
-        },
-      }
-    }
-  }
+      },
+    },
+  },
 });
 
 function PageContent() {
@@ -100,6 +152,8 @@ function PageContent() {
       <Routes>
         <Route path="/dashboard" element={<Typography>Welcome to the Dashboard</Typography>} />
         <Route path="/contacts" element={<ContactList />} />
+        <Route path="/contact/:id" element={<ContactDetails />} />
+        <Route path="/contact/update/:id" element={<Contactprofileedit />} />
         <Route path="/add-contact" element={<AddContact />} />
         <Route path="/leads" element={<LeadList />} />
         <Route path="/add-lead" element={<AddLead />} />
@@ -108,6 +162,14 @@ function PageContent() {
         <Route path="/tasks/:taskId" element={<TaskDetails />} />
         <Route path="/calendar" element={<CalendarView/>} />
         <Route path="/add-calendar-event" element={<CreateCalendarEvent />} />
+        <Route path="/tasks/update/:id" element={<TaskUpdateForm />} />
+        <Route path="/lead/:id" element={<LeadDetails />} />
+        <Route path="/leads/update/:id" element={<LeadProfileEdit />} />
+
+
+
+
+
         {/* Add more routes here */}
         <Route path="*" element={<Typography>Page not found: {location.pathname}</Typography>} />
       </Routes>

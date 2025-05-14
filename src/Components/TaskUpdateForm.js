@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button, Container, Form } from 'react-bootstrap';
 import axios from 'axios';
-import '../css/Taskbord.css';
-
+import '../css/Forms.css';
 const statuses = ['Not Started', 'Deferred', 'In Progress', 'Completed'];
 const priorities = ['Low', 'Medium', 'High'];
 
@@ -31,23 +30,24 @@ const TaskUpdateForm = () => {
   };
 
   const handleSubmit = () => {
-    axios.put(`http://localhost:8000/task/${id}`, task)
-      .then(() => {
-        alert("✅ Task updated successfully!");
-        navigate(`/tasks/${id}`);
-      })
-      .catch(err => {
-        console.error("Update failed", err);
-        alert("❌ Failed to update the task");
-      });
-  };
+  axios.put(`http://localhost:8000/task/${id}`, task)
+    .then(() => {
+      alert("✅ Task updated successfully!");
+      navigate("/dashboard/tasks"); // 👈 This goes to Taskboard
+    })
+    .catch(err => {
+      console.error("Update failed", err);
+      alert("❌ Failed to update the task");
+    });
+};
+
 
   return (
     <Container className="p-4">
       <h3 className="board-title text-center mb-4">✏️ Update Task</h3>
       {task && (
-        <Form className="card">
-          <div className="form-container">
+        <Form className="card1">
+          <div className="form-container1">
             <Form.Group className="mb-3">
               <Form.Label>Task Name</Form.Label>
               <Form.Control name="taskname" value={task.taskname} onChange={handleChange} />
@@ -92,7 +92,7 @@ const TaskUpdateForm = () => {
               <Form.Control type="date" name="assigneddate" value={task.assigneddate} disabled />
             </Form.Group>
 
-            <Button className="button button-save" onClick={handleSubmit}>💾 Save</Button>
+            <Button className="button button-save" onClick={handleSubmit} >💾 Save</Button>
           </div>
         </Form>
       )}

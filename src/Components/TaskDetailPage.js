@@ -2,8 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Container, Card, Button } from 'react-bootstrap';
 import axios from 'axios';
-import '../css/Taskbord.css';
-
+import '../css/Details.css';
 
 const TaskDetailPage = () => {
   const { taskId } = useParams();
@@ -28,8 +27,8 @@ const TaskDetailPage = () => {
   };
 
   return (
-    <Container>
-      <h3 className="board-title text-center mb-4">📝 Task Details</h3>
+    <Container className="p-4">
+      <h3 className="board-title" style={{ textAlign: 'center', marginBottom: '1.5rem' }}>📝 Task Details</h3>
       {task && (
          <Card className="task-detail-card">
          <p><strong>Task Name:</strong> {task.taskname}</p>
@@ -42,7 +41,7 @@ const TaskDetailPage = () => {
          <p><strong>Assigned Date:</strong> {task.assigneddate}</p>
    
          <div className="d-flex gap-3 mt-4">
-           <Button className="button button-update-custom" onClick={() => navigate(`/tasks/update/${taskId}`)}>
+           <Button className="button button-update-custom" onClick={() => navigate(`/dashboard/tasks/update/${taskId}`)}>
              Update
            </Button>
            <Button className="button button-delete" onClick={handleDelete}>
