@@ -3,6 +3,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import { Button, Container, Form } from 'react-bootstrap';
 import axios from 'axios';
 import '../css/Forms.css';
+
 const statuses = ['Not Started', 'Deferred', 'In Progress', 'Completed'];
 const priorities = ['Low', 'Medium', 'High'];
 
@@ -12,7 +13,11 @@ const TaskUpdateForm = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:8000/task/${id}`)
+    const token = localStorage.getItem('token');
+
+    axios.get(`http://localhost:8000/task/${id}`, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
       .then(res => {
         const t = res.data;
         setTask({
@@ -21,7 +26,10 @@ const TaskUpdateForm = () => {
           assigneddate: t.assigneddate?.slice(0, 10)
         });
       })
-      .catch(err => console.error("Load task error", err));
+      .catch(err => {
+        console.error("❌ Load task error", err);
+        alert("Failed to fetch task. Please make sure you are logged in.");
+      });
   }, [id]);
 
   const handleChange = (e) => {
@@ -30,17 +38,20 @@ const TaskUpdateForm = () => {
   };
 
   const handleSubmit = () => {
-  axios.put(`http://localhost:8000/task/${id}`, task)
-    .then(() => {
-      alert("✅ Task updated successfully!");
-      navigate("/dashboard/tasks"); // 👈 This goes to Taskboard
-    })
-    .catch(err => {
-      console.error("Update failed", err);
-      alert("❌ Failed to update the task");
-    });
-};
+    const token = localStorage.getItem('token');
 
+    axios.put(`http://localhost:8000/task/${id}`, task, {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(() => {
+        alert("✅ Task updated successfully!");
+        navigate("/dashboard/taskboard"); // Go to task board
+      })
+      .catch(err => {
+        console.error("❌ Update failed", err);
+        alert("Failed to update the task. Ensure all fields are valid.");
+      });
+  };
 
   return (
     <Container className="p-4">
@@ -92,7 +103,7 @@ const TaskUpdateForm = () => {
               <Form.Control type="date" name="assigneddate" value={task.assigneddate} disabled />
             </Form.Group>
 
-            <Button className="button button-save" onClick={handleSubmit} >💾 Save</Button>
+            <Button className="button button-save" onClick={handleSubmit}>💾 Save</Button>
           </div>
         </Form>
       )}
