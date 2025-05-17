@@ -2,6 +2,8 @@ import "../css/Login_register.css";
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
+import { useParams, useNavigate } from "react-router-dom";
+
 
 function Register() {
   const [user, setUser] = useState({
@@ -14,12 +16,13 @@ function Register() {
   const handleChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
-
+const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
     axios.post("http://localhost:8000/users/register", user)
       .then(() => {
         alert("Registration Successful...!"); 
+        navigate("/login");
       })
       .catch((err) => {
         console.error("Error while registering user:", err); 

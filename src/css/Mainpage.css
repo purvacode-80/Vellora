@@ -99,15 +99,16 @@ body {
   transform: translateY(-3px) scale(1.05);
 }
 
-.hero-buttons .btn-primary {
+.hero-buttons .btn-get {
   background-color: var(--highlight);
   color: white;
   border: none;
 }
 
-.hero-buttons .btn-primary:hover {
+.hero-buttons .btn-get:hover {
   background-color: var(--highlight-hover);
   transform: translateY(-3px) scale(1.05);
+  color: white;
 }
 
 /* Company Section */

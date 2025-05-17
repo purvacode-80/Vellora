@@ -8,7 +8,7 @@ const Main = () => {
 
   // Function to handle "Get Started" button click
   const handleGetStarted = () => {
-    navigate('/dashboard'); // Navigate to the /dashboard route
+    navigate('/login'); // Navigate to the /dashboard route
   };
 
   return (
@@ -22,7 +22,7 @@ const Main = () => {
         </p>
         <div className="hero-buttons">
           <Button variant="dark" className="me-2">Learn More</Button>
-          <Button variant="primary" onClick={handleGetStarted}>Get Started</Button> {/* Add the onClick event */}
+          <Button variant='get' onClick={handleGetStarted}>Get Started</Button> {/* Add the onClick event */}
         </div>
 
         <div className="company-section">
