@@ -63,7 +63,7 @@ const TaskDetailPage = () => {
           <p><strong>Assigned Date:</strong> {new Date(task.assigneddate).toLocaleDateString()}</p>
 
           <div className="d-flex gap-3 mt-4">
-            <Button variant="primary" onClick={() => navigate(`/dashboard/tasks/update/${taskId}`)}>
+            <Button className='button-update-custom' variant="primary" onClick={() => navigate(`/dashboard/tasks/update/${taskId}`)}>
               ✏️ Update
             </Button>
             <Button variant="danger" onClick={handleDelete}>
