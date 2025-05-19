@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Container, Card, Button } from 'react-bootstrap';
+import { Container, Card, Button, Modal } from 'react-bootstrap';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
 import '../css/Details.css';
 
 const TaskDetailPage = () => {
   const { taskId } = useParams();
   const [task, setTask] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,33 +31,37 @@ const TaskDetailPage = () => {
     fetchTask();
   }, [taskId]);
 
-  const handleDelete = async () => {
-    if (window.confirm('Are you sure you want to delete this task?')) {
-      const token = localStorage.getItem('token');
+   const handleDelete = async () => {
+    const token = localStorage.getItem('token');
 
-      try {
-        await axios.delete(`http://localhost:8000/task/${taskId}`, {
-          headers: {
-            Authorization: `Bearer ${token}` // ✅ Send token for delete
-          }
-        });
-        alert('✅ Task deleted');
-        navigate('/dashboard/taskboard');
-      } catch (err) {
-        console.error('❌ Delete error:', err);
-        alert('Failed to delete task.');
-      }
+    try {
+      await axios.delete(`http://localhost:8000/task/${taskId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+      toast.success('✅ Task deleted successfully!', {
+        onClose: () => {
+          navigate('/dashboard/tasks'); // Redirect to tasks page
+        }
+      });
+    } catch (err) {
+      console.error('❌ Delete error:', err);
+      toast.error('❌ Failed to delete task. Please try again.');
+    } finally {
+      setShowModal(false); // Close modal after action
     }
   };
 
   return (
     <Container className="p-4">
+      <ToastContainer autoClose={2000}/>
       <h3 className="board-title text-center mb-4">📝 Task Details</h3>
       {task ? (
         <Card className="task-detail-card p-4">
           <p><strong>Task Name:</strong> {task.taskname}</p>
           <p><strong>Status:</strong> {task.status}</p>
-          <p><strong>Assigned To:</strong> {task.assignedto}</p>
+          { task.assignedto && <p><strong>Assigned To:</strong> {task.assignedto}</p> }
           <p><strong>Due Date:</strong> {new Date(task.duedate).toLocaleDateString()}</p>
           <p><strong>Description:</strong> {task.description}</p>
           <p><strong>Priority:</strong> {task.priority}</p>
@@ -66,17 +72,36 @@ const TaskDetailPage = () => {
             <Button className='button-update-custom' variant="primary" onClick={() => navigate(`/dashboard/tasks/update/${taskId}`)}>
               ✏️ Update
             </Button>
-            <Button variant="danger" onClick={handleDelete}>
+            <Button variant="danger" onClick={() => setShowModal(true)}>
               🗑️ Delete
             </Button>
             <Button variant="secondary" onClick={() => navigate(-1)}>
-              🔙 Back
+              ← Back
             </Button>
           </div>
         </Card>
       ) : (
         <p>Loading task details...</p>
       )}
+
+       {/* 🔥 Confirmation Modal */}
+      <Modal show={showModal} onHide={() => setShowModal(false)} className='mt-5'>
+        {/* 🔒 Close button */}
+        <Modal.Header closeButton>
+          <Modal.Title>⚠️ Confirm Deletion </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to delete this task?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleDelete}>
+            Yes, Delete
+          </Button>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Cancel
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };

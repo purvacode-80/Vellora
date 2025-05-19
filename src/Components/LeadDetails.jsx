@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Container, Card, Button } from "react-bootstrap";
+import { toast, ToastContainer } from "react-toastify";
 import "../css/Details.css";
 
 const LeadDetails = () => {
@@ -12,11 +13,6 @@ const LeadDetails = () => {
   useEffect(() => {
     const fetchLead = async () => {
       const token = localStorage.getItem("token");
-
-      if (!token) {
-        console.error("❌ User not authenticated");
-        return;
-      }
 
       try {
         const response = await axios.get(`http://localhost:8000/lead/${id}`, {
@@ -33,10 +29,30 @@ const LeadDetails = () => {
     fetchLead();
   }, [id]);
 
+  const handleDelete = async (leadId) => {
+    const token = localStorage.getItem("token");
+    
+    try {
+      await axios.delete(`http://localhost:8000/lead/deletelead/${leadId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`, // ✅ Add token here
+        },
+      });
+      toast.success("Lead deleted successfully!", {
+        onClose: () => navigate("/leads"), // Redirect to leads page
+      });
+    }
+    catch (error) {
+      console.error("Error deleting lead:", error);
+      toast.error("Error deleting lead. Please try again.");
+    }
+};
+
   if (!lead) return <p>Loading...</p>;
 
   return (
     <Container className="p-4">
+      <ToastContainer autoClose={2000}/>
       <h3 className="board-title text-center mb-4">🏢 Lead Details</h3>
       <Card className="task-detail-card p-3">
         <p><strong>Company Name:</strong> {lead.companyName}</p>
@@ -57,6 +73,12 @@ const LeadDetails = () => {
             onClick={() => navigate(`/dashboard/leads/update/${id}`)}
           >
             Update
+          </Button>
+          <Button
+            className="button button-delete"
+            onClick={() => handleDelete(lead._id)}
+          >
+            Delete
           </Button>
           <Button
             className="button button-secondary"

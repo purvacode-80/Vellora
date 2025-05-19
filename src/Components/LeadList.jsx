@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container, Table, Button } from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import "../css/Lead.css";
 
 const LeadList = () => {
@@ -27,6 +28,7 @@ const LeadList = () => {
         setLeads(response.data); // ✅ Set leads returned by backend
       } catch (error) {
         console.error("Error fetching leads:", error);
+        toast.error("Error fetching leads. Please try again.");
       }
     };
 
@@ -35,6 +37,7 @@ const LeadList = () => {
 
   return (
     <Container className="lead-list">
+      <ToastContainer autoClose={2000} />
       <h2 className="board-title text-center">📋 Lead List</h2>
       <div className="table-wrapper">
         <Table bordered hover responsive className="custom-table">
