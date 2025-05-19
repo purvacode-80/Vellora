@@ -32,12 +32,12 @@ const AddLead = () => {
       return;
     }
 
-    try {
-      await axios.post("http://localhost:8000/lead/", form, {
-        headers: {
-          Authorization: `Bearer ${token}` // ✅ Send token to backend
-        }
-      });
+   try {
+  const response = await axios.post("http://localhost:8000/lead/", form, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
 
       setForm({
         companyName: "",
@@ -53,12 +53,12 @@ const AddLead = () => {
         notes: ""
       });
 
-      alert("✅ Lead Added");
-    } catch (error) {
-      console.error("Error adding lead:", error);
-      alert("❌ Failed to add lead. Please try again.");
-    }
-  };
+       alert("✅ Lead added successfully");
+} catch (error) {
+  console.error("❌ Backend error:", error.response?.data || error.message);
+  alert("❌ Failed to add lead: " + (error.response?.data?.message || error.message));
+}
+};
 
   return (
     <Container className="p-4">
