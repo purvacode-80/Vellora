@@ -33,12 +33,12 @@ const AddLead = () => {
       return;
     }
 
-    try {
-      await axios.post("http://localhost:8000/lead/", form, {
-        headers: {
-          Authorization: `Bearer ${token}` // ✅ Send token to backend
-        }
-      });
+   try {
+  const response = await axios.post("http://localhost:8000/lead/", form, {
+    headers: {
+      Authorization: `Bearer ${token}`
+    }
+  });
 
       setForm({
         companyName: "",
