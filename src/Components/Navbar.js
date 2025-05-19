@@ -7,7 +7,7 @@ import '../App.css'; // <-- Ensure your CSS file with gradient-text class is imp
 
 function CustomNavbar() {
   return (
-    <Navbar expand="lg" className="sticky-top" style={{ backgroundColor: "#3b3b3b", height: "70px", zIndex: 1030 }}>
+    <Navbar expand="lg" className="sticky-top" style={{ backgroundColor: "#3b3b3b", height: "60px", zIndex: 1030 }}>
       <Container className="d-flex align-items-center">
         <Image
           src={logo}
@@ -19,7 +19,7 @@ function CustomNavbar() {
           style={{ marginLeft: "-80px" }}
         />
         <span className="gradient-text" style={{ marginRight: "1300px" }}>
-          vellora
+          Vellora
         </span>
       </Container>
     </Navbar>
