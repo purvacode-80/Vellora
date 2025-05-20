@@ -174,9 +174,7 @@ function PageContent() {
         <Route path="/tasks/update/:id" element={<TaskUpdateForm />} />
         <Route path="/lead/:id" element={<LeadDetails />} />
         <Route path="/leads/update/:id" element={<LeadProfileEdit />} />
-
-        {/* ✅ Make this path relative */}
-        <Route path="profile" element={<UserProfile />} />
+        <Route path="profile" element={<UserProfile show={true}/>} />
 
         <Route path="*" element={<Typography>Page not found: {location.pathname}</Typography>} />
       </Routes>
@@ -212,5 +210,4 @@ DashboardLayoutBasic.propTypes = {
   window: PropTypes.func,
 };
 
-const App = DashboardLayoutBasic;
-export default App;
+export default DashboardLayoutBasic;

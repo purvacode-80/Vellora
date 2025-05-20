@@ -79,7 +79,7 @@ const ContactDetails = () => {
             🗑️ Delete
           </Button>
           <Button
-            className="button button-secondary"
+            variant="secondary"
             onClick={() => navigate(-1)}
           >
             ← Back

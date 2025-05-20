@@ -1,54 +1,37 @@
-.profile-container {
-  display: flex;
-  justify-content: center;
-  padding: 2rem;
-  background-color: #ffffff;
-  color: #4B0082;
-  min-height: 100vh;
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans+Deva:wght@100..800&display=swap');
+
+.offcanvas {
+  max-width: 350px !important;
 }
 
-.profile-card {
-  width: 100%;
-  max-width: 500px;
-  padding: 2rem;
-  border-radius: 16px;
-  background-color: #f9f6ff;
-  box-shadow: 0 4px 12px rgba(75, 0, 130, 0.2);
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+.offcanvas-body h4{
+  color : #a13cf4;
+  font-family: "Playpen Sans Deva", cursive;
+  font-size: 1.7rem;
+  font-weight: 600;
 }
 
-.profile-card h2 {
-  text-align: center;
-  color: #4B0082;
+.offcanvas-body p{
+  font-size: 1.2rem;
+  font-weight: 600;
 }
 
-.profile-img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 50%;
-  align-self: center;
-}
-
-.profile-card input {
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-}
-
-.profile-card button {
-  padding: 10px;
-  background-color: #6a0dad;
+.offcanvas-header {
+  background-color: #ad58f3;
   color: white;
-  font-weight: bold;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-.profile-card button:hover {
-  background-color: #4b0082;
+.btn-close {
+  color: white !important;
+}
+
+.form-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.form-control {
+  font-size: 1.1rem !important;
+  font-weight: 600;
+  margin: 0 5px !important;
 }

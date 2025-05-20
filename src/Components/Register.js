@@ -3,9 +3,14 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
 import { useParams, useNavigate } from "react-router-dom";
-
+import { useLocation } from "react-router-dom";
 
 function Register() {
+
+  const location = useLocation();
+  const fromGoogle = location.state?.fromGoogle;
+  const email = location.state?.userEmail;
+
   const [user, setUser] = useState({
     fullName: "",
     email: "",
@@ -32,6 +37,11 @@ const navigate = useNavigate();
 
   return (
     <div className="register">
+      {fromGoogle && (
+        <p className="alert alert-warning">
+          👋 It looks like you don't have an account yet. Create one below using your email: <strong>{email}</strong>
+        </p>
+      )}
       <div className='register-container form-container my-5'>
         <h3> Register </h3>
         <Form onSubmit={handleSubmit}>
