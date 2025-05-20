@@ -31,9 +31,8 @@ const TaskDetailPage = () => {
     fetchTask();
   }, [taskId]);
 
-   const handleDelete = async () => {
+  const handleDelete = async () => {
     const token = localStorage.getItem('token');
-
     try {
       await axios.delete(`http://localhost:8000/task/${taskId}`, {
         headers: {
@@ -84,9 +83,9 @@ const TaskDetailPage = () => {
         <p>Loading task details...</p>
       )}
 
-       {/* 🔥 Confirmation Modal */}
+      {/* Confirmation Modal */}
       <Modal show={showModal} onHide={() => setShowModal(false)} className='mt-5'>
-        {/* 🔒 Close button */}
+        {/* Close button */}
         <Modal.Header closeButton>
           <Modal.Title>⚠️ Confirm Deletion </Modal.Title>
         </Modal.Header>

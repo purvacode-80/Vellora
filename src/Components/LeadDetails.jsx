@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import axios from "axios";
-import { Container, Card, Button } from "react-bootstrap";
+import { Container, Card, Button,Modal } from "react-bootstrap";
 import { toast, ToastContainer } from "react-toastify";
 import "../css/Details.css";
 
 const LeadDetails = () => {
   const { id } = useParams();
   const [lead, setLead] = useState(null);
+  const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -29,24 +30,26 @@ const LeadDetails = () => {
     fetchLead();
   }, [id]);
 
-  const handleDelete = async (leadId) => {
-    const token = localStorage.getItem("token");
-    
+  const handleDelete = async () => {
+    const token = localStorage.getItem('token');
     try {
-      await axios.delete(`http://localhost:8000/lead/deletelead/${leadId}`, {
+      await axios.delete(`http://localhost:8000/lead/deletelead/${id}`, {
         headers: {
-          Authorization: `Bearer ${token}`, // ✅ Add token here
-        },
+          Authorization: `Bearer ${token}`
+        }
       });
-      toast.success("Lead deleted successfully!", {
-        onClose: () => navigate("/leads"), // Redirect to leads page
+      toast.success('✅ Task deleted successfully!', {
+        onClose: () => {
+          navigate('/dashboard/leads'); // Redirect to tasks page
+        }
       });
+    } catch (err) {
+      console.error('❌ Delete error:', err);
+      toast.error('❌ Failed to delete task. Please try again.');
+    } finally {
+      setShowModal(false); // Close modal after action
     }
-    catch (error) {
-      console.error("Error deleting lead:", error);
-      toast.error("Error deleting lead. Please try again.");
-    }
-};
+  };
 
   if (!lead) return <p>Loading...</p>;
 
@@ -72,22 +75,38 @@ const LeadDetails = () => {
             className="button button-update-custom"
             onClick={() => navigate(`/dashboard/leads/update/${id}`)}
           >
-            Update
+            ✏️ Update
           </Button>
-          <Button
-            className="button button-delete"
-            onClick={() => handleDelete(lead._id)}
-          >
-            Delete
+          <Button variant="danger" onClick={() => setShowModal(true)}>
+            🗑️ Delete
           </Button>
           <Button
             className="button button-secondary"
             onClick={() => navigate(-1)}
           >
-            Back
+            ← Back
           </Button>
         </div>
       </Card>
+
+      {/* Confirmation Modal */}
+      <Modal show={showModal} onHide={() => setShowModal(false)} className='mt-5'>
+        {/* Close button */}
+        <Modal.Header closeButton>
+          <Modal.Title>⚠️ Confirm Deletion </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Are you sure you want to delete this task?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={handleDelete}>
+            Yes, Delete
+          </Button>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Cancel
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };
