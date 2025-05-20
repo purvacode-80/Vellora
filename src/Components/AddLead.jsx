@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Form, Button, Container } from "react-bootstrap";
 import "../css/Forms.css"; // Ensure your form CSS is linked
+import { toast, ToastContainer } from "react-toastify"; // Import toast for notifications
 
 const AddLead = () => {
   const [form, setForm] = useState({
@@ -53,15 +54,18 @@ const AddLead = () => {
         notes: ""
       });
 
-       alert("✅ Lead added successfully");
-} catch (error) {
-  console.error("❌ Backend error:", error.response?.data || error.message);
-  alert("❌ Failed to add lead: " + (error.response?.data?.message || error.message));
-}
-};
+      toast.success("Lead added successfully!",{
+        onClose: () => window.location.href = "/leads" // Redirect to leads page
+      });
+    } catch (error) {
+      console.error("Error adding lead:", error);
+      toast.error("Failed to add lead. Please try again.");
+    }
+  };
 
   return (
     <Container className="p-4">
+      <ToastContainer autoClose={2000}/>
       <h3 className="board-title text-center mb-4">👤 Add Lead</h3>
       <Form className="card1" onSubmit={handleSubmit}>
         <div className="form-container1">
@@ -126,13 +130,19 @@ const AddLead = () => {
 
           <Form.Group className="mb-3">
             <Form.Label>Lead Source</Form.Label>
-            <Form.Control
-              type="text"
+            <Form.Select
               name="leadSource"
               value={form.leadSource}
               onChange={handleChange}
-              placeholder="Lead Source"
-            />
+            >
+              <option>Referral</option>
+              <option>Website</option>
+              <option>Cold Call</option>
+              <option>Social Media</option>
+              <option>Email Campaign</option>
+              <option>Trade Show</option>
+              <option>Other</option>
+            </Form.Select>
           </Form.Group>
 
           <Form.Group className="mb-3">

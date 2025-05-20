@@ -3,7 +3,6 @@ import axios from "axios";
 import { Table, Container, Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 import "../css/ContactList.css"; // This imports the shared CSS
 
 const ContactList = () => {

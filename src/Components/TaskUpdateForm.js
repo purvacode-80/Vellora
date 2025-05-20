@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Button, Container, Form } from 'react-bootstrap';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
 import '../css/Forms.css';
 
 const statuses = ['Not Started', 'Deferred', 'In Progress', 'Completed'];
@@ -11,6 +12,7 @@ const TaskUpdateForm = () => {
   const { id } = useParams();
   const [task, setTask] = useState(null);
   const navigate = useNavigate();
+  const [contacts, setContacts] = useState([]);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -29,7 +31,16 @@ const TaskUpdateForm = () => {
       .catch(err => {
         console.error("❌ Load task error", err);
         alert("Failed to fetch task. Please make sure you are logged in.");
-      });
+    });
+
+    // Fetch contacts
+    axios.get("http://localhost:8000/contact/all", {
+      headers: { Authorization: `Bearer ${token}` }
+    })
+      .then(res => setContacts(res.data))
+      .catch(err => {
+        console.error("❌ Failed to load contacts", err);
+    });
   }, [id]);
 
   const handleChange = (e) => {
@@ -44,17 +55,21 @@ const TaskUpdateForm = () => {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(() => {
-        alert("✅ Task updated successfully!");
-        navigate("/dashboard/taskboard"); // Go to task board
+        toast.success("✅ Task updated successfully!", {
+          onclose : () => { 
+            navigate("/dashboard/tasks");
+          }
+        });
       })
       .catch(err => {
-        console.error("❌ Update failed", err);
-        alert("Failed to update the task. Ensure all fields are valid.");
+        console.error("Update failed : ", err);
+        toast.error("❌ Failed to update task.")
       });
   };
 
   return (
     <Container className="p-4">
+      <ToastContainer autoClose={2000}/>
       <h3 className="board-title text-center mb-4">✏️ Update Task</h3>
       {task && (
         <Form className="card1">
@@ -66,7 +81,7 @@ const TaskUpdateForm = () => {
 
             <Form.Group className="mb-3">
               <Form.Label>Description</Form.Label>
-              <Form.Control as="textarea" rows={4} name="description" value={task.description} onChange={handleChange} />
+              <Form.Control as="textarea" rows={3} name="description" value={task.description} onChange={handleChange} />
             </Form.Group>
 
             <Form.Group className="mb-3">
@@ -75,8 +90,13 @@ const TaskUpdateForm = () => {
             </Form.Group>
 
             <Form.Group className="mb-3">
-              <Form.Label>Contact</Form.Label>
-              <Form.Control type="number" name="contact" value={task.contact} onChange={handleChange} />
+              <Form.Label>Contact Name</Form.Label>
+              <Form.Select name="contact" value={task.contact} onChange={handleChange}>
+                <option value="">-- Select Contact --</option>
+                {contacts.map(contact => (
+                  <option key={contact._id} value={contact.name}>{contact.name}</option>
+                ))}
+              </Form.Select>
             </Form.Group>
 
             <Form.Group className="mb-3">

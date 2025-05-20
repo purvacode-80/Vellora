@@ -29,8 +29,7 @@ function App() {
       <Route path="/register" element={<Register />} />
 
       {/* Protected and Additional Routes */}
-      <Route path="/dashboard/*" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-      <Route path="/home/" element={<Home />} />
+      <Route path="/dashboard/*" element={<ProtectedRoute> <Dashboard /></ProtectedRoute>} />
     </Routes>
   );
 }
