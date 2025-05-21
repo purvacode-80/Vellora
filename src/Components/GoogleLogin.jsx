@@ -1,5 +1,6 @@
 // src/Components/GoogleLoginAuth.jsx
 import React from 'react';
+import axios from 'axios';
 import { GoogleLogin } from '@react-oauth/google';
 import { jwtDecode } from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
@@ -7,17 +8,24 @@ import { useNavigate } from 'react-router-dom';
 function GoogleLoginAuth() {
   const navigate = useNavigate(); 
 
-  const handleSuccess = (credentialResponse) => {
+  const handleSuccess = async (credentialResponse) => {
     try {
       const decoded = jwtDecode(credentialResponse.credential);
       console.log('Google user:', decoded);
 
       // Store the ID token and optionally the decoded info
       localStorage.setItem('token', credentialResponse.credential);
-      localStorage.setItem('userEmail', decoded.email);
-      localStorage.setItem('userName', decoded.name);
+      const userEmail = decoded.email;
+      // localStorage.setItem('userName', decoded.name);
 
-      navigate('/dashboard'); // Redirect after login
+      // Check with backend if user exists
+      const response = await axios.post('http://localhost:8000/users/userExists', { userEmail });
+
+      if (response.data.exists) {
+        navigate('/dashboard');
+      } else {
+        navigate('/register', { state: { fromGoogle: true, userEmail } });
+      }
     } catch (error) {
       console.error('Failed to decode Google token:', error);
     }

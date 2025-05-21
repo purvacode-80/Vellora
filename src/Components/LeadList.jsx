@@ -1,11 +1,22 @@
 import React, { useEffect, useState } from "react";
-import { Container, Table, Button } from "react-bootstrap";
+import {
+  Container,
+  Table,
+  Button,
+  Form,
+} from "react-bootstrap";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
+import { FaSearch, FaTimes } from "react-icons/fa";
+import "react-toastify/dist/ReactToastify.css";
 import "../css/Lead.css";
+
 
 const LeadList = () => {
   const [leads, setLeads] = useState([]);
+  const [searchVisible, setSearchVisible] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,22 +31,88 @@ const LeadList = () => {
       try {
         const response = await axios.get("http://localhost:8000/lead/all", {
           headers: {
-            Authorization: `Bearer ${token}`, // ✅ Send token for authentication
+            Authorization: `Bearer ${token}`,
           },
         });
 
-        setLeads(response.data); // ✅ Set leads returned by backend
+        setLeads(response.data);
       } catch (error) {
         console.error("Error fetching leads:", error);
+        toast.error("Error fetching leads. Please try again.");
       }
     };
 
     fetchLeads();
   }, []);
 
+  const handleSearchToggle = () => {
+    setSearchVisible((prev) => {
+      if (prev) {
+        setSearchTerm("");
+        return false;
+      } else {
+        return true;
+      }
+    });
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      setSearchVisible(false);
+    }
+  };
+
+  const filteredLeads = [...leads]
+    .filter((lead) =>
+      lead.companyName.toLowerCase().startsWith(searchTerm.toLowerCase())
+    )
+    .sort((a, b) =>
+      b.companyName.toLowerCase().startsWith(searchTerm.toLowerCase()) -
+      a.companyName.toLowerCase().startsWith(searchTerm.toLowerCase())
+    );
+
   return (
-    <Container className="lead-list">
-      <h2 className="board-title text-center">📋 Lead List</h2>
+    <Container className="lead-list position-relative">
+      <ToastContainer autoClose={2000} />
+
+      {/* Title and search bar */}
+      <div className="title-wrapper text-center position-relative mb-4" style={{ marginTop: "-100px" }}>
+        <h2 className="board-title m-0">📋 Lead List</h2>
+
+        <div className="search-toggle d-flex align-items-center position-absolute top-0 end-0">
+          {searchVisible && (
+            <div className="search-box me-2 slide-in">
+              <Form.Control
+                type="text"
+                placeholder="Search by company..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                onKeyDown={handleKeyDown}
+                autoFocus
+              />
+              {searchTerm && (
+                <Button
+                  variant="light"
+                  onClick={() => setSearchTerm("")}
+                  className="clear-btn"
+                  tabIndex={-1}
+                >
+                  <FaTimes />
+                </Button>
+              )}
+            </div>
+          )}
+          <Button
+            variant="outline-secondary"
+            onClick={handleSearchToggle}
+            style={{ border: "none", boxShadow: "none" }}
+          >
+            <FaSearch />
+          </Button>
+        </div>
+      </div>
+
       <div className="table-wrapper">
         <Table bordered hover responsive className="custom-table">
           <thead>
@@ -51,7 +128,7 @@ const LeadList = () => {
             </tr>
           </thead>
           <tbody>
-            {leads.map((lead, index) => (
+            {filteredLeads.map((lead, index) => (
               <tr key={lead._id}>
                 <td>{index + 1}</td>
                 <td>{lead.companyName}</td>
@@ -70,6 +147,13 @@ const LeadList = () => {
                 </td>
               </tr>
             ))}
+            {filteredLeads.length === 0 && (
+              <tr>
+                <td colSpan="8" className="text-center text-muted">
+                  No leads found.
+                </td>
+              </tr>
+            )}
           </tbody>
         </Table>
       </div>

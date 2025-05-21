@@ -12,28 +12,47 @@ import Dashboard from './Components/Dashboard';
 import Testimonials from './Components/testimonials';
 import MyNavbar from './Components/Navbar';
 import Aboutus from './Components/Aboutus';
-function App() {
+import MeetingRoom from './Components/MeetingRoom';
 
-  //For preloader
+function App() {
   const [isLoading, setIsLoading] = useState(true);
+
   return (
     <Routes>
       {/* Public Routes */}
-      <Route path="/" element={<> 
-        {isLoading ? (
-          <Preloader onDone={() => setIsLoading(false)} />
-        ) : (
-          <> <MyNavbar/><Main /> <Home /> <Testimonials /> <FAQS /> <Footer /> </>
-        )}
-      </>} />
+      <Route
+        path="/"
+        element={
+          <>
+            {isLoading ? (
+              <Preloader onDone={() => setIsLoading(false)} />
+            ) : (
+              <>
+                <MyNavbar />
+                <Main />
+                <Home />
+                <Testimonials />
+                <FAQS />
+                <Footer />
+              </>
+            )}
+          </>
+        }
+      />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/about" element={<Aboutus />} />
+      <Route path="/meeting/:room" element={<MeetingRoom />} />
 
-
-      {/* Protected and Additional Routes */}
-      <Route path="/dashboard/*" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-      <Route path="/home/" element={<Home />} />
+      {/* Protected Routes */}
+      <Route
+        path="/dashboard/*"
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
     </Routes>
   );
 }

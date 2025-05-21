@@ -2,6 +2,7 @@ import { useState } from "react";
 import axios from "axios";
 import { Form, Button, Container } from "react-bootstrap";
 import "../css/Forms.css";
+import { toast, ToastContainer } from "react-toastify";
 
 const AddLead = () => {
   const [form, setForm] = useState({
@@ -33,23 +34,15 @@ const AddLead = () => {
     }
 
     try {
-      // Debug token
-      console.log("Sending token:", token);
-
-      const response = await axios.post(
-        "http://localhost:8000/lead",
-        form,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json"
-          }
+      const response = await axios.post("http://localhost:8000/lead", form, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
         }
-      );
+      });
 
       console.log("Lead added successfully:", response.data);
 
-      // Reset the form
       setForm({
         companyName: "",
         contactPerson: "",
@@ -64,31 +57,27 @@ const AddLead = () => {
         notes: ""
       });
 
-      alert("✅ Lead Added");
-
-      // Optionally redirect or refresh lead list
-      // e.g., navigate("/leads"); if using React Router
-
+      toast.success("✅ Lead added successfully!", {
+        onClose: () => (window.location.href = "/leads")
+      });
     } catch (error) {
       console.error("Error adding lead:", error.response?.data || error.message);
-      alert("❌ Failed to add lead. Check console for details.");
+      toast.error("❌ Failed to add lead. Please try again.");
     }
   };
 
   return (
     <Container className="p-4">
+      <ToastContainer autoClose={2000} />
       <h3 className="board-title text-center mb-4">👤 Add Lead</h3>
       <Form className="card1" onSubmit={handleSubmit}>
         <div className="form-container1">
-
-          {/* Reusable Form Fields */}
           {[
             { label: "Company Name", name: "companyName", type: "text", required: true },
             { label: "Contact Person", name: "contactPerson", type: "text", required: true },
             { label: "Email", name: "email", type: "email", required: true },
             { label: "Phone", name: "phone", type: "tel", required: true },
-            { label: "Industry", name: "industry", type: "text" },
-            { label: "Lead Source", name: "leadSource", type: "text" },
+            { label: "Industry", name: "industry", type: "text" }
           ].map((field) => (
             <Form.Group className="mb-3" key={field.name}>
               <Form.Label>{field.label}</Form.Label>
@@ -102,6 +91,24 @@ const AddLead = () => {
               />
             </Form.Group>
           ))}
+
+          <Form.Group className="mb-3">
+            <Form.Label>Lead Source</Form.Label>
+            <Form.Select
+              name="leadSource"
+              value={form.leadSource}
+              onChange={handleChange}
+            >
+              <option value="">-- Select --</option>
+              <option>Referral</option>
+              <option>Website</option>
+              <option>Cold Call</option>
+              <option>Social Media</option>
+              <option>Email Campaign</option>
+              <option>Trade Show</option>
+              <option>Other</option>
+            </Form.Select>
+          </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Status</Form.Label>

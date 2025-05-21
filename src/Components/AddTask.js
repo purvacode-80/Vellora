@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Form, Button, Container } from 'react-bootstrap';
 import '../css/Forms.css'; // Custom styles
+import { toast, ToastContainer } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const AddTask = () => {
   const [formData, setFormData] = useState({
@@ -13,6 +15,26 @@ const AddTask = () => {
     status: '',
     priority: ''
   });
+
+  const [contacts, setContacts] = useState([]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+      const fetchContacts = async () => {
+        try {
+          const token = localStorage.getItem("token");
+          const response = await axios.get("http://localhost:8000/contact/all", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          setContacts(response.data);
+        } catch (error) {
+          console.error("Error fetching contacts:", error);
+        }
+      };
+      fetchContacts();
+    }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,8 +51,6 @@ const AddTask = () => {
           Authorization: `Bearer ${token}` // ✅ Send token in header
         }
       });
-
-      alert('✅ Task added successfully!');
       // Clear form
       setFormData({
         taskname: '',
@@ -41,6 +61,11 @@ const AddTask = () => {
         status: '',
         priority: ''
       });
+      toast.success('✅ Task added successfully!', {
+        onClose: () => {
+          navigate('/dashboard/tasks'); // Redirect to tasks page
+        }
+      });
     } catch (err) {
       console.error(err);
       alert('❌ Failed to add task.');
@@ -49,6 +74,7 @@ const AddTask = () => {
 
   return (
     <Container className="p-4">
+      <ToastContainer autoClose={2000} />
       <h3 className="board-title text-center mb-4">📋 Add New Task</h3>
       <Form onSubmit={handleSubmit} className="card1">
         <div className="form-container1">
@@ -89,16 +115,14 @@ const AddTask = () => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Contact Number</Form.Label>
-            <Form.Control
-              type="number"
-              name="contact"
-              placeholder="Enter contact number"
-              value={formData.contact}
-              onChange={handleChange}
-              required
-            />
-          </Form.Group>
+          <Form.Label> Contact Name </Form.Label>
+          <Form.Select name="contact" value={formData.contact} onChange={handleChange}>
+            <option value="">-- Select Contact --</option>
+            {contacts.map(contact => (
+              <option key={contact._id} value={contact.name}>{contact.name}</option>
+            ))}
+        </Form.Select>
+        </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Status</Form.Label>

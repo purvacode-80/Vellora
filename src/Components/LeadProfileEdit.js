@@ -120,12 +120,19 @@ const LeadProfileEdit = () => {
 
           <Form.Group className="mb-3">
             <Form.Label>Lead Source</Form.Label>
-            <Form.Control
-              type="text"
+            <Form.Select
               name="leadSource"
               value={lead.leadSource}
               onChange={handleInputChange}
-            />
+            >
+              <option>Referral</option>
+              <option>Website</option>
+              <option>Cold Call</option>
+              <option>Social Media</option>
+              <option>Email Campaign</option>
+              <option>Trade Show</option>
+              <option>Other</option>
+            </Form.Select>
           </Form.Group>
 
           <Form.Group className="mb-3">

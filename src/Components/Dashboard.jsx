@@ -19,6 +19,8 @@ import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 import TaskIcon from '@mui/icons-material/Task';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import EventIcon from '@mui/icons-material/Event';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import VideoCallIcon from '@mui/icons-material/VideoCall';
 
 import logo from '../Assets/logo-removebg-preview.png';
 
@@ -31,12 +33,14 @@ import AddLead from './AddLead';
 import Taskboard from './CRMTaskBoard'
 import AddTask from './AddTask';
 import TaskDetails from './TaskDetailPage'
+import UserProfile from './UserProfile';
 // import GoogleCalendar from './GoogleCalendar';
 import CalendarView from './CalendarView';
 import CreateCalendarEvent from './CreateCalendarEvent';
 import TaskUpdateForm from './TaskUpdateForm';
 import LeadDetails from './LeadDetails';
 import LeadProfileEdit from './LeadProfileEdit';
+import MeetingHome from './MeetingHome';
 // import other components as needed
 
 const NAVIGATION = [
@@ -74,6 +78,17 @@ const NAVIGATION = [
     icon: <EventIcon />,
     segment : 'dashboard/calendar',
   },
+  {
+    title: 'Profile',
+    icon: <AccountCircleIcon />,
+    segment: 'dashboard/profile',
+  },
+  {
+    title: 'Meeting',
+    icon: <VideoCallIcon />,
+    segment: 'dashboard/meeting',
+  },
+
 ];
 
 
@@ -160,22 +175,20 @@ function PageContent() {
         <Route path="/tasks" element={<Taskboard />} />
         <Route path="/add-task" element={<AddTask />} />
         <Route path="/tasks/:taskId" element={<TaskDetails />} />
-        <Route path="/calendar" element={<CalendarView/>} />
+        <Route path="/calendar" element={<CalendarView />} />
         <Route path="/add-calendar-event" element={<CreateCalendarEvent />} />
         <Route path="/tasks/update/:id" element={<TaskUpdateForm />} />
         <Route path="/lead/:id" element={<LeadDetails />} />
         <Route path="/leads/update/:id" element={<LeadProfileEdit />} />
+        <Route path="profile" element={<UserProfile show={true}/>} />
+        <Route path="/meeting" element={<MeetingHome />} />
 
-
-
-
-
-        {/* Add more routes here */}
         <Route path="*" element={<Typography>Page not found: {location.pathname}</Typography>} />
       </Routes>
     </Box>
   );
 }
+
 
 function DashboardLayoutBasic(props) {
   const { window } = props;
@@ -204,5 +217,4 @@ DashboardLayoutBasic.propTypes = {
   window: PropTypes.func,
 };
 
-const App = DashboardLayoutBasic;
-export default App;
+export default DashboardLayoutBasic;
