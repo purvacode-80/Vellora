@@ -20,7 +20,7 @@ import TaskIcon from '@mui/icons-material/Task';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import EventIcon from '@mui/icons-material/Event';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-
+import VideoCallIcon from '@mui/icons-material/VideoCall';
 
 import logo from '../Assets/logo-removebg-preview.png';
 
@@ -40,6 +40,7 @@ import CreateCalendarEvent from './CreateCalendarEvent';
 import TaskUpdateForm from './TaskUpdateForm';
 import LeadDetails from './LeadDetails';
 import LeadProfileEdit from './LeadProfileEdit';
+import MeetingHome from './MeetingHome';
 // import other components as needed
 
 const NAVIGATION = [
@@ -81,6 +82,11 @@ const NAVIGATION = [
     title: 'Profile',
     icon: <AccountCircleIcon />,
     segment: 'dashboard/profile',
+  },
+  {
+    title: 'Meeting',
+    icon: <VideoCallIcon />,
+    segment: 'dashboard/meeting',
   },
 
 ];
@@ -175,6 +181,7 @@ function PageContent() {
         <Route path="/lead/:id" element={<LeadDetails />} />
         <Route path="/leads/update/:id" element={<LeadProfileEdit />} />
         <Route path="profile" element={<UserProfile show={true}/>} />
+        <Route path="/meeting" element={<MeetingHome />} />
 
         <Route path="*" element={<Typography>Page not found: {location.pathname}</Typography>} />
       </Routes>

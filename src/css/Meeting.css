@@ -1,0 +1,93 @@
+.meeting-home {
+  height: 100vh;
+  background: linear-gradient(to right, #8556ac, #4e2f67);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Segoe UI', sans-serif;
+  animation: fadeIn 1.5s ease-in;
+  margin-top: -80px;
+  width: 1310px;
+}
+
+.meeting-card {
+  background: white;
+  padding: 40px;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  width: 90%;
+  max-width: 450px;
+  transition: transform 0.3s ease;
+}
+
+.meeting-card.animated:hover {
+  transform: scale(1.02);
+}
+
+.title {
+  font-size: 30px;
+  margin-bottom: 10px;
+  color: #182848;
+}
+
+.subtitle {
+  font-size: 16px;
+  margin-bottom: 25px;
+  color: #555;
+}
+
+.input {
+  padding: 12px;
+  width: 100%;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  color: black;
+  background-color: white;
+}
+
+.room-input-wrapper {
+  display: flex;
+  gap: 8px;
+}
+
+.generate-button {
+  background-color: #eee;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+.start-button {
+  margin-top: 20px;
+  padding: 12px 24px;
+  background-color: #8556ac;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.start-button:hover {
+  background-color: #8556ac;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+

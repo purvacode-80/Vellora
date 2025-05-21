@@ -11,6 +11,7 @@ import ProtectedRoute from './Security/ProtectedRoute';
 import Dashboard from './Components/Dashboard';
 import Testimonials from './Components/testimonials';
 import MyNavbar from './Components/Navbar';
+import MeetingRoom from './Components/MeetingRoom';
 function App() {
 
   //For preloader
@@ -27,6 +28,7 @@ function App() {
       </>} />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/meeting/:room" element={<MeetingRoom />} />
 
       {/* Protected and Additional Routes */}
       <Route path="/dashboard/*" element={<ProtectedRoute> <Dashboard /></ProtectedRoute>} />
