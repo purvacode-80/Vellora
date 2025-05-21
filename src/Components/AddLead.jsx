@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { Form, Button, Container } from "react-bootstrap";
-import "../css/Forms.css"; // Ensure your form CSS is linked
+import "../css/Forms.css";
 
 const AddLead = () => {
   const [form, setForm] = useState({
@@ -25,7 +25,7 @@ const AddLead = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const token = localStorage.getItem("token"); // 🟢 Assuming you're storing JWT in localStorage
+    const token = localStorage.getItem("token");
 
     if (!token) {
       alert("❌ User not authenticated. Please log in.");
@@ -33,12 +33,23 @@ const AddLead = () => {
     }
 
     try {
-      await axios.post("http://localhost:8000/lead/", form, {
-        headers: {
-          Authorization: `Bearer ${token}` // ✅ Send token to backend
-        }
-      });
+      // Debug token
+      console.log("Sending token:", token);
 
+      const response = await axios.post(
+        "http://localhost:8000/lead",
+        form,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Content-Type": "application/json"
+          }
+        }
+      );
+
+      console.log("Lead added successfully:", response.data);
+
+      // Reset the form
       setForm({
         companyName: "",
         contactPerson: "",
@@ -54,9 +65,13 @@ const AddLead = () => {
       });
 
       alert("✅ Lead Added");
+
+      // Optionally redirect or refresh lead list
+      // e.g., navigate("/leads"); if using React Router
+
     } catch (error) {
-      console.error("Error adding lead:", error);
-      alert("❌ Failed to add lead. Please try again.");
+      console.error("Error adding lead:", error.response?.data || error.message);
+      alert("❌ Failed to add lead. Check console for details.");
     }
   };
 
@@ -65,75 +80,28 @@ const AddLead = () => {
       <h3 className="board-title text-center mb-4">👤 Add Lead</h3>
       <Form className="card1" onSubmit={handleSubmit}>
         <div className="form-container1">
-          <Form.Group className="mb-3">
-            <Form.Label>Company Name</Form.Label>
-            <Form.Control
-              type="text"
-              name="companyName"
-              value={form.companyName}
-              onChange={handleChange}
-              placeholder="Company Name"
-              required
-            />
-          </Form.Group>
 
-          <Form.Group className="mb-3">
-            <Form.Label>Contact Person</Form.Label>
-            <Form.Control
-              type="text"
-              name="contactPerson"
-              value={form.contactPerson}
-              onChange={handleChange}
-              placeholder="Contact Person"
-              required
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="email"
-              name="email"
-              value={form.email}
-              onChange={handleChange}
-              placeholder="Email"
-              required
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3">
-            <Form.Label>Phone</Form.Label>
-            <Form.Control
-              type="tel"
-              name="phone"
-              value={form.phone}
-              onChange={handleChange}
-              placeholder="Phone"
-              required
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3">
-            <Form.Label>Industry</Form.Label>
-            <Form.Control
-              type="text"
-              name="industry"
-              value={form.industry}
-              onChange={handleChange}
-              placeholder="Industry"
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3">
-            <Form.Label>Lead Source</Form.Label>
-            <Form.Control
-              type="text"
-              name="leadSource"
-              value={form.leadSource}
-              onChange={handleChange}
-              placeholder="Lead Source"
-            />
-          </Form.Group>
+          {/* Reusable Form Fields */}
+          {[
+            { label: "Company Name", name: "companyName", type: "text", required: true },
+            { label: "Contact Person", name: "contactPerson", type: "text", required: true },
+            { label: "Email", name: "email", type: "email", required: true },
+            { label: "Phone", name: "phone", type: "tel", required: true },
+            { label: "Industry", name: "industry", type: "text" },
+            { label: "Lead Source", name: "leadSource", type: "text" },
+          ].map((field) => (
+            <Form.Group className="mb-3" key={field.name}>
+              <Form.Label>{field.label}</Form.Label>
+              <Form.Control
+                type={field.type}
+                name={field.name}
+                value={form[field.name]}
+                onChange={handleChange}
+                placeholder={field.label}
+                required={field.required}
+              />
+            </Form.Group>
+          ))}
 
           <Form.Group className="mb-3">
             <Form.Label>Status</Form.Label>
