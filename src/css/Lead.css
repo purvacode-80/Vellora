@@ -96,3 +96,12 @@ body {
   background-color: var(--highlight-hover);
   transform: scale(1.05);
 }
+
+.modal-backdrop.show {
+  opacity: 0.85 !important; /* Increase for darker background */
+  background-color: rgba(0, 0, 0, 0.85) !important;
+}
+
+.form-check-input {
+  background-color: var(--highlight) !important;
+}
