@@ -79,16 +79,15 @@ const NAVIGATION = [
     segment : 'dashboard/calendar',
   },
   {
-    title: 'Profile',
-    icon: <AccountCircleIcon />,
-    segment: 'dashboard/profile',
-  },
-  {
     title: 'Meeting',
     icon: <VideoCallIcon />,
     segment: 'dashboard/meeting',
   },
-
+  {
+    title: 'Profile',
+    icon: <AccountCircleIcon />,
+    segment: 'dashboard/profile',
+  },
 ];
 
 
@@ -180,8 +179,8 @@ function PageContent() {
         <Route path="/tasks/update/:id" element={<TaskUpdateForm />} />
         <Route path="/lead/:id" element={<LeadDetails />} />
         <Route path="/leads/update/:id" element={<LeadProfileEdit />} />
-        <Route path="profile" element={<UserProfile show={true}/>} />
         <Route path="/meeting" element={<MeetingHome />} />
+        <Route path="profile" element={<UserProfile show={true}/>} />
 
         <Route path="*" element={<Typography>Page not found: {location.pathname}</Typography>} />
       </Routes>

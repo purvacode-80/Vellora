@@ -3,11 +3,13 @@ import axios from "axios";
 import { Form, Button, Container } from "react-bootstrap";
 import "../css/Forms.css"; // Ensure your form CSS is linked
 import { toast, ToastContainer } from "react-toastify"; // Import toast for notifications
+import { useNavigate } from "react-router-dom";
 
 const AddLead = () => {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     companyName: "",
-    contactPerson: "",
+    fullName: "",
     email: "",
     phone: "",
     industry: "",
@@ -34,34 +36,51 @@ const AddLead = () => {
     }
 
    try {
-  const response = await axios.post("http://localhost:8000/lead/", form, {
-    headers: {
-      Authorization: `Bearer ${token}`
-    }
-  });
+    const response = await axios.post("http://localhost:8000/lead/", form, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
 
-      setForm({
-        companyName: "",
-        contactPerson: "",
-        email: "",
-        phone: "",
-        industry: "",
-        leadSource: "",
-        status: "New",
-        priority: "Medium",
-        lastContacted: "",
-        nextActionDate: "",
-        notes: ""
-      });
+    setForm({
+      companyName: "",
+      fullName: "",
+      email: "",
+      phone: "",
+      industry: "",
+      leadSource: "",
+      status: "New",
+      priority: "Medium",
+      lastContacted: "",
+      nextActionDate: "",
+      notes: ""
+    });
 
-      toast.success("Lead added successfully!",{
-        onClose: () => window.location.href = "/leads" // Redirect to leads page
-      });
+    toast.success("Lead added successfully!",{
+      onClose: () => 
+        navigate("/dashboard/leads") // Redirect to leads page
+    });
     } catch (error) {
       console.error("Error adding lead:", error);
       toast.error("Failed to add lead. Please try again.");
     }
   };
+
+  const handleReset = () => {
+    setForm({
+      companyName: "",
+      fullName: "",
+      email: "",
+      phone: "",
+      industry: "",
+      leadSource: "",
+      status: "New",
+      priority: "Medium",
+      lastContacted: "",
+      nextActionDate: "",
+      notes: ""
+    });
+  }
 
   return (
     <Container className="p-4">
@@ -82,13 +101,13 @@ const AddLead = () => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Contact Person</Form.Label>
+            <Form.Label>Full Name</Form.Label>
             <Form.Control
               type="text"
-              name="contactPerson"
-              value={form.contactPerson}
+              name="fullName"
+              value={form.fullName}
               onChange={handleChange}
-              placeholder="Contact Person"
+              placeholder="Full Name"
               required
             />
           </Form.Group>
@@ -196,6 +215,7 @@ const AddLead = () => {
             />
           </Form.Group>
 
+          <Button variant="secondary" onClick={handleReset}> Reset </Button>
           <Button className="button button-save" type="submit">💾 Add</Button>
         </div>
       </Form>

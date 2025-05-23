@@ -3,6 +3,7 @@ import axios from "axios";
 import { Form, Button, Container } from "react-bootstrap";
 import '../css/Forms.css'; 
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AddContact = () => {
   const [form, setForm] = useState({
@@ -20,6 +21,7 @@ const AddContact = () => {
   const [leads, setLeads] = useState([]);
   const [selectedLeadId, setSelectedLeadId] = useState("");
   const [convertLead, setConvertLead] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchLeads = async () => {
@@ -49,7 +51,7 @@ const AddContact = () => {
     if (selectedLead) {
       setForm({
         ...form,
-        name: selectedLead.contactPerson || "",
+        fullName: selectedLead.fullName || "",
         email: selectedLead.email || "",
         phone: selectedLead.phone || "",
         company: selectedLead.companyName || ""
@@ -77,7 +79,7 @@ const AddContact = () => {
       }
 
       setForm({
-        name: "",
+        fullName: "",
         email: "",
         phone: "",
         position: "",
@@ -89,7 +91,7 @@ const AddContact = () => {
       setSelectedLeadId("");
       setConvertLead(false);
       toast.success("Contact added successfully!", {
-        onClose: () => window.location.href = "/contacts" // Redirect to contacts page
+        onClose: () => navigate('/dashboard/contacts') // Redirect to contacts page
       });
     } catch (error) {
       console.error("Error adding contact : ", error);
@@ -99,7 +101,7 @@ const AddContact = () => {
 
   const handleReset = () => {
     setForm({
-      name: "",
+      fullName: "",
       email: "",
       phone: "",
       position: "",
@@ -123,7 +125,7 @@ const AddContact = () => {
           <Form.Select value={selectedLeadId} onChange={handleLeadSelect}>
             <option value="">-- Select Lead --</option>
             {leads.map(lead => (
-              <option key={lead._id} value={lead._id}>{lead.contactPerson}</option>
+              <option key={lead._id} value={lead._id}>{lead.fullName}</option>
             ))}
           </Form.Select>
         </Form.Group>
@@ -140,8 +142,8 @@ const AddContact = () => {
         )}
 
         <Form.Group className="mb-3">
-          <Form.Label>Name</Form.Label>
-          <Form.Control type="text" name="name" value={form.name} onChange={handleChange} placeholder="Full Name" required/>
+          <Form.Label>Full Name</Form.Label>
+          <Form.Control type="text" name="fullName" value={form.fullName} onChange={handleChange} placeholder="Full Name" required/>
         </Form.Group>
 
         <Form.Group className="mb-3">
