@@ -71,6 +71,19 @@ const AddTask = () => {
       alert('❌ Failed to add task.');
     }
   };
+   
+  const handleReset = () => {
+   setFormData({
+       taskname: "",
+        description: "",
+        duedate: "",
+        contact: "",
+        assignedto: "",
+        status: "",
+        priority: ""
+    });
+  }
+
 
   return (
     <Container className="p-4">
@@ -169,13 +182,30 @@ const AddTask = () => {
             </Form.Select>
           </Form.Group>
 
-          <Button
-            variant="primary"
-            type="submit"
-            className="button-save w-100"
-          >
-            💾 Add Task
-          </Button>
+         <Form.Group className="mt-4 button-group-row">
+  <Button
+    type="button"
+    onClick={handleReset}
+    className="button-reset"
+  >
+    🔄 Reset
+  </Button>
+
+<Button
+    type="submit"
+    className="button-save"
+  >
+    💾 Add Task
+  </Button>
+  
+  <Button
+    type="button"
+    onClick={() => navigate(-1)}
+    className="button-back"
+  >
+    🔙 Back
+  </Button>
+</Form.Group>
         </div>
       </Form>
     </Container>

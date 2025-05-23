@@ -193,7 +193,7 @@ const LeadProfileEdit = () => {
             />
           </Form.Group>
 
-          <Button className="button button-save" type="submit">
+          <Button className="update" type="submit">
             💾 Update Lead
           </Button>
         </div>

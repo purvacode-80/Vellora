@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 
 const AddContact = () => {
   const [form, setForm] = useState({
-    name: "",
+    fullName: "",   // changed from name to fullName for consistency
     email: "",
     phone: "",
     position: "",
@@ -185,8 +185,34 @@ const AddContact = () => {
           </Form.Select>
         </Form.Group>
 
-        {/* <Button onClick={handleReset}> Reset </Button> */}
-        <Button type="submit" className="button button-save">💾 Add Contact</Button>
+        <Form.Group className="mt-4 button-group-row">
+  
+
+  <Button
+    type="button"
+    onClick={handleReset}
+    className="button-reset"
+  >
+    🔄 Reset
+  </Button>
+
+<Button
+    type="submit"
+    className="button-save"
+  >
+    💾 Add Contact
+  </Button>
+  
+  <Button
+    type="button"
+    onClick={() => navigate(-1)}
+    className="button-back"
+  >
+    🔙 Back
+  </Button>
+</Form.Group>
+
+
       </Form>
     </Container>
   );
