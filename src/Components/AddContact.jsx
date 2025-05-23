@@ -183,7 +183,7 @@ const AddContact = () => {
           </Form.Select>
         </Form.Group>
 
-        <Button onClick={handleReset}> Reset </Button>
+        {/* <Button onClick={handleReset}> Reset </Button> */}
         <Button type="submit" className="button button-save">💾 Add Contact</Button>
       </Form>
     </Container>

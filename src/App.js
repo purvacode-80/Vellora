@@ -12,6 +12,7 @@ import Dashboard from './Components/Dashboard';
 import Testimonials from './Components/testimonials';
 import MyNavbar from './Components/Navbar';
 import MeetingRoom from './Components/MeetingRoom';
+import AboutUs from './Components/AboutUs';
 function App() {
 
   //For preloader
@@ -29,6 +30,8 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/meeting/:room" element={<MeetingRoom />} />
+      {/* <Route path="/about" element={<AboutUs />} /> */}
+
 
       {/* Protected and Additional Routes */}
       <Route path="/dashboard/*" element={<ProtectedRoute> <Dashboard /></ProtectedRoute>} />
