@@ -120,8 +120,6 @@ body {
   }
 }
 
-
-
 /* Remove border/background for the search icon button */
 .search-toggle .btn-outline-secondary {
   border: none !important;
@@ -136,10 +134,6 @@ body {
 .search-toggle .btn-outline-secondary:hover {
   color: #9b6ada;
 }
-
-
-
-
 
 .search-box {
   width: 250px;
@@ -170,4 +164,13 @@ body {
 
 .clear-btn:hover {
   color: gray; /* Optional: purple on hover */
+}
+
+.modal-backdrop.show {
+  opacity: 0.85 !important; /* Increase for darker background */
+  background-color: rgba(0, 0, 0, 0.85) !important;
+}
+
+.form-check-input {
+  background-color: var(--highlight) !important;
 }

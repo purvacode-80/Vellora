@@ -3,11 +3,14 @@ import axios from "axios";
 import { Form, Button, Container } from "react-bootstrap";
 import "../css/Forms.css";
 import { toast, ToastContainer } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const AddLead = () => {
+  const navigate = useNavigate();
+
   const [form, setForm] = useState({
     companyName: "",
-    contactPerson: "",
+    fullName: "",
     email: "",
     phone: "",
     industry: "",
@@ -34,7 +37,7 @@ const AddLead = () => {
     }
 
     try {
-      const response = await axios.post("http://localhost:8000/lead", form, {
+      const response = await axios.post("http://localhost:8000/lead/", form, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "application/json"
@@ -45,7 +48,7 @@ const AddLead = () => {
 
       setForm({
         companyName: "",
-        contactPerson: "",
+        fullName: "",
         email: "",
         phone: "",
         industry: "",
@@ -58,12 +61,28 @@ const AddLead = () => {
       });
 
       toast.success("✅ Lead added successfully!", {
-        onClose: () => (window.location.href = "/leads")
+        onClose: () => navigate("/dashboard/leads")
       });
     } catch (error) {
       console.error("Error adding lead:", error.response?.data || error.message);
       toast.error("❌ Failed to add lead. Please try again.");
     }
+  };
+
+  const handleReset = () => {
+    setForm({
+      companyName: "",
+      fullName: "",
+      email: "",
+      phone: "",
+      industry: "",
+      leadSource: "",
+      status: "New",
+      priority: "Medium",
+      lastContacted: "",
+      nextActionDate: "",
+      notes: ""
+    });
   };
 
   return (
@@ -72,25 +91,64 @@ const AddLead = () => {
       <h3 className="board-title text-center mb-4">👤 Add Lead</h3>
       <Form className="card1" onSubmit={handleSubmit}>
         <div className="form-container1">
-          {[
-            { label: "Company Name", name: "companyName", type: "text", required: true },
-            { label: "Contact Person", name: "contactPerson", type: "text", required: true },
-            { label: "Email", name: "email", type: "email", required: true },
-            { label: "Phone", name: "phone", type: "tel", required: true },
-            { label: "Industry", name: "industry", type: "text" }
-          ].map((field) => (
-            <Form.Group className="mb-3" key={field.name}>
-              <Form.Label>{field.label}</Form.Label>
-              <Form.Control
-                type={field.type}
-                name={field.name}
-                value={form[field.name]}
-                onChange={handleChange}
-                placeholder={field.label}
-                required={field.required}
-              />
-            </Form.Group>
-          ))}
+          <Form.Group className="mb-3">
+            <Form.Label>Company Name</Form.Label>
+            <Form.Control
+              type="text"
+              name="companyName"
+              value={form.companyName}
+              onChange={handleChange}
+              placeholder="Company Name"
+              required
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Full Name</Form.Label>
+            <Form.Control
+              type="text"
+              name="fullName"
+              value={form.fullName}
+              onChange={handleChange}
+              placeholder="Full Name"
+              required
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Email</Form.Label>
+            <Form.Control
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleChange}
+              placeholder="Email"
+              required
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Phone</Form.Label>
+            <Form.Control
+              type="tel"
+              name="phone"
+              value={form.phone}
+              onChange={handleChange}
+              placeholder="Phone"
+              required
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
+            <Form.Label>Industry</Form.Label>
+            <Form.Control
+              type="text"
+              name="industry"
+              value={form.industry}
+              onChange={handleChange}
+              placeholder="Industry"
+            />
+          </Form.Group>
 
           <Form.Group className="mb-3">
             <Form.Label>Lead Source</Form.Label>
@@ -161,6 +219,7 @@ const AddLead = () => {
             />
           </Form.Group>
 
+          <Button variant="secondary" onClick={handleReset}>Reset</Button>{" "}
           <Button className="button button-save" type="submit">💾 Add</Button>
         </div>
       </Form>

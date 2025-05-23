@@ -19,7 +19,7 @@ function GoogleLoginAuth() {
       // localStorage.setItem('userName', decoded.name);
 
       // Check with backend if user exists
-      const response = await axios.post('http://localhost:8000/users/userExists', { userEmail });
+      const response = await axios.post('http://localhost:8000/users/userexists', { userEmail });
 
       if (response.data.exists) {
         navigate('/dashboard');
