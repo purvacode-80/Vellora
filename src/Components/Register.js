@@ -2,7 +2,7 @@ import "../css/Login_register.css";
 import axios from 'axios';
 import React, { useState } from 'react';
 import { Form, Row, Col } from 'react-bootstrap';
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
 function Register() {

@@ -132,7 +132,7 @@ const AddTask = () => {
           <Form.Select name="contact" value={formData.contact} onChange={handleChange}>
             <option value="">-- Select Contact --</option>
             {contacts.map(contact => (
-              <option key={contact._id} value={contact.name}>{contact.name}</option>
+              <option key={contact._id} value={contact.fullName}>{contact.fullName}</option>
             ))}
         </Form.Select>
         </Form.Group>

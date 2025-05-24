@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Offcanvas, Button, Form } from 'react-bootstrap';
-import { FaUserCircle, FaEdit } from 'react-icons/fa';
+import { FaEdit } from 'react-icons/fa';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import '../css/UserProfile.css'
 import Avatar from '@mui/material/Avatar';
-import { deepPurple, purple } from '@mui/material/colors';
 
 const UserProfile = ({ show }) => {
   const [user, setUser] = useState(null);
