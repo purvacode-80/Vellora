@@ -219,8 +219,30 @@ const AddLead = () => {
             />
           </Form.Group>
 
-          <Button variant="secondary" onClick={handleReset}>Reset</Button>{" "}
-          <Button className="button button-save" type="submit">💾 Add</Button>
+          <Form.Group className="mt-4 button-group-row">
+            <Button
+              type="button"
+              onClick={handleReset}
+              className="button-reset"
+            >
+              🔄 Reset
+            </Button>
+
+            <Button
+              type="submit"
+              className="button-save"
+            >
+              💾 Add Lead
+            </Button>
+
+            <Button
+              type="button"
+              onClick={() => navigate(-1)}
+              className="button-back"
+            >
+              🔙 Back
+            </Button>
+          </Form.Group>
         </div>
       </Form>
     </Container>

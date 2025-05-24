@@ -1,7 +1,7 @@
 // src/DashboardLayoutBasic.jsx
 import * as React from 'react';
 import PropTypes from 'prop-types';
-import { useLocation, Routes, Route , useNavigate } from 'react-router-dom';
+import { useLocation, Routes, Route } from 'react-router-dom';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import { createTheme } from '@mui/material/styles';
@@ -19,9 +19,8 @@ import PlaylistAddCheckIcon from '@mui/icons-material/PlaylistAddCheck';
 import TaskIcon from '@mui/icons-material/Task';
 import AddTaskIcon from '@mui/icons-material/AddTask';
 import EventIcon from '@mui/icons-material/Event';
-import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
-
 import logo from '../Assets/logo-removebg-preview.png';
 
 import ContactList from './ContactList';
@@ -35,8 +34,7 @@ import AddTask from './AddTask';
 import TaskDetails from './TaskDetailPage'
 import UserProfile from './UserProfile';
 // import GoogleCalendar from './GoogleCalendar';
-import CalendarView from './CalendarView';
-import CreateCalendarEvent from './CreateCalendarEvent';
+import Calendar from './Calendar';
 import TaskUpdateForm from './TaskUpdateForm';
 import LeadDetails from './LeadDetails';
 import LeadProfileEdit from './LeadProfileEdit';
@@ -85,7 +83,7 @@ const NAVIGATION = [
   },
   {
     title: 'Profile',
-    icon: <AccountCircleIcon />,
+    icon: <ManageAccountsIcon />,
     segment: 'dashboard/profile',
   },
 ];
@@ -174,8 +172,7 @@ function PageContent() {
         <Route path="/tasks" element={<Taskboard />} />
         <Route path="/add-task" element={<AddTask />} />
         <Route path="/tasks/:taskId" element={<TaskDetails />} />
-        <Route path="/calendar" element={<CalendarView />} />
-        <Route path="/add-calendar-event" element={<CreateCalendarEvent />} />
+        <Route path="/calendar" element={<Calendar />} />
         <Route path="/tasks/update/:id" element={<TaskUpdateForm />} />
         <Route path="/lead/:id" element={<LeadDetails />} />
         <Route path="/leads/update/:id" element={<LeadProfileEdit />} />
@@ -192,11 +189,9 @@ function PageContent() {
 function DashboardLayoutBasic(props) {
   const { window } = props;
   const demoWindow = window !== undefined ? window() : undefined;
-  const navigate = useNavigate(); // ✅ get react-router's navigation function
   return (
     <AppProvider
       navigation={NAVIGATION}
-      // onNavigate={(path) => navigate(path)}  // ✅ Tell Toolpad to use React Router navigation
       branding={{
         logo: <img src={logo} alt="Vellora logo" style={{ height: 32 }} />,
         title: 'Vellora',

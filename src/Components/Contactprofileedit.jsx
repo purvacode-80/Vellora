@@ -163,7 +163,7 @@ const ContactProfileEdit = () => {
             </Form.Select>
           </Form.Group>
 
-          <Button className="button button-save" type="submit">
+          <Button className="update" type="submit">
             💾 Update Contact
           </Button>
         </div>

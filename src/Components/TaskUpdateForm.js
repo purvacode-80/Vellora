@@ -123,7 +123,7 @@ const TaskUpdateForm = () => {
               <Form.Control type="date" name="assigneddate" value={task.assigneddate} disabled />
             </Form.Group>
 
-            <Button className="button button-save" onClick={handleSubmit}>💾 Save</Button>
+            <Button className="update" onClick={handleSubmit}>💾 Update Task</Button>
           </div>
         </Form>
       )}

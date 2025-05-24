@@ -11,7 +11,7 @@ import ProtectedRoute from './Security/ProtectedRoute';
 import Dashboard from './Components/Dashboard';
 import Testimonials from './Components/testimonials';
 import MyNavbar from './Components/Navbar';
-import Aboutus from './Components/Aboutus';
+import AboutUs from './Components/AboutUs'; // ✅ Use consistent naming
 import MeetingRoom from './Components/MeetingRoom';
 
 function App() {
@@ -41,7 +41,7 @@ function App() {
       />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/about" element={<Aboutus />} />
+      <Route path="/about" element={<AboutUs />} /> {/* ✅ Unified AboutUs */}
       <Route path="/meeting/:room" element={<MeetingRoom />} />
 
       {/* Protected Routes */}

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { useGoogleLogin } from '@react-oauth/google';
 
 const CreateCalendarEvent = () => {
-  const [token, setToken] = useState(null);
+  const [token, setToken] = useState(localStorage.getItem('token'));
   const [form, setForm] = useState({
     summary: '',
     description: '',
