@@ -1,5 +1,5 @@
-:root {
-  --main-color: #663399; /* Royal Purple */
+.aboutus-container {
+  --main-color: #663399;
   --light-purple: #b19cd9;
   --text-color: #f4f4f4;
   --hover-color: #9d72d1;
@@ -10,106 +10,76 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(270deg, #4d1653, #fa77fc); /* Royal Purple to Pink */
+  background: linear-gradient(270deg, #4d1653, #fa77fc);
   background-size: 300% 300%;
-  animation: gradient-animation 15s ease infinite;
+  animation: aboutus-gradient-animation 15s ease infinite;
   color: var(--main-color);
   scroll-behavior: smooth;
 }
 
-@keyframes gradient-animation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+@keyframes aboutus-gradient-animation {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-section {
-  padding: 2rem 1rem; /* Adjusted padding for all sections */
-  animation: fade-up 1s ease-in-out both;
-  opacity: 0;
-  transform: translateY(50px);
-}
-
-section.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* Landing Section */
-.landing {
+.aboutus-landing {
   background-size: cover;
   background-position: center;
   text-align: center;
   color: white;
   height: 470px;
-  padding: 2rem 1rem; /* Adjusted padding to reduce space */
+  padding: 2rem 1rem;
   margin-bottom: 3rem;
 }
 
-.landing h1 {
+.aboutus-landing h1 {
   font-size: 5.5rem;
-  margin-bottom: 1rem; /* Reduced margin */
 }
 
-.landing p {
+.aboutus-landing p {
   font-size: 2.5rem;
   max-width: 800px;
   margin: auto;
   color: #e6e6e6;
 }
 
-/* Section Headings */
-.section-title {
-  text-align: center;
-  font-size: 2.8rem;
-  margin-bottom: 1rem;
-  color: var(--main-color);
-}
-
-/* Who We Are Cards */
-.section h2 {
-  color: white;
+.aboutus-section h2,
+.aboutus-team-title {
+  margin-top: -20px;
   text-align: center;
   font-size: 4.5rem;
-  font-weight: bolder;
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  margin-bottom: 1rem; /* Reduced margin */
+  font-weight: bold;
+  color: white;
+  font-family: Cambria, Georgia, Times, 'Times New Roman', serif;
 }
 
-.who-we-are-cards {
+.aboutus-who-we-are-cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 2rem; /* Reduced gap */
+  gap: 2rem;
 }
 
-.card {
+.aboutus-card {
   background: var(--card-bg);
   border-left: 5px solid var(--main-color);
   border-radius: 10px;
-  padding: 1.5rem; /* Adjusted padding */
+  padding: 1.5rem;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  transition: 0.3s ease;
   color: black;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-size: larger;
   max-width: 480px;
   flex: 1;
+  transition: transform 0.3s ease;
 }
 
-.card:hover {
+.aboutus-card:hover {
   transform: translateY(-8px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
-/* Image Card */
-.image-card {
+.aboutus-image-card {
   background: none;
   border: none;
   display: flex;
@@ -118,61 +88,50 @@ section.visible {
   padding: 0;
 }
 
-.image-card img {
+.aboutus-image-card img {
   width: 100%;
   max-width: 500px;
   border-radius: 12px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Vision & Mission */
-.vision-mission {
+.aboutus-vision-mission {
   background-image: url("../Assets/CRM-software.jpg");
   background-size: cover;
   background-position: center;
-  color: black;
   text-align: center;
+  padding: 2rem 1rem;
 }
 
-.vision-mission-content {
+.aboutus-vision-mission-content {
+  background: rgba(255, 255, 255, 0.8);
   border-radius: 12px;
   max-width: 800px;
   margin: auto;
-  font-size: 1.54rem;
-  padding: 1.5rem; /* Adjusted padding */
+  font-size: 1.5rem;
+  padding: 2rem;
 }
 
-.vision-mission-content h2 {
-  font-size: 45px;
-}
-
-/* Team Section */
-.team-section {
-  padding: 2rem 1rem; /* Adjusted padding */
+.aboutus-team-section {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   text-align: center;
+  padding: 2rem 1rem;
 }
 
-.team-title {
-  font-size: 3.5rem;
-  color: white;
-  margin-bottom: 20px; /* Reduced margin */
-}
-
-.team-container {
+.aboutus-team-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px; /* Reduced gap */
+  gap: 20px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.team-card {
+.aboutus-team-card {
   background: white;
   border-radius: 16px;
-  padding: 20px; /* Adjusted padding */
+  padding: 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
@@ -180,69 +139,48 @@ section.visible {
   align-items: center;
 }
 
-.team-card:hover {
+.aboutus-team-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
 }
 
-.profile-pic {
+.aboutus-profile-pic {
   width: 150px;
   height: 150px;
   border-radius: 50%;
-  margin-bottom: 15px;
   object-fit: cover;
+  margin-bottom: 15px;
 }
 
-.team-card h3 {
+.aboutus-team-card h3 {
   font-size: 1.3rem;
   color: #333;
   margin: 10px 0 5px;
 }
 
-.team-card p {
-  color: #666;
-  margin-bottom: 20px;
-}
-
-.social-icons {
+.aboutus-social-icons {
   display: flex;
   justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
   gap: 20px;
-  width: 100%;
-  margin-top: auto;
-  padding-top: 10px;
+  margin-top: 10px;
 }
 
-.social-icons a[href*="linkedin"] {
-  color: #0077B5; /* LinkedIn Blue */
+.aboutus-social-icons a[href*="linkedin"] {
+  color: #0077B5;
   font-size: 2.5rem;
 }
 
-.social-icons a[href*="instagram"] {
-  color: #E1306C; /* Instagram Pinkish */
+.aboutus-social-icons a[href*="instagram"] {
+  color: #E1306C;
   font-size: 2.5rem;
 }
 
-.social-icons a[href*="github"] {
-  color: #333; /* GitHub Black */
+.aboutus-social-icons a[href*="github"] {
+  color: #333;
   font-size: 2.5rem;
 }
 
-.social-icons a:hover {
+.aboutus-social-icons a:hover {
   transform: scale(1.2);
   opacity: 0.8;
-}
-
-/* Fade Up Animation (Scroll Effect) */
-@keyframes fade-up {
-  from {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
