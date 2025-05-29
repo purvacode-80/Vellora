@@ -7,7 +7,9 @@
     text-align: center;
     /* border: 1px solid black; */
     /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); */
-    box-shadow: 0 5px 10px rgba(148, 0, 211, 0.1);
+    /* box-shadow: 0 5px 10px rgba(148, 0, 211, 0.1); */
+    box-shadow: 0 6px 20px rgba(157, 78, 221, 0.15), 0 0 5px #9d4edd !important; /* Added highlight box-shadow */
+
     background-color: white;
     border-radius: 10px;
   }

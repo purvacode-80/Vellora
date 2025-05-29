@@ -16,7 +16,7 @@ function CustomNavbar() {
           width="60"
           className="me-2"
           rounded
-          style={{ marginLeft: "-80px" }}
+          style={{ marginLeft: "-150px" }}
         />
         <span className="gradient-text" style={{ marginRight: "1300px" }}>
           Vellora

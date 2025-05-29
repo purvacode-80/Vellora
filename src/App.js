@@ -30,7 +30,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/meeting/:room" element={<MeetingRoom />} />
-      {/* <Route path="/about" element={<AboutUs />} /> */}
+      <Route path="/about" element={<AboutUs />} />
 
 
       {/* Protected and Additional Routes */}
