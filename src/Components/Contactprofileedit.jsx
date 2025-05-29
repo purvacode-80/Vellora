@@ -140,16 +140,6 @@ const ContactProfileEdit = () => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>LinkedIn</Form.Label>
-            <Form.Control
-              type="url"
-              name="linkedin"
-              value={contact.linkedin}
-              onChange={handleInputChange}
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3">
             <Form.Label>Status</Form.Label>
             <Form.Select
               name="status"

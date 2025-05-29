@@ -12,7 +12,7 @@ const AddLead = () => {
     fullName: "",
     email: "",
     phone: "",
-    industry: "",
+    industry: "Technology",
     leadSource: "",
     status: "New",
     priority: "Medium",
@@ -47,7 +47,7 @@ const AddLead = () => {
       fullName: "",
       email: "",
       phone: "",
-      industry: "",
+      industry: "Technology",
       leadSource: "",
       status: "New",
       priority: "Medium",
@@ -138,13 +138,19 @@ const AddLead = () => {
 
           <Form.Group className="mb-3">
             <Form.Label>Industry</Form.Label>
-            <Form.Control
-              type="text"
+            <Form.Select
               name="industry"
               value={form.industry}
               onChange={handleChange}
-              placeholder="Industry"
-            />
+            >
+              <option> Technology </option>
+              <option> Healthcare </option>
+              <option> Finance </option>
+              <option> Retail </option>
+              <option> Manufacturing </option>
+              <option> Education </option>
+              <option> Real Estate </option>
+            </Form.Select>
           </Form.Group>
 
           <Form.Group className="mb-3">
