@@ -30,6 +30,15 @@ const LeadDetails = () => {
     fetchLead();
   }, [id]);
 
+  const formatDateTime = (dateString) => {
+  const date = new Date(dateString);
+  return new Intl.DateTimeFormat('en-GB', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric'
+    }).format(date);
+  };
+
   const handleDelete = async () => {
     const token = localStorage.getItem('token');
     try {
@@ -59,15 +68,15 @@ const LeadDetails = () => {
       <h3 className="board-title text-center mb-4">🏢 Lead Details</h3>
       <Card className="task-detail-card p-3">
         <p><strong>Company Name:</strong> {lead.companyName}</p>
-        <p><strong>Contact Person:</strong> {lead.contactPerson}</p>
+        <p><strong>Contact Person:</strong> {lead.fullName}</p>
         <p><strong>Email:</strong> {lead.email}</p>
         <p><strong>Phone:</strong> {lead.phone}</p>
         <p><strong>Industry:</strong> {lead.industry}</p>
         <p><strong>Lead Source:</strong> {lead.leadSource}</p>
         <p><strong>Status:</strong> {lead.status}</p>
         <p><strong>Priority:</strong> {lead.priority}</p>
-        <p><strong>Last Contacted:</strong> {lead.lastContacted}</p>
-        <p><strong>Next Action Date:</strong> {lead.nextActionDate}</p>
+        <p><strong>Last Contacted:</strong> {formatDateTime(lead.lastContacted)} </p>
+        <p><strong>Next Action Date:</strong> {formatDateTime(lead.nextActionDate)} </p>
         <p><strong>Notes:</strong> {lead.notes}</p>
 
         <div className="d-flex gap-3 mt-4">

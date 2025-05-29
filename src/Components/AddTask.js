@@ -61,14 +61,14 @@ const AddTask = () => {
         status: '',
         priority: ''
       });
-      toast.success('✅ Task added successfully!', {
+      toast.success('Task added successfully!', {
         onClose: () => {
           navigate('/dashboard/tasks'); // Redirect to tasks page
         }
       });
     } catch (err) {
       console.error(err);
-      alert('❌ Failed to add task.');
+      alert('Failed to add task.');
     }
   };
    
@@ -83,7 +83,6 @@ const AddTask = () => {
         priority: ""
     });
   }
-
 
   return (
     <Container className="p-4">
