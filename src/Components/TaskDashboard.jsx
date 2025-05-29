@@ -1,7 +1,7 @@
 // Dashboard.js
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
-import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line, CartesianGrid} from "recharts";
+import { Container } from "react-bootstrap";
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line, CartesianGrid } from "recharts";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import axios from "axios";
 import { format, startOfWeek, addWeeks, differenceInCalendarWeeks } from "date-fns";
@@ -52,7 +52,13 @@ function generateFullWeekRange(tasks) {
     weekStartsOn: 1,
   });
 
-  const weeksCount = differenceInCalendarWeeks(maxDate, minDate) + 1;
+  let weeksCount = differenceInCalendarWeeks(maxDate, minDate) + 1;
+  
+  // Ensure at least 10 weeks are shown
+  if (weeksCount < 10) {
+    weeksCount = 10;
+  }
+
   const weeks = [];
 
   for (let i = 0; i < weeksCount; i++) {
@@ -110,7 +116,7 @@ export default function TaskDashboard() {
     return acc;
   }, {});
 
-  // Generate full week range with 0 values
+  // Generate full week range with 0 values and at least 10 weeks
   const fullWeeks = generateFullWeekRange(tasks);
   const lineData = fullWeeks.map((week) => ({
     week,
