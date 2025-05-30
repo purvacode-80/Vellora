@@ -11,7 +11,7 @@ import ProtectedRoute from './Security/ProtectedRoute';
 import Dashboard from './Components/Dashboard';
 import Testimonials from './Components/testimonials';
 import MyNavbar from './Components/Navbar';
-import AboutUs from './Components/AboutUs';
+import Aboutus from './Components/Aboutus';
 import MeetingRoom from './Components/MeetingRoom';
 import Learnmore from './Components/LearnMore';
 
@@ -42,7 +42,7 @@ function App() {
       />
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/about" element={<AboutUs />} />
+      <Route path="/about" element={<Aboutus />} />
       <Route path="/meeting/:room" element={<MeetingRoom />} />
       <Route path="/learnmore" element={<Learnmore />} />
 
