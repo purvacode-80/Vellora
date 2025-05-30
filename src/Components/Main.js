@@ -10,6 +10,9 @@ const Main = () => {
   const handleGetStarted = () => {
     navigate('/login'); // Navigate to the /dashboard route
   };
+  const handlelearnmore = () =>{
+    navigate('/learnmore')
+  }
 
   return (
     <div className="hero-section">
@@ -21,7 +24,7 @@ const Main = () => {
           We’ve enhanced our CRM to perfectly align with your workflow, offering user-friendly tools that ensure clarity, control, and increased productivity.
         </p>
         <div className="hero-buttons">
-          <Button variant="dark" className="me-2">Learn More</Button>
+          <Button variant="dark" className="me-2" onClick={handlelearnmore}>Learn More</Button>
           <Button variant='get' onClick={handleGetStarted}>Get Started</Button> {/* Add the onClick event */}
         </div>
 

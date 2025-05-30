@@ -1,12 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
 import { Form, Button, Container } from "react-bootstrap";
-import "../css/Forms.css"; // Ensure your form CSS is linked
-import { toast, ToastContainer } from "react-toastify"; // Import toast for notifications
+import "../css/Forms.css";
+import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const AddLead = () => {
   const navigate = useNavigate();
+
   const [form, setForm] = useState({
     companyName: "",
     fullName: "",
@@ -28,20 +29,47 @@ const AddLead = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const token = localStorage.getItem("token"); // 🟢 Assuming you're storing JWT in localStorage
+    const token = localStorage.getItem("token");
 
     if (!token) {
       alert("❌ User not authenticated. Please log in.");
       return;
     }
 
-   try {
-    const response = await axios.post("http://localhost:8000/lead/", form, {
-      headers: {
-        Authorization: `Bearer ${token}`
-      }
-    });
+    try {
+      const response = await axios.post("http://localhost:8000/lead/", form, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Content-Type": "application/json"
+        }
+      });
 
+      console.log("Lead added successfully:", response.data);
+
+      setForm({
+        companyName: "",
+        fullName: "",
+        email: "",
+        phone: "",
+        industry: "Technology",
+        leadSource: "",
+        status: "New",
+        priority: "Medium",
+        lastContacted: "",
+        nextActionDate: "",
+        notes: ""
+      });
+
+      toast.success("✅ Lead added successfully!", {
+        onClose: () => navigate("/dashboard/leads")
+      });
+    } catch (error) {
+      console.error("Error adding lead:", error.response?.data || error.message);
+      toast.error("❌ Failed to add lead. Please try again.");
+    }
+  };
+
+  const handleReset = () => {
     setForm({
       companyName: "",
       fullName: "",
@@ -55,36 +83,11 @@ const AddLead = () => {
       nextActionDate: "",
       notes: ""
     });
-
-    toast.success("Lead added successfully!",{
-      onClose: () => 
-        navigate("/dashboard/leads") // Redirect to leads page
-    });
-    } catch (error) {
-      console.error("Error adding lead:", error);
-      toast.error("Failed to add lead. Please try again.");
-    }
   };
-
-  const handleReset = () => {
-    setForm({
-      companyName: "",
-      fullName: "",
-      email: "",
-      phone: "",
-      industry: "",
-      leadSource: "",
-      status: "New",
-      priority: "Medium",
-      lastContacted: "",
-      nextActionDate: "",
-      notes: ""
-    });
-  }
 
   return (
     <Container className="p-4">
-      <ToastContainer autoClose={2000}/>
+      <ToastContainer autoClose={2000} />
       <h3 className="board-title text-center mb-4">👤 Add Lead</h3>
       <Form className="card1" onSubmit={handleSubmit}>
         <div className="form-container1">
@@ -143,13 +146,13 @@ const AddLead = () => {
               value={form.industry}
               onChange={handleChange}
             >
-              <option> Technology </option>
-              <option> Healthcare </option>
-              <option> Finance </option>
-              <option> Retail </option>
-              <option> Manufacturing </option>
-              <option> Education </option>
-              <option> Real Estate </option>
+              <option>Technology</option>
+              <option>Healthcare</option>
+              <option>Finance</option>
+              <option>Retail</option>
+              <option>Manufacturing</option>
+              <option>Education</option>
+              <option>Real Estate</option>
             </Form.Select>
           </Form.Group>
 
@@ -160,6 +163,7 @@ const AddLead = () => {
               value={form.leadSource}
               onChange={handleChange}
             >
+              <option value="">-- Select --</option>
               <option>Referral</option>
               <option>Website</option>
               <option>Cold Call</option>
@@ -172,7 +176,11 @@ const AddLead = () => {
 
           <Form.Group className="mb-3">
             <Form.Label>Status</Form.Label>
-            <Form.Select name="status" value={form.status} onChange={handleChange}>
+            <Form.Select
+              name="status"
+              value={form.status}
+              onChange={handleChange}
+            >
               <option>New</option>
               <option>In Progress</option>
               <option>Converted</option>
@@ -182,7 +190,11 @@ const AddLead = () => {
 
           <Form.Group className="mb-3">
             <Form.Label>Priority</Form.Label>
-            <Form.Select name="priority" value={form.priority} onChange={handleChange}>
+            <Form.Select
+              name="priority"
+              value={form.priority}
+              onChange={handleChange}
+            >
               <option>High</option>
               <option>Medium</option>
               <option>Low</option>
@@ -221,31 +233,19 @@ const AddLead = () => {
             />
           </Form.Group>
 
-  <Form.Group className="mt-4 button-group-row">
-  <Button
-    type="button"
-    onClick={handleReset}
-    className="button-reset"
-  >
-    🔄 Reset
-  </Button>
+          <Form.Group className="mt-4 button-group-row">
+            <Button type="button" onClick={handleReset} className="button-reset">
+              🔄 Reset
+            </Button>
 
-<Button
-    type="submit"
-    className="button-save"
-  >
-    💾 Add Lead
-  </Button>
-  
-  <Button
-    type="button"
-    onClick={() => navigate(-1)}
-    className="button-back"
-  >
-    🔙 Back
-  </Button>
-</Form.Group>
+            <Button type="submit" className="button-save">
+              💾 Add Lead
+            </Button>
 
+            <Button type="button" onClick={() => navigate(-1)} className="button-back">
+              🔙 Back
+            </Button>
+          </Form.Group>
         </div>
       </Form>
     </Container>
