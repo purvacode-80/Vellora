@@ -2,8 +2,9 @@ import React from 'react';
 import Container from 'react-bootstrap/Container';
 import Navbar from 'react-bootstrap/Navbar';
 import Image from 'react-bootstrap/Image';
+import { Link } from 'react-router-dom';  // Import Link here
 import logo from '../Assets/logo-removebg-preview.png';
-import '../App.css'; // <-- Ensure your CSS file with gradient-text class is imported
+import '../App.css';
 
 function CustomNavbar() {
   return (
@@ -18,9 +19,17 @@ function CustomNavbar() {
           rounded
           style={{ marginLeft: "-80px" }}
         />
-        <span className="gradient-text" style={{ marginRight: "1300px" }}>
+        <span className="gradient-text" style={{ marginRight: "auto" }}>
           Vellora
         </span>
+
+        {/* Add About Us Link */}
+        <Link 
+          to="/about" 
+          style={{ color: 'white', textDecoration: 'none',marginRight:"-60px", fontWeight: 'bold',fontSize:"20px" }}
+        >
+          About Us
+        </Link>
       </Container>
     </Navbar>
   );
