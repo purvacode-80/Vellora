@@ -36,22 +36,37 @@ const AddLead = () => {
       return;
     }
 
-    try {
-      const response = await axios.post("http://localhost:8000/lead/", form, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json"
-        }
-      });
+   try {
+    const response = await axios.post("http://localhost:8000/lead/", form, {
+      headers: {
+        Authorization: `Bearer ${token}`
+      }
+    });
 
+<<<<<<<<< Temporary merge branch 1
+    setForm({
+      companyName: "",
+      fullName: "",
+      email: "",
+      phone: "",
+      industry: "Technology",
+      leadSource: "",
+      status: "New",
+      priority: "Medium",
+      lastContacted: "",
+      nextActionDate: "",
+      notes: ""
+    });
+=========
       console.log("Lead added successfully:", response.data);
+>>>>>>>>> Temporary merge branch 2
 
       setForm({
         companyName: "",
         fullName: "",
         email: "",
         phone: "",
-        industry: "Technology",
+        industry: "",
         leadSource: "",
         status: "New",
         priority: "Medium",

@@ -45,6 +45,8 @@ function App() {
       <Route path="/about" element={<Aboutus />} />
       <Route path="/meeting/:room" element={<MeetingRoom />} />
       <Route path="/learnmore" element={<Learnmore />} />
+>>>>>>>>> Temporary merge branch 2
+
 
       {/* Protected Routes */}
       <Route

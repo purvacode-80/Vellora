@@ -12,7 +12,7 @@ import yoginiImg from "../Assets/yogini2.jpeg";
 const AboutUs = () => {
   const teamMembers = [
     {
-      name: "Purwa Waykule",
+      name: "Purva Waykole",
       photo: purwaImg,
       socials: {
         linkedin: "https://www.linkedin.com/in/purva-waykole-40485727a",

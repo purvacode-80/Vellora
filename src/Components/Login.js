@@ -22,7 +22,7 @@ function Login() {
         const token = response.data.token; // Extract token from response
         console.log("Token : ", token); // Print token in console
         localStorage.setItem("token", token); // Store token in localStorage
-        toast.success("Login Successful...! Ready to explore ...", { autoClose: 3000 , onClose: () => window.location.href = "/dashboard"}); // Redirect to dashboard after 3 seconds
+        toast.success("Login Successful...! Ready to explore ...", { autoClose: 3000 , onClose: () => window.location.href = "/dashboard/analytics"}); // Redirect to dashboard after 3 seconds
       })
       .catch((err) => {
         console.error("Invalid Credentials:", err);

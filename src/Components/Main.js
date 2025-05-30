@@ -4,11 +4,15 @@ import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
 import '../css/Mainpage.css';
 
 const Main = () => {
-  const navigate = useNavigate(); // Initialize the navigate function
+  const token = localStorage.getItem("token");
+  const navigate = useNavigate();
 
-  // Function to handle "Get Started" button click
   const handleGetStarted = () => {
-    navigate('/login'); // Navigate to the /dashboard route
+    if (token) {
+      navigate('/dashboard/analytics'); // Navigate to the dashboard if token exists
+      return;
+    }
+    navigate('/login'); // Navigate to the login page if token does not exist
   };
   const handlelearnmore = () =>{
     navigate('/learnmore')
