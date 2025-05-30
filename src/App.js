@@ -13,6 +13,7 @@ import Testimonials from './Components/testimonials';
 import MyNavbar from './Components/Navbar';
 import AboutUs from './Components/AboutUs'; // ✅ Use consistent naming
 import MeetingRoom from './Components/MeetingRoom';
+import Learnmore from './Components/LearnMore'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -43,6 +44,8 @@ function App() {
       <Route path="/register" element={<Register />} />
       <Route path="/about" element={<AboutUs />} /> {/* ✅ Unified AboutUs */}
       <Route path="/meeting/:room" element={<MeetingRoom />} />
+      <Route path="/learnmore" element={<Learnmore />} />
+
 
       {/* Protected Routes */}
       <Route

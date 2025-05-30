@@ -1,186 +1,276 @@
-.aboutus-container {
-  --main-color: #663399;
-  --light-purple: #b19cd9;
-  --text-color: #f4f4f4;
-  --hover-color: #9d72d1;
-  --bg-color: #f3e9fc;
-  --card-bg: #fff;
-}
-
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(270deg, #4d1653, #fa77fc);
-  background-size: 300% 300%;
-  animation: aboutus-gradient-animation 15s ease infinite;
-  color: var(--main-color);
-  scroll-behavior: smooth;
-}
-
-@keyframes aboutus-gradient-animation {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.aboutus-landing {
-  background-size: cover;
-  background-position: center;
-  text-align: center;
-  color: white;
-  height: 470px;
-  padding: 2rem 1rem;
-  margin-bottom: 3rem;
-}
-
-.aboutus-landing h1 {
-  font-size: 5.5rem;
-}
-
-.aboutus-landing p {
-  font-size: 2.5rem;
-  max-width: 800px;
-  margin: auto;
-  color: #e6e6e6;
-}
-
-.aboutus-section h2,
-.aboutus-team-title {
-  margin-top: -20px;
-  text-align: center;
-  font-size: 4.5rem;
-  font-weight: bold;
-  color: white;
-  font-family: Cambria, Georgia, Times, 'Times New Roman', serif;
-}
-
-.aboutus-who-we-are-cards {
+.about-us-page-container {
+  height: 590px;
+  width: 100%;
+  background: linear-gradient(135deg, #4d0b5a, #9515c0,#a447c3);
   display: flex;
-  flex-wrap: wrap;
+  align-items: center;
   justify-content: center;
+  overflow: hidden;
+  animation: aboutFadeIn 2s ease-in;
+}
+
+.about-us-hero {
+  text-align: center;
+  color: white;
+  padding: 2rem;
+  max-width: 800px;
+  animation: aboutSlideUp 1s ease-out;
+}
+
+.about-us-headline {
+  font-size: 5.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.about-us-subheadline {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+}
+
+.about-us-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.about-us-cta-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #ffffff;
+  color: rgb(24, 23, 23);
+  border: 2px solid white;
+  border-radius: 8px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.about-us-cta-button:hover {
+  background-color: #ffffff44;
+  transform: scale(1.05);
+}
+
+@keyframes aboutFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes aboutSlideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/* Combined Section: Our Mission & Journey */
+.about-us-combined-section {
+  background: linear-gradient(135deg, #f3e5f5, #ede7f6);
+  padding: 5rem 2rem;
+  text-align: center;
+  animation: fadeInUp 1s ease-in-out;
+  color: #4a148c;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.about-us-title-highlight {
+  font-size: 2.7rem;
+  font-weight: 800;
+  color: #6a1b9a;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 2px #d1c4e9;
+}
+
+.about-us-tagline {
+  font-size: 1.2rem;
+  color: #7b1fa2;
+  margin-bottom: 3rem;
+  font-style: italic;
+}
+
+/* Cards for Highlights */
+.about-us-card-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.about-us-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 280px;
+  box-shadow: 0 6px 18px rgba(106, 27, 154, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-us-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(106, 27, 154, 0.3);
+}
+
+.about-us-card-title {
+  font-size: 1.3rem;
+  color: #4a148c;
+  margin-bottom: 0.75rem;
+}
+
+.about-us-card-text {
+  font-size: 1rem;
+  color: #5e35b1;
+}
+
+/* Timeline Cards */
+.about-us-timeline-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
   gap: 2rem;
 }
 
-.aboutus-card {
-  background: var(--card-bg);
-  border-left: 5px solid var(--main-color);
+.about-us-timeline-card {
+  background-color: #6a1b9a;
+  color: white;
   border-radius: 10px;
-  padding: 1.5rem;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-  color: black;
-  font-size: larger;
-  max-width: 480px;
-  flex: 1;
-  transition: transform 0.3s ease;
+  padding: 1.2rem 1.5rem;
+  width: 200px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease;
 }
 
-.aboutus-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+.about-us-timeline-card:hover {
+  background-color: #7b1fa2;
 }
 
-.aboutus-image-card {
-  background: none;
-  border: none;
+.about-us-timeline-year {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.about-us-timeline-event {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-style: italic;
+}
+/* Team Section Container */
+.about-us-team-section {
+  background: linear-gradient(135deg, #b35ec8, #a884b3);
+  padding: 4rem 2rem;
+  text-align: center;
+  animation: aboutUsFadeInUp 1s ease forwards;
+  color: #4a148c;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Section Title */
+.about-us-team-title {
+  font-size: 4.5rem;
+  font-weight: 900;
+  margin-bottom: 3rem;
+  color: white;
+  text-shadow: 1px 1px 2px #b39ddb;
+}
+
+/* Cards Container */
+.about-us-team-container {
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: center;
-  padding: 0;
+  gap: 2.5rem;
 }
 
-.aboutus-image-card img {
-  width: 100%;
-  max-width: 500px;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-}
-
-.aboutus-vision-mission {
-  background-image: url("../Assets/CRM-software.jpg");
-  background-size: cover;
-  background-position: center;
-  text-align: center;
-  padding: 2rem 1rem;
-}
-
-.aboutus-vision-mission-content {
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 12px;
-  max-width: 800px;
-  margin: auto;
-  font-size: 1.5rem;
-  padding: 2rem;
-}
-
-.aboutus-team-section {
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  text-align: center;
-  padding: 2rem 1rem;
-}
-
-.aboutus-team-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 20px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-.aboutus-team-card {
+/* Individual Team Card */
+.about-us-team-card {
   background: white;
-  border-radius: 16px;
-  padding: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(106, 27, 154, 0.15);
+  width: 250px;
+  padding: 1.8rem 1.2rem 2rem;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: default;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.aboutus-team-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+/* Card Hover Effect */
+.about-us-team-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 14px 40px rgba(106, 27, 154, 0.35);
 }
 
-.aboutus-profile-pic {
-  width: 150px;
-  height: 150px;
+/* Profile Picture */
+.about-us-profile-pic {
+  width: 130px;
+  height: 130px;
   border-radius: 50%;
   object-fit: cover;
-  margin-bottom: 15px;
+  border: 4px solid #7b1fa2;
+  margin-bottom: 1.25rem;
+  transition: border-color 0.3s ease;
 }
 
-.aboutus-team-card h3 {
-  font-size: 1.3rem;
-  color: #333;
-  margin: 10px 0 5px;
+.about-us-team-card:hover .about-us-profile-pic {
+  border-color: #4a148c;
 }
 
-.aboutus-social-icons {
+/* Member Name */
+.about-us-team-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #050505;
+  margin-bottom: 0.3rem;
+}
+
+/* Member Role (optional) */
+.about-us-team-card p {
+  font-size: 1rem;
+  font-style: italic;
+  color: #7b1fa2;
+  margin-bottom: 1rem;
+}
+
+/* Social Icons Container */
+.about-us-social-icons {
   display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 10px;
+  gap: 1.1rem;
+  font-size: 2.35rem;
+  color: #6a1b9a;
+  transition: color 0.3s ease;
 }
 
-.aboutus-social-icons a[href*="linkedin"] {
-  color: #0077B5;
-  font-size: 2.5rem;
+/* Social Icon Links */
+.about-us-social-icons a {
+  color: inherit;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.aboutus-social-icons a[href*="instagram"] {
-  color: #E1306C;
-  font-size: 2.5rem;
-}
-
-.aboutus-social-icons a[href*="github"] {
-  color: #333;
-  font-size: 2.5rem;
-}
-
-.aboutus-social-icons a:hover {
+/* Icon Hover Effect */
+.about-us-social-icons a:hover {
+  color: #4a148c;
   transform: scale(1.2);
-  opacity: 0.8;
 }
+
+/* Fade In Up Animation */
+@keyframes aboutUsFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+

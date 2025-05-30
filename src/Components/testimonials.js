@@ -79,7 +79,7 @@ const Testimonials = () => {
   return (
     <section id="testimonials" className="testimonials section light-background">
       <div className="container">
-        <h2 className="section-title">Businesses We're Proud to Serve</h2>
+        <h2 className="section-title">Inspiring Success Through Every Connection</h2>
         <p className="section-desc">We’re proud to support a diverse range of businesses who trust our CRM to drive growth and streamline their operations. Here's a look at the companies currently powering up with us.
 
 </p>
