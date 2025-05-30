@@ -1,12 +1,13 @@
 import { useState } from "react";
 import axios from "axios";
 import { Form, Button, Container } from "react-bootstrap";
-import "../css/Forms.css"; // Ensure your form CSS is linked
-import { toast, ToastContainer } from "react-toastify"; // Import toast for notifications
+import "../css/Forms.css";
+import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 
 const AddLead = () => {
   const navigate = useNavigate();
+
   const [form, setForm] = useState({
     companyName: "",
     fullName: "",
@@ -28,7 +29,7 @@ const AddLead = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const token = localStorage.getItem("token"); // 🟢 Assuming you're storing JWT in localStorage
+    const token = localStorage.getItem("token");
 
     if (!token) {
       alert("❌ User not authenticated. Please log in.");
@@ -56,13 +57,12 @@ const AddLead = () => {
       notes: ""
     });
 
-    toast.success("Lead added successfully!",{
-      onClose: () => 
-        navigate("/dashboard/leads") // Redirect to leads page
-    });
+      toast.success("✅ Lead added successfully!", {
+        onClose: () => navigate("/dashboard/leads")
+      });
     } catch (error) {
-      console.error("Error adding lead:", error);
-      toast.error("Failed to add lead. Please try again.");
+      console.error("Error adding lead:", error.response?.data || error.message);
+      toast.error("❌ Failed to add lead. Please try again.");
     }
   };
 
@@ -80,11 +80,11 @@ const AddLead = () => {
       nextActionDate: "",
       notes: ""
     });
-  }
+  };
 
   return (
     <Container className="p-4">
-      <ToastContainer autoClose={2000}/>
+      <ToastContainer autoClose={2000} />
       <h3 className="board-title text-center mb-4">👤 Add Lead</h3>
       <Form className="card1" onSubmit={handleSubmit}>
         <div className="form-container1">
@@ -160,6 +160,7 @@ const AddLead = () => {
               value={form.leadSource}
               onChange={handleChange}
             >
+              <option value="">-- Select --</option>
               <option>Referral</option>
               <option>Website</option>
               <option>Cold Call</option>
@@ -221,31 +222,30 @@ const AddLead = () => {
             />
           </Form.Group>
 
-  <Form.Group className="mt-4 button-group-row">
-  <Button
-    type="button"
-    onClick={handleReset}
-    className="button-reset"
-  >
-    🔄 Reset
-  </Button>
+          <Form.Group className="mt-4 button-group-row">
+            <Button
+              type="button"
+              onClick={handleReset}
+              className="button-reset"
+            >
+              🔄 Reset
+            </Button>
 
-<Button
-    type="submit"
-    className="button-save"
-  >
-    💾 Add Lead
-  </Button>
-  
-  <Button
-    type="button"
-    onClick={() => navigate(-1)}
-    className="button-back"
-  >
-    🔙 Back
-  </Button>
-</Form.Group>
+            <Button
+              type="submit"
+              className="button-save"
+            >
+              💾 Add Lead
+            </Button>
 
+            <Button
+              type="button"
+              onClick={() => navigate(-1)}
+              className="button-back"
+            >
+              🔙 Back
+            </Button>
+          </Form.Group>
         </div>
       </Form>
     </Container>
