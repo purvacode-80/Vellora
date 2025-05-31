@@ -63,9 +63,9 @@ const ContactList = () => {
   };
 
   const filteredContacts = [...contacts]
-    .filter((c) =>
-      (c.fullName || "").toLowerCase().startsWith((searchTerm || "").toLowerCase())
-    )
+   .filter((c) =>
+  (c.fullName || "").toLowerCase().includes((searchTerm || "").toLowerCase())
+)
     .sort((a, b) =>
       ((b.fullName || "").toLowerCase().startsWith((searchTerm || "").toLowerCase()) ? 1 : 0) -
       ((a.fullName || "").toLowerCase().startsWith((searchTerm || "").toLowerCase()) ? 1 : 0)

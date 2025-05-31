@@ -70,8 +70,9 @@ const LeadList = () => {
 
   const filteredLeads = [...leads]
     .filter((lead) =>
-      lead.fullName.toLowerCase().startsWith(searchTerm.toLowerCase())
-    )
+  lead.fullName.toLowerCase().includes(searchTerm.toLowerCase())
+)
+
     .sort((a, b) =>
       b.fullName.toLowerCase().startsWith(searchTerm.toLowerCase()) -
       a.fullName.toLowerCase().startsWith(searchTerm.toLowerCase())
