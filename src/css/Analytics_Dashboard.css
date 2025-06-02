@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 :root {
   --highlight: #9d4edd; /* Purple highlight */
   --highlight-hover: #7b2cbf; /* Deeper purple hover */
@@ -11,9 +13,13 @@
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   color: black;
   margin-top: -65px;
- 
   margin-right: -30px !important; /* Avoid extra margin */
-  
+}
+
+.dashboard-container .title {
+  color:var(--highlight);
+  font-family: 'Amaranth', sans-serif;
+  font-size: 2rem;
 }
 
 .dashboard-container .bg-white {
@@ -75,10 +81,10 @@
 }
 
 .summary-grid{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 20px;
-    padding: 20px;
+  display: flex;
+  justify-content: space-around;
+  gap:20px;
+  padding: 20px;
 }
 
 /* Summary Cards */
@@ -87,6 +93,7 @@
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(157, 78, 221, 0.15); /* #9d4edd with 15% opacity */
   transition: transform 0.2s;
+  width: 100%;
 }
 
 .summary-card:hover {
@@ -202,4 +209,8 @@
     flex-direction: column;
     gap: 10px;
   } 
+  .summary-grid {
+    flex-direction: column;
+    gap:10px;
+  }
 }

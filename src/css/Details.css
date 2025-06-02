@@ -36,8 +36,7 @@ body {
 
 .task-detail-card:hover {
   transform: translateY(-5px);
-    box-shadow: 0 6px 20px rgba(157, 78, 221, 0.15), 0 0 10px var(--highlight); /* Increased highlight shadow on hover */
-
+  box-shadow: 0 6px 20px rgba(157, 78, 221, 0.15), 0 0 10px var(--highlight); /* Increased highlight shadow on hover */
 }
 
 .task-detail-card p {

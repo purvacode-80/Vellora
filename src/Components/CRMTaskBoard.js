@@ -172,7 +172,7 @@ const CRMTaskBoard = () => {
   return (
     <Container fluid className="task-board position-relative">
       <div className="title-wrapper position-relative mb-3">
-        <h2 className="board-title text-center m-0 contact-list-title">📋 TASK BOARD</h2>
+        <h2 className="board-title text-center m-0 contact-list-title">📋 Task Board </h2>
         <div className="search-toggle d-flex align-items-center" style={{ position: 'absolute', top: '5px', right: '0' }}>
           {searchVisible && (
             <div className="search-box me-2 slide-in">

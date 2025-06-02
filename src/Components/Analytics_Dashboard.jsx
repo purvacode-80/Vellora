@@ -31,7 +31,7 @@ const Analytics_Dashboard = () => {
             }
           }
         ),
-        fetch(`${API_BASE}/analytics/advanced?days=${timeFilter}`,
+        fetch(`${API_BASE}/analytics/advanced`,
           {
             headers: {
               Authorization: `Bearer ${token}`
@@ -180,7 +180,7 @@ const Analytics_Dashboard = () => {
         <div className="container-fluid" style={{maxWidth: '1200px'}}>
           <div className="d-flex justify-content-between align-items-center py-4 dashboard-header">
             <div>
-              <h1 className="h2 fw-bold text-dark mb-1">Analytics Dashboard</h1>
+              <h1 className="h2 fw-bold mb-1 title">Analytics Dashboard</h1>
               <p className="text-muted mb-0">
                 Last updated: {lastUpdated.toLocaleTimeString()}
               </p>
@@ -260,56 +260,56 @@ const Analytics_Dashboard = () => {
           </div>
         </div>
 
-       {/* Charts Grid */}
-<div className="row g-4 mb-4">
-  {/* Weekly Trends */}
-  <div className="col-lg-6">
-    <div className="bg-white rounded shadow-sm p-4 border h-100">
-      <h3 className="h5 fw-semibold text-dark mb-3 text-center">Weekly Trends</h3>
-      <ResponsiveContainer width="100%" height={300}>
-        <LineChart data={weeklyTrends}>
-          <CartesianGrid strokeDasharray="3 3" />
-          <XAxis 
-            dataKey="name" 
-            tick={{ fontSize: 12 }}
-            angle={-45}
-            textAnchor="end"
-            height={60}
-          />
-          <YAxis />
-          <Tooltip 
-            labelFormatter={(label) => `${label}`}
-            formatter={(value, name) => [value, name.charAt(0).toUpperCase() + name.slice(1)]}
-          />
-          <Legend />
-          <Line 
-            type="monotone" 
-            dataKey="leads" 
-            stroke="#6a31b4" 
-            strokeWidth={2}
-            name="Leads"
-            dot={{ fill: '#6a31b4', strokeWidth: 2, r: 4 }}
-          />
-          <Line 
-            type="monotone" 
-            dataKey="converted" 
-            stroke="#c6a8f8" 
-            strokeWidth={2}
-            name="Converted"
-            dot={{ fill: '#c6a8f8', strokeWidth: 2, r: 4 }}
-          />
-          <Line 
-            type="monotone" 
-            dataKey="contacts" 
-            stroke="#28a745" 
-            strokeWidth={2}
-            name="Contacts"
-            dot={{ fill: '#28a745', strokeWidth: 2, r: 4 }}
-          />
-        </LineChart>
-      </ResponsiveContainer>
-    </div>
-  </div>
+        {/* Charts Grid */}
+        <div className="row g-4 mb-4">
+          {/* Weekly Trends */}
+          <div className="col-lg-6">
+            <div className="bg-white rounded shadow-sm p-4 border h-100">
+              <h3 className="h5 fw-semibold text-dark mb-3 text-center">Weekly Trends</h3>
+              <ResponsiveContainer width="100%" height={300}>
+                <LineChart data={weeklyTrends}>
+                  <CartesianGrid strokeDasharray="3 3" />
+                  <XAxis 
+                    dataKey="name" 
+                    tick={{ fontSize: 12 }}
+                    angle={-45}
+                    textAnchor="end"
+                    height={80}
+                  />
+                  <YAxis />
+                  <Tooltip 
+                    labelFormatter={(label) => `${label}`}
+                    formatter={(value, name) => [value, name.charAt(0).toUpperCase() + name.slice(1)]}
+                  />
+                  <Legend/>
+                  <Line 
+                    type="monotone" 
+                    dataKey="leads" 
+                    stroke="#6a31b4" 
+                    strokeWidth={2}
+                    name="Leads"
+                    dot={{ fill: '#6a31b4', strokeWidth: 2, r: 4 }}
+                  />
+                  <Line 
+                    type="monotone" 
+                    dataKey="converted" 
+                    stroke="#c6a8f8" 
+                    strokeWidth={2}
+                    name="Converted"
+                    dot={{ fill: '#c6a8f8', strokeWidth: 2, r: 4 }}
+                  />
+                  <Line 
+                    type="monotone" 
+                    dataKey="contacts" 
+                    stroke="#28a745" 
+                    strokeWidth={2}
+                    name="Contacts"
+                    dot={{ fill: '#28a745', strokeWidth: 2, r: 4 }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
 
           {/* Lead Sources */}
           <div className="col-lg-6">

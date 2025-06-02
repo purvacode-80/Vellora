@@ -19,9 +19,13 @@ function CustomNavbar() {
           rounded
           style={{ marginLeft: "-80px" }}
         />
-        <span className="gradient-text" style={{ marginRight: "auto" }}>
+
+        <Link 
+          to="/" 
+          className="gradient-text" style={{ marginRight: "auto", textDecoration: 'none' }}
+        >
           Vellora
-        </span>
+        </Link>
 
         {/* Add About Us Link */}
         <Link 

@@ -124,8 +124,8 @@ export default function TaskDashboard() {
   }));
 
   return (
-    <Container fluid className="dashboard-container" style={{marginTop:"10px",width:"1300px"}}>
-      
+    <div className="min-vh-100 dashboard-container" style={{marginTop:"10px", marginLeft:"0px"}}>
+      <div className="container-fluid py-4">
       <div className="bg-white rounded shadow-sm border mb-4 summary-grid">
         <div className="my-2 py-3 summary-card purple-border text-center">
           <div className="bg-primary bg-opacity-10 icon-circle">
@@ -318,6 +318,7 @@ export default function TaskDashboard() {
           </div>
         </div>
       </div>
-    </Container>
+      </div>
+    </div>
   );
 }

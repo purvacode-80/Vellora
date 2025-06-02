@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 :root {
   --background-light: #ebe9f1;
   --sidebar-bg: #1e1b2e;
@@ -21,13 +23,13 @@ body {
 
 /* Contact List Container */
 .contact-list {
-
   padding: 40px 20px;
   background-color: var(--background-light);
 }
 
 /* Contact List Title */
 .contact-list-title {
+  font-family: 'Amaranth', sans-serif;
   font-size: 2rem;
   font-weight: 600;
   color: var(--highlight);

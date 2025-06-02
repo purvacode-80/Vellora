@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
 import '../css/Mainpage.css';
+import { isTokenValid } from '../Security/auth'
 
 const Main = () => {
   const token = localStorage.getItem("token");
   const navigate = useNavigate();
 
-  const handleGetStarted = () => {
-    if (token) {
+  const handleGetStarted = () => { 
+    if (isTokenValid) {
       navigate('/dashboard/analytics'); // Navigate to the dashboard if token exists
       return;
     }

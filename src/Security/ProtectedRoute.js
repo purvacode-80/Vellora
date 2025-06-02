@@ -1,9 +1,8 @@
 import { Navigate } from "react-router-dom";
-import { useAuth } from "./AuthContext";
+import { isTokenValid } from "./auth";
 
 const ProtectedRoute = ({ children }) => {
-    const { token } = useAuth();
-    return token ? children : <Navigate to="/login" />;
+    return isTokenValid ? children : <Navigate to="/login" />;
 }
 
 export default ProtectedRoute;
