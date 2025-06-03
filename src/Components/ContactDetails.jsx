@@ -84,6 +84,14 @@ const ContactDetails = () => {
           >
             ← Back
           </Button>
+          <Button
+            variant="warning"
+            onClick={() => {
+              navigate(`/dashboard/email-form/${contact.email}`);
+            }}
+          >
+            Send Email
+          </Button>
         </div>
       </Card>
 

@@ -39,6 +39,7 @@ import LeadDetails from './LeadDetails';
 import LeadProfileEdit from './LeadProfileEdit';
 import MeetingHome from './MeetingHome';
 import Final_Dash from './Final_Dash';
+import EmailForm from './Emailform';
 // import other components as needed
 
 const NAVIGATION = [
@@ -178,6 +179,7 @@ function PageContent() {
         <Route path="/leads/update/:id" element={<LeadProfileEdit />} />
         <Route path="/meeting" element={<MeetingHome />} />
         <Route path="/profile" element={<UserProfile show={true}/>} />
+        <Route path="/email-form/:email" element={<EmailForm />} />
 
         <Route path="*" element={<Typography>Page not found: {location.pathname}</Typography>} />
       </Routes>

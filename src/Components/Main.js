@@ -11,9 +11,10 @@ const Main = () => {
   const handleGetStarted = () => { 
     if (isTokenValid) {
       navigate('/dashboard/analytics'); // Navigate to the dashboard if token exists
-      return;
     }
-    navigate('/login'); // Navigate to the login page if token does not exist
+    else {
+      navigate('/login'); // Navigate to the login page if token does not exist
+    }
   };
   const handlelearnmore = () =>{
     navigate('/learnmore')
