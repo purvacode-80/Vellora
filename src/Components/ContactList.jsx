@@ -61,15 +61,17 @@ const ContactList = () => {
   };
 
   const filteredContacts = [...contacts]
-    .filter((c) => c.fullName.toLowerCase().startsWith(searchTerm.toLowerCase()))
+    .filter((c) =>
+      c.fullName?.toLowerCase().startsWith(searchTerm.toLowerCase())
+    )
     .sort((a, b) =>
-      b.fullName.toLowerCase().startsWith(searchTerm.toLowerCase()) -
-      a.fullName.toLowerCase().startsWith(searchTerm.toLowerCase())
-  );
+      b.fullName?.toLowerCase().startsWith(searchTerm.toLowerCase()) -
+      a.fullName?.toLowerCase().startsWith(searchTerm.toLowerCase())
+    );
 
   const handleExportToExcel = () => {
     const hasSelected = selectedContacts.length > 0;
-    const exportData = (hasSelected ? filteredContacts.filter((contact) => 
+    const exportData = (hasSelected ? filteredContacts.filter((contact) =>
       selectedContacts.includes(contact._id)) : filteredContacts);
 
     if (exportData.length === 0) {
@@ -99,20 +101,19 @@ const ContactList = () => {
 
     saveAs(blob, `${exportFileName || "Contacts"}.xlsx`);
     setShowExportModal(false);
-    setSelectedContacts([]); // Reset selection after export
-    setSelectedFields(["fullName", "email", "phone", "position", "company", "address", "notes", "status"]); // Reset selected fields
-    setExportFileName("Contacts"); // Reset file name
+    setSelectedContacts([]);
+    setSelectedFields(["fullName", "email", "phone", "position", "company", "address", "notes", "status"]);
+    setExportFileName("Contacts");
     toast.success("Contacts exported successfully.");
   };
 
   return (
     <Container className="contact-list mt-4 position-relative">
-      <ToastContainer autoClose={2000}/>
+      <ToastContainer autoClose={2000} />
       <div className="title-wrapper text-center position-relative mb-4" style={{ marginTop: "-120px" }}>
         <h2 className="contact-list-title m-0">📋 Contact List</h2>
         <Button variant="success" className="mt-3" onClick={() => setShowExportModal(true)}> 📤 Export to Excel </Button>
 
-        {/* Search Toggle Section */}
         <div className="search-toggle d-flex align-items-center position-absolute top-0 end-0">
           {searchVisible && (
             <div className="search-box me-2 slide-in">
@@ -209,7 +210,6 @@ const ContactList = () => {
         </Table>
       </div>
 
-      {/* Modal for exporting contacts */}
       <Modal show={showExportModal} onHide={() => setShowExportModal(false)} centered>
         <Modal.Header closeButton>
           <Modal.Title>📤 Export Contacts to Excel</Modal.Title>
@@ -248,16 +248,16 @@ const ContactList = () => {
               />
             </Form.Group>
           </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={() => setShowExportModal(false)}>
-          Cancel
-        </Button>
-        <Button variant="success" onClick={handleExportToExcel}>
-          Download Excel
-        </Button>
-      </Modal.Footer>
-    </Modal>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowExportModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="success" onClick={handleExportToExcel}>
+            Download Excel
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };

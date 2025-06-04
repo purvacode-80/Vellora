@@ -15,7 +15,19 @@ const LeadList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showExportModal, setShowExportModal] = useState(false);
   const [selectedLeads, setSelectedLeads] = useState([]);
-  const [selectedFields, setSelectedFields] = useState(["companyName", "fullName", "email", "phone", "industry", "leadSource", "status", "priority", "lastContacted", "nextActionDate", "notes"]);
+  const [selectedFields, setSelectedFields] = useState([
+    "companyName",
+    "fullName",
+    "email",
+    "phone",
+    "industry",
+    "leadSource",
+    "status",
+    "priority",
+    "lastContacted",
+    "nextActionDate",
+    "notes",
+  ]);
   const [exportFileName, setExportFileName] = useState("Leads");
 
   const navigate = useNavigate();
@@ -70,60 +82,92 @@ const LeadList = () => {
 
   const filteredLeads = [...leads]
     .filter((lead) =>
-      lead.fullName.toLowerCase().startsWith(searchTerm.toLowerCase())
+      (lead.fullName || "")
+        .toLowerCase()
+        .startsWith(searchTerm.toLowerCase())
     )
     .sort((a, b) =>
-      b.fullName.toLowerCase().startsWith(searchTerm.toLowerCase()) -
-      a.fullName.toLowerCase().startsWith(searchTerm.toLowerCase())
-  );
+      (b.fullName || "")
+        .toLowerCase()
+        .startsWith(searchTerm.toLowerCase()) -
+      (a.fullName || "")
+        .toLowerCase()
+        .startsWith(searchTerm.toLowerCase())
+    );
 
   const handleExportToExcel = () => {
-      const hasSelected = selectedLeads.length > 0;
-      const exportData = (hasSelected ? filteredLeads.filter((lead) => 
-        selectedLeads.includes(lead._id)) : filteredLeads);
-  
-      if (exportData.length === 0) {
-        toast.warn("No Leads to export.");
-        return;
-      }
-  
-      if (selectedFields.length === 0) {
-        toast.warn("Please select at least one field.");
-        return;
-      }
-  
-      const dataToExport = exportData.map((lead) => {
-        const filtered = {};
-        selectedFields.forEach((field) => {
-          filtered[field] = lead[field] ?? "";
-        });
-        return filtered;
+    const hasSelected = selectedLeads.length > 0;
+    const exportData = hasSelected
+      ? filteredLeads.filter((lead) => selectedLeads.includes(lead._id))
+      : filteredLeads;
+
+    if (exportData.length === 0) {
+      toast.warn("No Leads to export.");
+      return;
+    }
+
+    if (selectedFields.length === 0) {
+      toast.warn("Please select at least one field.");
+      return;
+    }
+
+    const dataToExport = exportData.map((lead) => {
+      const filtered = {};
+      selectedFields.forEach((field) => {
+        filtered[field] = lead[field] ?? "";
       });
-  
-      const worksheet = XLSX.utils.json_to_sheet(dataToExport);
-      const workbook = XLSX.utils.book_new();
-      XLSX.utils.book_append_sheet(workbook, worksheet, "Leads");
-  
-      const excelBuffer = XLSX.write(workbook, { bookType: "xlsx", type: "array" });
-      const blob = new Blob([excelBuffer], { type: "application/octet-stream" });
-  
-      saveAs(blob, `${exportFileName || "Leads"}.xlsx`);
-      setShowExportModal(false);
-      setSelectedLeads([]); // Reset selection after export
-      setSelectedFields(["companyName", "fullName", "email", "phone", "industry", "leadSource", "status", "priority", "lastContacted", "nextActionDate", "notes"]); // Reset selected fields
-      setExportFileName("Leads"); // Reset file name
-      toast.success("Leads exported successfully.");
+      return filtered;
+    });
+
+    const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+    const workbook = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(workbook, worksheet, "Leads");
+
+    const excelBuffer = XLSX.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+    const blob = new Blob([excelBuffer], {
+      type: "application/octet-stream",
+    });
+
+    saveAs(blob, `${exportFileName || "Leads"}.xlsx`);
+    setShowExportModal(false);
+    setSelectedLeads([]);
+    setSelectedFields([
+      "companyName",
+      "fullName",
+      "email",
+      "phone",
+      "industry",
+      "leadSource",
+      "status",
+      "priority",
+      "lastContacted",
+      "nextActionDate",
+      "notes",
+    ]);
+    setExportFileName("Leads");
+    toast.success("Leads exported successfully.");
   };
 
   return (
     <Container className="lead-list position-relative">
       <ToastContainer autoClose={2000} />
 
-      {/* Title and search bar */}
-      <div className="title-wrapper text-center position-relative mb-4" style={{ marginTop: "-100px" }}>
+      <div
+        className="title-wrapper text-center position-relative mb-4"
+        style={{ marginTop: "-100px" }}
+      >
         <h2 className="board-title m-0">📋 Lead List</h2>
-        <Button variant="success" className="mt-3" onClick={() => setShowExportModal(true)}> 📤 Export to Excel </Button>
-        
+        <Button
+          variant="success"
+          className="mt-3"
+          onClick={() => setShowExportModal(true)}
+        >
+          📤 Export to Excel
+        </Button>
+
         <div className="search-toggle d-flex align-items-center position-absolute top-0 end-0">
           {searchVisible && (
             <div className="search-box me-2 slide-in">
@@ -171,14 +215,27 @@ const LeadList = () => {
                       setSelectedLeads([]);
                     }
                   }}
-                  checked={selectedLeads.length === filteredLeads.length && filteredLeads.length > 0}
+                  checked={
+                    selectedLeads.length === filteredLeads.length &&
+                    filteredLeads.length > 0
+                  }
                 />
               </th>
-              <th style={{ backgroundColor: "#9b6ada", color: "white" }}>Full Name</th>
-              <th style={{ backgroundColor: "#9b6ada", color: "white" }}>Email</th>
-              <th style={{ backgroundColor: "#9b6ada", color: "white" }}>Phone</th>
-              <th style={{ backgroundColor: "#9b6ada", color: "white" }}>Company</th>
-              <th style={{ backgroundColor: "#9b6ada", color: "white" }}>Action</th>
+              <th style={{ backgroundColor: "#9b6ada", color: "white" }}>
+                Full Name
+              </th>
+              <th style={{ backgroundColor: "#9b6ada", color: "white" }}>
+                Email
+              </th>
+              <th style={{ backgroundColor: "#9b6ada", color: "white" }}>
+                Phone
+              </th>
+              <th style={{ backgroundColor: "#9b6ada", color: "white" }}>
+                Company
+              </th>
+              <th style={{ backgroundColor: "#9b6ada", color: "white" }}>
+                Action
+              </th>
             </tr>
           </thead>
 
@@ -193,7 +250,9 @@ const LeadList = () => {
                       if (e.target.checked) {
                         setSelectedLeads([...selectedLeads, lead._id]);
                       } else {
-                        setSelectedLeads(selectedLeads.filter((id) => id !== lead._id));
+                        setSelectedLeads(
+                          selectedLeads.filter((id) => id !== lead._id)
+                        );
                       }
                     }}
                   />
@@ -203,7 +262,10 @@ const LeadList = () => {
                 <td>{lead.phone}</td>
                 <td>{lead.companyName}</td>
                 <td>
-                  <Button className="btn-show-details" onClick={() => handleDetails(lead._id)}>
+                  <Button
+                    className="btn-show-details"
+                    onClick={() => handleDetails(lead._id)}
+                  >
                     Show Details
                   </Button>
                 </td>
@@ -220,8 +282,12 @@ const LeadList = () => {
         </Table>
       </div>
 
-    {/* Modal for exporting leads */}
-      <Modal show={showExportModal} onHide={() => setShowExportModal(false)} centered>
+      {/* Modal for exporting leads */}
+      <Modal
+        show={showExportModal}
+        onHide={() => setShowExportModal(false)}
+        centered
+      >
         <Modal.Header closeButton>
           <Modal.Title>📤 Export Leads to Excel</Modal.Title>
         </Modal.Header>
@@ -230,7 +296,19 @@ const LeadList = () => {
             <Form.Group>
               <Form.Label>Select fields to export:</Form.Label>
               <div className="d-flex flex-wrap gap-3">
-                {["companyName", "fullName", "email", "phone", "industry", "leadSource", "status", "priority", "lastContacted", "nextActionDate", "notes"].map((field) => (
+                {[
+                  "companyName",
+                  "fullName",
+                  "email",
+                  "phone",
+                  "industry",
+                  "leadSource",
+                  "status",
+                  "priority",
+                  "lastContacted",
+                  "nextActionDate",
+                  "notes",
+                ].map((field) => (
                   <Form.Check
                     key={field}
                     type="checkbox"
@@ -241,7 +319,9 @@ const LeadList = () => {
                       if (e.target.checked) {
                         setSelectedFields([...selectedFields, field]);
                       } else {
-                        setSelectedFields(selectedFields.filter((f) => f !== field));
+                        setSelectedFields(
+                          selectedFields.filter((f) => f !== field)
+                        );
                       }
                     }}
                   />
@@ -259,16 +339,16 @@ const LeadList = () => {
               />
             </Form.Group>
           </Form>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button variant="secondary" onClick={() => setShowExportModal(false)}>
-          Cancel
-        </Button>
-        <Button variant="success" onClick={handleExportToExcel}>
-          Download Excel
-        </Button>
-      </Modal.Footer>
-    </Modal>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowExportModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="success" onClick={handleExportToExcel}>
+            Download Excel
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Container>
   );
 };
