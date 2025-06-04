@@ -1,0 +1,277 @@
+.about-us-page-container {
+  height: 590px;
+  width: 100%;
+  background: linear-gradient(135deg, #4d0b5a, #9515c0,#a447c3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  animation: aboutFadeIn 2s ease-in;
+}
+
+.about-us-hero {
+  text-align: center;
+  color: white;
+  padding: 2rem;
+  max-width: 800px;
+  animation: aboutSlideUp 1s ease-out;
+}
+
+.about-us-headline {
+  font-size: 5.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.about-us-subheadline {
+  font-size: 1.5rem;
+  line-height: 1.2;
+  margin-bottom: 2rem;
+}
+
+.about-us-cta-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.about-us-cta-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #ffffff;
+  color: rgb(24, 23, 23);
+  border: 2px solid white;
+  border-radius: 8px;
+  font-size: 1.3rem;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.about-us-cta-button:hover {
+  background-color: #ffffff44;
+  transform: scale(1.05);
+}
+
+@keyframes aboutFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes aboutSlideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/* Combined Section: Our Mission & Journey */
+.about-us-combined-section {
+  background: linear-gradient(135deg, #f3e5f5, #ede7f6);
+  padding: 5rem 2rem;
+  text-align: center;
+  animation: fadeInUp 1s ease-in-out;
+  color: #4a148c;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.about-us-title-highlight {
+  font-size: 2.7rem;
+  font-weight: 800;
+  color: #6a1b9a;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 2px #d1c4e9;
+}
+
+.about-us-tagline {
+  font-size: 1.2rem;
+  color: #7b1fa2;
+  margin-bottom: 3rem;
+  font-style: italic;
+}
+
+/* Cards for Highlights */
+.about-us-card-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 4rem;
+}
+
+.about-us-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  width: 280px;
+  box-shadow: 0 6px 18px rgba(106, 27, 154, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.about-us-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 12px 24px rgba(106, 27, 154, 0.3);
+}
+
+.about-us-card-title {
+  font-size: 1.3rem;
+  color: #4a148c;
+  margin-bottom: 0.75rem;
+}
+
+.about-us-card-text {
+  font-size: 1rem;
+  color: #5e35b1;
+}
+
+/* Timeline Cards */
+.about-us-timeline-grid {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.about-us-timeline-card {
+  background-color: #6a1b9a;
+  color: white;
+  border-radius: 10px;
+  padding: 1.2rem 1.5rem;
+  width: 200px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease;
+}
+
+.about-us-timeline-card:hover {
+  background-color: #7b1fa2;
+}
+
+.about-us-timeline-year {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.about-us-timeline-event {
+  margin-top: 0.5rem;
+  font-size: 1rem;
+  font-style: italic;
+}
+/* Team Section Container */
+.about-us-team-section {
+  background: linear-gradient(135deg, #b35ec8, #a884b3);
+  padding: 4rem 2rem;
+  text-align: center;
+  animation: aboutUsFadeInUp 1s ease forwards;
+  color: #4a148c;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Section Title */
+.about-us-team-title {
+  font-size: 4.5rem;
+  font-weight: 900;
+  margin-bottom: 3rem;
+  color: white;
+  text-shadow: 1px 1px 2px #b39ddb;
+}
+
+/* Cards Container */
+.about-us-team-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+
+}
+
+/* Individual Team Card */
+.about-us-team-card {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(106, 27, 154, 0.15);
+  width: 250px;
+  padding: 1.8rem 1.2rem 2rem;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Card Hover Effect */
+.about-us-team-card:hover {
+  transform: translateY(-15px);
+  box-shadow: 0 14px 40px rgba(106, 27, 154, 0.35);
+}
+
+/* Profile Picture */
+.about-us-profile-pic {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #7b1fa2;
+  margin-bottom: 1.25rem;
+  transition: border-color 0.3s ease;
+}
+
+.about-us-team-card:hover .about-us-profile-pic {
+  border-color: #4a148c;
+}
+
+/* Member Name */
+.about-us-team-card h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #050505;
+  margin-bottom: 0.3rem;
+}
+
+/* Member Role (optional) */
+.about-us-team-card p {
+  font-size: 1rem;
+  font-style: italic;
+  color: #7b1fa2;
+  margin-bottom: 1rem;
+}
+
+/* Social Icons Container */
+.about-us-social-icons {
+  display: flex;
+  gap: 1.1rem;
+  font-size: 2.35rem;
+  color: #6a1b9a;
+  transition: color 0.3s ease;
+}
+
+/* Social Icon Links */
+.about-us-social-icons a {
+  color: inherit;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+/* Icon Hover Effect */
+.about-us-social-icons a:hover {
+  color: #4a148c;
+  transform: scale(1.2);
+}
+
+/* Fade In Up Animation */
+@keyframes aboutUsFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+

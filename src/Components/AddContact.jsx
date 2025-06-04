@@ -54,7 +54,7 @@ const AddContact = () => {
         fullName: selectedLead.fullName || "",
         email: selectedLead.email || "",
         phone: selectedLead.phone || "",
-        company: selectedLead.companyName || ""
+        company: selectedLead.companyName || "",
       });
     }
   };
@@ -71,7 +71,7 @@ const AddContact = () => {
       });
 
       if (convertLead && selectedLeadId) {
-        await axios.delete(`http://localhost:8000/lead/deletelead/${selectedLeadId}`, {
+        await axios.get(`http://localhost:8000/lead/convert-lead/${selectedLeadId}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -186,33 +186,30 @@ const AddContact = () => {
         </Form.Group>
 
         <Form.Group className="mt-4 button-group-row">
-  
+          <Button
+            type="button"
+            onClick={handleReset}
+            className="button-reset"
+          >
+            🔄 Reset
+          </Button>
 
-  <Button
-    type="button"
-    onClick={handleReset}
-    className="button-reset"
-  >
-    🔄 Reset
-  </Button>
-
-<Button
-    type="submit"
-    className="button-save"
-  >
-    💾 Add Contact
-  </Button>
-  
-  <Button
-    type="button"
-    onClick={() => navigate(-1)}
-    className="button-back"
-  >
-    🔙 Back
-  </Button>
-</Form.Group>
-
-
+        <Button
+            type="submit"
+            className="button-save"
+          >
+            💾 Add Contact
+          </Button>
+          
+          <Button
+            type="button"
+            onClick={() => navigate(-1)}
+            className="button-back"
+          >
+            🔙 Back
+          </Button>
+        </Form.Group>
+        
       </Form>
     </Container>
   );

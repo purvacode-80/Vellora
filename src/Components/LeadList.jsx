@@ -35,7 +35,6 @@ const LeadList = () => {
   useEffect(() => {
     const fetchLeads = async () => {
       const token = localStorage.getItem("token");
-
       if (!token) {
         console.error("User not authenticated");
         return;
@@ -47,7 +46,6 @@ const LeadList = () => {
             Authorization: `Bearer ${token}`,
           },
         });
-
         setLeads(response.data);
       } catch (error) {
         console.error("Error fetching leads:", error);
@@ -82,17 +80,10 @@ const LeadList = () => {
 
   const filteredLeads = [...leads]
     .filter((lead) =>
-      (lead.fullName || "")
-        .toLowerCase()
-        .startsWith(searchTerm.toLowerCase())
+      (lead.fullName || "").toLowerCase().includes(searchTerm.toLowerCase())
     )
     .sort((a, b) =>
-      (b.fullName || "")
-        .toLowerCase()
-        .startsWith(searchTerm.toLowerCase()) -
-      (a.fullName || "")
-        .toLowerCase()
-        .startsWith(searchTerm.toLowerCase())
+      (a.fullName || "").localeCompare(b.fullName || "")
     );
 
   const handleExportToExcel = () => {
@@ -282,7 +273,7 @@ const LeadList = () => {
         </Table>
       </div>
 
-      {/* Modal for exporting leads */}
+      {/* Export Modal */}
       <Modal
         show={showExportModal}
         onHide={() => setShowExportModal(false)}

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Form, Button, Container } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
+import {toast, ToastContainer} from "react-toastify";
 import "../css/Forms.css"; // Make sure this file contains your custom styles
 
 const ContactProfileEdit = () => {
@@ -52,16 +53,17 @@ const ContactProfileEdit = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      alert("Profile updated successfully!");
+      toast.success("Contact updated successfully..!");
       navigate("/dashboard/contacts");
     } catch (error) {
       console.error("Error updating profile: ", error);
-      alert("Failed to update profile.");
+      toast.error("Failed to update profile.");
     }
   };
 
   return (
     <Container className="p-4">
+      <ToastContainer autoClose={2000} />
       <h3 className="board-title text-center mb-4">✏️ Edit Contact Profile</h3>
       <Form className="card1" onSubmit={handleSubmit}>
         <div className="form-container1">
@@ -70,7 +72,7 @@ const ContactProfileEdit = () => {
             <Form.Control
               type="text"
               name="name"
-              value={contact.name}
+              value={contact.fullName}
               onChange={handleInputChange}
               required
             />
@@ -135,16 +137,6 @@ const ContactProfileEdit = () => {
               rows={4}
               name="notes"
               value={contact.notes}
-              onChange={handleInputChange}
-            />
-          </Form.Group>
-
-          <Form.Group className="mb-3">
-            <Form.Label>LinkedIn</Form.Label>
-            <Form.Control
-              type="url"
-              name="linkedin"
-              value={contact.linkedin}
               onChange={handleInputChange}
             />
           </Form.Group>

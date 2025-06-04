@@ -59,7 +59,7 @@ const ContactDetails = () => {
       <ToastContainer autoClose={2000} />
       <h3 className="board-title text-center mb-4"> 📇 Contact Details</h3>
       <Card className="task-detail-card p-4">
-        <p><strong>Name:</strong> {contact.name}</p>
+        <p><strong>Name:</strong> {contact.fullName}</p>
         <p><strong>Email:</strong> {contact.email}</p>
         <p><strong>Phone:</strong> {contact.phone}</p>
         <p><strong>Position:</strong> {contact.position}</p>
@@ -83,6 +83,14 @@ const ContactDetails = () => {
             onClick={() => navigate(-1)}
           >
             ← Back
+          </Button>
+          <Button
+            variant="warning"
+            onClick={() => {
+              navigate(`/dashboard/email-form/${contact.email}`);
+            }}
+          >
+            Send Email
           </Button>
         </div>
       </Card>

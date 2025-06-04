@@ -1,21 +1,12 @@
 /* Calendar background and general style */
 @import url('https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
-/* body {
-  margin: 0;
-  padding: 0;
-} */
- 
-/* .css-8f57v9 {
-  padding-top: 0px !important;
-  padding-bottom: 0px !important;
-} */
-
 .rbc-calendar {
   background-color: #ffffff;
   color: #333;
   border: 1px solid #e5e5e5;
   font-family: 'Segoe UI', sans-serif;
+  margin-right: -30px;
 }
 
 /* Header styling */
@@ -26,14 +17,14 @@
 }
 
 .rbc-toolbar-label {
-  color: #4b0082;
+  color: #9d4edd;
   font-weight: bold;
 }
 
 .rbc-btn-group button {
   background-color: transparent;
   border: 1px solid #d1c4e9;
-  color: #6a1b9a;
+  color: #9d4edd;
   margin-right: 5px;
   padding: 5px 10px;
   border-radius: 5px;
@@ -41,7 +32,7 @@
 
 .rbc-btn-group button:hover {
   background-color: #ede7f6;
-  color: #4a148c;
+  color:  #7b2cbf;
 }
 
 /* Day slot styling */
@@ -51,7 +42,7 @@
 
 /* Event background color */
 .rbc-event {
-  background-color: #7e57c2 !important;
+  background-color: #9d4edd !important;
   border: none !important;
   color: #fff !important;
   font-size: 0.9rem;
@@ -66,24 +57,24 @@
 /* Time gutter and header */
 .rbc-time-gutter, .rbc-header {
   background-color: #f0f0f0;
-  color: #4a148c;
+  color: #9d4edd;
 }
 
 .calendar-title {
   font-family: 'Amaranth', sans-serif;
   font-size: 2rem;
   font-weight: bold;
-  color: #4a148c;
-  margin-top: 0px;
+  color: #9d4edd;
+  margin-top: -50px;
 }
 
 .purple-button {
-  background-color: #6d35b1 !important;
+  background-color: #9d4edd !important;
   border: none !important;
   color: #fff !important;
 }
 
 .purple-button:hover {
-  background-color: #5e35b1 !important;
+  background-color:  #7b2cbf !important;
   color: #fff !important;
 }

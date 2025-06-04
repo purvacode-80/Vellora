@@ -15,7 +15,9 @@ const ContactList = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [showExportModal, setShowExportModal] = useState(false);
   const [selectedContacts, setSelectedContacts] = useState([]);
-  const [selectedFields, setSelectedFields] = useState(["fullName", "email", "phone", "position", "company", "address", "notes", "status"]);
+  const [selectedFields, setSelectedFields] = useState([
+    "fullName", "email", "phone", "position", "company", "address", "notes", "status"
+  ]);
   const [exportFileName, setExportFileName] = useState("Contacts");
 
   const navigate = useNavigate();
@@ -62,17 +64,18 @@ const ContactList = () => {
 
   const filteredContacts = [...contacts]
     .filter((c) =>
-      c.fullName?.toLowerCase().startsWith(searchTerm.toLowerCase())
+      (c.fullName || "").toLowerCase().includes((searchTerm || "").toLowerCase())
     )
     .sort((a, b) =>
-      b.fullName?.toLowerCase().startsWith(searchTerm.toLowerCase()) -
-      a.fullName?.toLowerCase().startsWith(searchTerm.toLowerCase())
+      ((b.fullName || "").toLowerCase().startsWith((searchTerm || "").toLowerCase()) ? 1 : 0) -
+      ((a.fullName || "").toLowerCase().startsWith((searchTerm || "").toLowerCase()) ? 1 : 0)
     );
 
   const handleExportToExcel = () => {
     const hasSelected = selectedContacts.length > 0;
-    const exportData = (hasSelected ? filteredContacts.filter((contact) =>
-      selectedContacts.includes(contact._id)) : filteredContacts);
+    const exportData = hasSelected
+      ? filteredContacts.filter((contact) => selectedContacts.includes(contact._id))
+      : filteredContacts;
 
     if (exportData.length === 0) {
       toast.warn("No contacts to export.");
@@ -171,7 +174,6 @@ const ContactList = () => {
               <th style={{ backgroundColor: "#9b6ada", color: "white" }}>Action</th>
             </tr>
           </thead>
-
           <tbody>
             {filteredContacts.map((contact) => (
               <tr key={contact._id}>

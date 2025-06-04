@@ -76,7 +76,6 @@ const Home = () => {
                 <Card.Body>
                   <Card.Title className="card-title-custom">{item.title}</Card.Title>
                   <Card.Text className="card-text-custom">{item.description}</Card.Text>
-                  <Button className="button-purple">Learn More</Button>
                 </Card.Body>
               </Card>
             </Col>

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Amaranth:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
 :root {
   --background-light: #ebe9f1;     /* Soft lavender background */
   --sidebar-bg: #1e1b2e;            /* White sidebar for clean look */
@@ -35,13 +37,14 @@ main {
 }
 
 .board-title {
+  font-family: 'Amaranth', sans-serif;
   font-size: 2rem;
   color: var(--highlight);
   margin-bottom: 30px;
   text-align: center;
   font-weight: bold;
   letter-spacing: 1px;
-  margin-top: -80px;
+  margin-top: -70px;
 }
 
 /* Columns */

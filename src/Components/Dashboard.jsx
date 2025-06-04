@@ -33,19 +33,20 @@ import Taskboard from './CRMTaskBoard'
 import AddTask from './AddTask';
 import TaskDetails from './TaskDetailPage'
 import UserProfile from './UserProfile';
-// import GoogleCalendar from './GoogleCalendar';
 import Calendar from './Calendar';
 import TaskUpdateForm from './TaskUpdateForm';
 import LeadDetails from './LeadDetails';
 import LeadProfileEdit from './LeadProfileEdit';
 import MeetingHome from './MeetingHome';
+import Final_Dash from './Final_Dash';
+import EmailForm from './Emailform';
 // import other components as needed
 
 const NAVIGATION = [
   {
     title: 'Dashboards',
     icon: <DashboardIcon />,
-    segment : 'dashboard',
+    segment : 'dashboard/analytics',
   },
   {
     title: 'Clients',
@@ -162,7 +163,7 @@ function PageContent() {
   return (
     <Box sx={{ py: 4 }}>
       <Routes>
-        <Route path="/dashboard" element={<Typography>Welcome to the Dashboard</Typography>} />
+        <Route path="/analytics" element={<Final_Dash />} />
         <Route path="/contacts" element={<ContactList />} />
         <Route path="/contact/:id" element={<ContactDetails />} />
         <Route path="/contact/update/:id" element={<Contactprofileedit />} />
@@ -177,14 +178,14 @@ function PageContent() {
         <Route path="/lead/:id" element={<LeadDetails />} />
         <Route path="/leads/update/:id" element={<LeadProfileEdit />} />
         <Route path="/meeting" element={<MeetingHome />} />
-        <Route path="profile" element={<UserProfile show={true}/>} />
+        <Route path="/profile" element={<UserProfile show={true}/>} />
+        <Route path="/email-form/:email" element={<EmailForm />} />
 
         <Route path="*" element={<Typography>Page not found: {location.pathname}</Typography>} />
       </Routes>
     </Box>
   );
 }
-
 
 function DashboardLayoutBasic(props) {
   const { window } = props;
@@ -195,7 +196,7 @@ function DashboardLayoutBasic(props) {
       branding={{
         logo: <img src={logo} alt="Vellora logo" style={{ height: 32 }} />,
         title: 'Vellora',
-        homeUrl: '/dashboard',
+        // homeUrl: '/dashboard',
       }}
       theme={demoTheme}
       window={demoWindow}

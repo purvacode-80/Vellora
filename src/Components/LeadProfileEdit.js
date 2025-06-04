@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Form, Button, Container } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
+import { toast, ToastContainer } from "react-toastify";
 import "../css/Forms.css"; // 👈 Ensure your custom CSS is applied
 
 const LeadProfileEdit = () => {
@@ -10,7 +11,7 @@ const LeadProfileEdit = () => {
 
   const [lead, setLead] = useState({
     companyName: "",
-    contactPerson: "",
+    fullName: "",
     email: "",
     phone: "",
     industry: "",
@@ -54,16 +55,21 @@ const LeadProfileEdit = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      alert("Lead profile updated successfully!");
-      navigate("/dashboard/leads");
+      toast.success("Lead profile updated successfully!", {
+        onClose : () => { 
+          navigate("/dashboard/leads");
+        }
+      }
+      );
     } catch (error) {
       console.error("Error updating lead: ", error);
-      alert("Failed to update lead.");
+      toast.error("Failed to update lead profile. Please try again.");
     }
   };
 
   return (
     <Container className="p-4">
+      <ToastContainer autoClose={2000} />
       <h3 className="board-title text-center mb-4">✏️ Edit Lead Profile</h3>
       <Form className="card1" onSubmit={handleSubmit}>
         <div className="form-container1">
@@ -79,11 +85,11 @@ const LeadProfileEdit = () => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Contact Person</Form.Label>
+            <Form.Label>Full Name</Form.Label>
             <Form.Control
               type="text"
-              name="contactPerson"
-              value={lead.contactPerson}
+              name="fullName"
+              value={lead.fullName}
               onChange={handleInputChange}
             />
           </Form.Group>
@@ -110,12 +116,19 @@ const LeadProfileEdit = () => {
 
           <Form.Group className="mb-3">
             <Form.Label>Industry</Form.Label>
-            <Form.Control
-              type="text"
+            <Form.Select
               name="industry"
               value={lead.industry}
               onChange={handleInputChange}
-            />
+            >
+              <option> Technology </option>
+              <option> Healthcare </option>
+              <option> Finance </option>
+              <option> Retail </option>
+              <option> Manufacturing </option>
+              <option> Education </option>
+              <option> Real Estate </option>
+            </Form.Select>
           </Form.Group>
 
           <Form.Group className="mb-3">
@@ -142,10 +155,10 @@ const LeadProfileEdit = () => {
               value={lead.status}
               onChange={handleInputChange}
             >
-              <option value="New">New</option>
-              <option value="Contacted">Contacted</option>
-              <option value="Qualified">Qualified</option>
-              <option value="Lost">Lost</option>
+              <option>New</option>
+              <option>In Progress</option>
+              <option>Converted</option>
+              <option>Closed</option>
             </Form.Select>
           </Form.Group>
 
