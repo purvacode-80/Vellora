@@ -59,12 +59,12 @@ const AddLead = () => {
         notes: ""
       });
 
-      toast.success("✅ Lead added successfully!", {
+      toast.success("Lead added successfully!", {
         onClose: () => navigate("/dashboard/leads")
       });
     } catch (error) {
       console.error("Error adding lead:", error.response?.data || error.message);
-      toast.error("❌ Failed to add lead. Please try again.");
+      toast.error("Failed to add lead. Please try again.");
     }
   };
 

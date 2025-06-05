@@ -159,6 +159,7 @@ const demoTheme = createTheme({
 
 function PageContent() {
   const location = useLocation();
+  const recipients = location.state?.recipients || [];
 
   return (
     <Box sx={{ py: 4 }}>
@@ -179,7 +180,7 @@ function PageContent() {
         <Route path="/leads/update/:id" element={<LeadProfileEdit />} />
         <Route path="/meeting" element={<MeetingHome />} />
         <Route path="/profile" element={<UserProfile show={true}/>} />
-        <Route path="/email-form/:email" element={<EmailForm />} />
+        <Route path="/send-email" element={<EmailForm recipients={recipients}/>} />
 
         <Route path="*" element={<Typography>Page not found: {location.pathname}</Typography>} />
       </Routes>

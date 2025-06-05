@@ -19,6 +19,7 @@ const ContactList = () => {
     "fullName", "email", "phone", "position", "company", "address", "notes", "status"
   ]);
   const [exportFileName, setExportFileName] = useState("Contacts");
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const navigate = useNavigate();
 
@@ -110,12 +111,74 @@ const ContactList = () => {
     toast.success("Contacts exported successfully.");
   };
 
+  const handleDelete = async (contactIdsToDelete) => {
+    const token = localStorage.getItem('token');
+
+    if (contactIdsToDelete.length === 0) {
+      toast.warn("Please select at least one contact to delete.");
+      return;
+    }
+    
+    try {
+      const deletePromises = contactIdsToDelete.map(id =>
+        axios.delete(`http://localhost:8000/contact/delete-contact/${id}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+      );
+
+      const results = await Promise.allSettled(deletePromises);
+
+      const success = results.filter(r => r.status === 'fulfilled');
+      const failed = results.filter(r => r.status === 'rejected');
+
+      toast.success(`${success.length} contact(s) deleted successfully.`);
+      if (failed.length > 0) {
+        toast.warn(`${failed.length} contact(s) failed to delete.`);
+      }
+
+      setContacts(prev => prev.filter(contact => !contactIdsToDelete.includes(contact._id)));
+      setSelectedContacts([]);
+    } catch (err) {
+      console.error('❌ Bulk Delete error:', err);
+      toast.error('Bulk delete failed.');
+    } finally {
+      setShowDeleteModal(false);
+    }
+  };
+
+  const sendBulkMail = async (contactsIds) => {
+    if (contactsIds.length === 0) {
+      toast.warn("Please select at least one contact to send email.");
+      return;
+    }
+      //Extract emails array from selected contacts
+      const contacts = filteredContacts.filter((c) => contactsIds.includes(c._id));
+      const contactEmails = contacts.map((c) => c.email);
+      console.log("Sending bulk email to: ", contactEmails);
+      navigate("/dashboard/send-email", {
+        state: { recipients: contactEmails }
+      });
+  };
+
+  if (!contacts.length) {
+    return (
+      <Container className="text-center text-dark mt-5">
+        <h4>No contacts found. Please add some contacts.</h4>
+      </Container>
+    );
+  }
+
   return (
     <Container className="contact-list mt-4 position-relative">
       <ToastContainer autoClose={2000} />
       <div className="title-wrapper text-center position-relative mb-4" style={{ marginTop: "-120px" }}>
         <h2 className="contact-list-title m-0">📋 Contact List</h2>
-        <Button variant="success" className="mt-3" onClick={() => setShowExportModal(true)}> 📤 Export to Excel </Button>
+        <div className="d-flex justify-content-center align-items-center gap-3">
+          <Button variant="success" className="mt-3" onClick={() => setShowExportModal(true)}> 📤 Export to Excel </Button>
+          <Button variant="warning" className="mt-3" onClick={() => sendBulkMail(selectedContacts)}> 📧 Send Bulk Email </Button>
+          <Button variant="danger" className="mt-3" onClick={() => setShowDeleteModal(true)}> 🗑️ Delete Contacts </Button>
+          <Button variant="dark" className="mt-3" onClick={() => navigate("/dashboard/add-contact")}> ➕ Add New Contact </Button>
+        </div>
 
         <div className="search-toggle d-flex align-items-center position-absolute top-0 end-0">
           {searchVisible && (
@@ -257,6 +320,20 @@ const ContactList = () => {
           </Button>
           <Button variant="success" onClick={handleExportToExcel}>
             Download Excel
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Confirmation Modal */}
+      <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)} className="mt-5">
+        <Modal.Header closeButton>
+          <Modal.Title>⚠️ Confirm Deletion</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this contact?</Modal.Body>
+        <Modal.Footer>
+          <Button variant='danger' onClick={() => handleDelete(selectedContacts)}>Yes, Delete</Button>
+          <Button variant="secondary" onClick={() => setShowDeleteModal(false)}>
+            Cancel
           </Button>
         </Modal.Footer>
       </Modal>
