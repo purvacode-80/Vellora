@@ -7,10 +7,12 @@ export function isTokenValid() {
   try {
     const decoded = jwtDecode(token);
     const currentTime = Date.now() / 1000;
-    if(decoded.exp > currentTime) {
+    if (decoded.exp > currentTime) {
       return true;
+    } else {
+      localStorage.removeItem("token"); // optional
+      return false;
     }
-    return false;
   } catch (err) {
     return false;
   }

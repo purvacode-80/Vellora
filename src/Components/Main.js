@@ -1,4 +1,3 @@
-import React, { useEffect } from 'react';
 import { Container, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom'; // Import the useNavigate hook
 import '../css/Mainpage.css';
@@ -9,11 +8,10 @@ const Main = () => {
   const navigate = useNavigate();
 
   const handleGetStarted = () => { 
-    if (isTokenValid) {
-      navigate('/dashboard/analytics'); // Navigate to the dashboard if token exists
-    }
-    else {
-      navigate('/login'); // Navigate to the login page if token does not exist
+    if(!isTokenValid || !token) {
+      navigate('/login');
+    } else {
+      navigate('/dashboard/analytics');
     }
   };
   const handlelearnmore = () =>{

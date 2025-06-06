@@ -1,16 +1,22 @@
-// src/Components/Preloader.jsx
 import React, { useEffect } from 'react';
 import '../css/Preloader.css';
 import logo from '../Assets/logo-removebg-preview.png';
 
 function Preloader({ onDone }) {
   useEffect(() => {
-    const timer = setTimeout(() => {
-      onDone(); // callback to hide the preloader
-    }, 5000);
+  const timeout = setTimeout(() => onDone(), 5000); // fallback after 5s
+  window.addEventListener('load', handleLoad);
 
-    return () => clearTimeout(timer);
-  }, [onDone]);
+  function handleLoad() {
+    clearTimeout(timeout);
+    onDone();
+  }
+
+  return () => {
+    window.removeEventListener('load', handleLoad);
+    clearTimeout(timeout);
+  };
+}, [onDone]);
 
   return (
     <div className="preloader-container">

@@ -8,6 +8,7 @@ const Analytics_Dashboard = () => {
     summary: null,
     advanced: null,
     recentActivities: null,
+    emailCount: null,
     loading: true,
     error: null
   });
@@ -23,7 +24,7 @@ const Analytics_Dashboard = () => {
     setData(prev => ({ ...prev, loading: true, error: null }));
     
     try {
-      const [summaryRes, advancedRes, activitiesRes] = await Promise.all([
+      const [summaryRes, advancedRes, activitiesRes,countEmailRes] = await Promise.all([
         fetch(`${API_BASE}/analytics/summary?days=${timeFilter}`,
           {
             headers: {
@@ -44,23 +45,32 @@ const Analytics_Dashboard = () => {
               Authorization: `Bearer ${token}`
             }
           }
+        ),
+        fetch(`${API_BASE}/email/count-email?range=${timeFilter}`,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
+          }
         )
       ]);
 
-      if (!summaryRes.ok || !advancedRes.ok || !activitiesRes.ok) {
+      if (!summaryRes.ok || !advancedRes.ok || !activitiesRes.ok || !countEmailRes.ok) {
         throw new Error('Failed to fetch data from server');
       }
 
-      const [summary, advanced, recentActivities] = await Promise.all([
+      const [summary, advanced, recentActivities, emailCount] = await Promise.all([
         summaryRes.json(),
         advancedRes.json(),
-        activitiesRes.json()
+        activitiesRes.json(),
+        countEmailRes.json()
       ]);
 
       setData({
         summary,
         advanced,
         recentActivities,
+        emailCount,
         loading: false,
         error: null
       });
@@ -142,7 +152,7 @@ const Analytics_Dashboard = () => {
     );
   }
 
-  const { summary, advanced, recentActivities } = data;
+  const { summary, advanced, recentActivities, emailCount } = data;
 
   // Prepare chart data
   const monthlyTrends = advanced?.monthlyTrends?.map(item => ({
@@ -220,7 +230,7 @@ const Analytics_Dashboard = () => {
               <div>
                 <p className="big fw-medium mb-1">Total Leads</p>
                 <p className="h2 fw-bold mb-1">{summary?.leads?.total || 0}</p>
-                <p className="small mb-0">+{summary?.leads?.recent || 0} this period</p>
+                <p className="small mb-0">+{summary?.leads?.recent || 0} in this period</p>
               </div>
           </div>
 
@@ -242,9 +252,9 @@ const Analytics_Dashboard = () => {
                 <DollarSign className="w-6 h-6 text-warning" />
               </div>
               <div>
-                <p className="big fw-medium mb-1">Total Revenue</p>
-                <p className="h2 fw-bold mb-1">{formatCurrency(summary?.leads?.revenue || 0)}</p>
-                <p className="small mb-0">From converted leads</p>
+                <p className="big fw-medium mb-1">Total Email Sent</p>
+                <p className="h2 fw-bold mb-1">{emailCount.count || 0}</p>
+                <p className="small mb-0">In last {emailCount.range || 0} days</p>
               </div>
           </div>
 

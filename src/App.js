@@ -43,10 +43,7 @@ function App() {
       <Route path="/login" element={<Login />} />
       <Route path="/register" element={<Register />} />
       <Route path="/about" element={<Aboutus />} />
-      <Route path="/meeting/:room" element={<MeetingRoom />} />
       <Route path="/learnmore" element={<Learnmore />} />
-
-
 
       {/* Protected Routes */}
       <Route
