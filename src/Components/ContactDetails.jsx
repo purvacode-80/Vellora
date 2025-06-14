@@ -62,10 +62,10 @@ const ContactDetails = () => {
         <p><strong>Name:</strong> {contact.fullName}</p>
         <p><strong>Email:</strong> {contact.email}</p>
         <p><strong>Phone:</strong> {contact.phone}</p>
-        <p><strong>Position:</strong> {contact.position}</p>
-        <p><strong>Company:</strong> {contact.company}</p>
-        <p><strong>Address:</strong> {contact.address}</p>
-        <p><strong>Notes:</strong> {contact.notes}</p>
+        {contact.position && <p><strong>Position:</strong> {contact.position}</p>}
+        {contact.company && <p><strong>Company:</strong> {contact.company}</p>}
+        {contact.address && <p><strong>Address:</strong> {contact.address}</p>}
+        {contact.notes && <p><strong>Notes:</strong> {contact.notes}</p>}
         <p><strong>Status:</strong> {contact.status}</p>
 
         <div className="d-flex gap-3 mt-4">
@@ -85,9 +85,17 @@ const ContactDetails = () => {
             ← Back
           </Button>
           <Button
+            variant="success"
+            href={`tel:${contact.phone}`}
+          >
+            📞 Call
+          </Button>
+          <Button
             variant="warning"
             onClick={() => {
-              navigate(`/dashboard/email-form/${contact.email}`);
+              navigate("/dashboard/send-email", {
+                state: { recipients: [contact.email] }
+              });
             }}
           >
             Send Email

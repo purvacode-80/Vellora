@@ -22,6 +22,7 @@ import EventIcon from '@mui/icons-material/Event';
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
 import VideoCallIcon from '@mui/icons-material/VideoCall';
 import logo from '../Assets/logo-removebg-preview.png';
+import ChatIcon from '@mui/icons-material/Chat';
 
 import ContactList from './ContactList';
 import AddContact from './AddContact';
@@ -40,6 +41,7 @@ import LeadProfileEdit from './LeadProfileEdit';
 import MeetingHome from './MeetingHome';
 import Final_Dash from './Final_Dash';
 import EmailForm from './Emailform';
+import ChatBot from './ChatBot'
 // import other components as needed
 
 const NAVIGATION = [
@@ -81,6 +83,11 @@ const NAVIGATION = [
     title: 'Meeting',
     icon: <VideoCallIcon />,
     segment: 'dashboard/meeting',
+  },
+  {
+    title: 'Chat with Bot',
+    icon: <ChatIcon />,
+    segment: 'dashboard/chatbot',
   },
   {
     title: 'Profile',
@@ -159,6 +166,7 @@ const demoTheme = createTheme({
 
 function PageContent() {
   const location = useLocation();
+  const recipients = location.state?.recipients || [];
 
   return (
     <Box sx={{ py: 4 }}>
@@ -179,7 +187,8 @@ function PageContent() {
         <Route path="/leads/update/:id" element={<LeadProfileEdit />} />
         <Route path="/meeting" element={<MeetingHome />} />
         <Route path="/profile" element={<UserProfile show={true}/>} />
-        <Route path="/email-form/:email" element={<EmailForm />} />
+        <Route path="/send-email" element={<EmailForm recipients={recipients}/>} />
+        <Route path="/chatbot" element={<ChatBot />} />
 
         <Route path="*" element={<Typography>Page not found: {location.pathname}</Typography>} />
       </Routes>

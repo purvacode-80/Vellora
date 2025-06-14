@@ -29,6 +29,13 @@ const LeadList = () => {
     "notes",
   ]);
   const [exportFileName, setExportFileName] = useState("Leads");
+  const [modal, setModal] = useState({
+    show: false,
+    functionality: '',
+    action: null,
+    title: '',
+    message: ''
+  });
 
   const navigate = useNavigate();
 
@@ -36,7 +43,7 @@ const LeadList = () => {
     const fetchLeads = async () => {
       const token = localStorage.getItem("token");
       if (!token) {
-        console.error("User not authenticated");
+        console.error("User  not authenticated");
         return;
       }
 
@@ -142,6 +149,139 @@ const LeadList = () => {
     toast.success("Leads exported successfully.");
   };
 
+  const confirmDelete = (leadsToDelete) => {
+    setModal({
+      show: true,
+      functionality: 'delete',
+      title: '⚠️ Confirm Deletion',
+      message: 'Are you sure you want to delete this lead?',
+      action: () => handleDelete(leadsToDelete)
+    });
+  };
+
+  const handleDelete = async (leadIdsToDelete) => {
+    const token = localStorage.getItem('token');
+
+    if (leadIdsToDelete.length === 0) {
+      toast.warn("Please select at least one lead to delete.");
+      return;
+    }
+    
+    try {
+      const deletePromises = leadIdsToDelete.map(id =>
+        axios.delete(`http://localhost:8000/lead/deletelead/${id}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        })
+      );
+
+      const results = await Promise.allSettled(deletePromises);
+
+      const success = results.filter(r => r.status === 'fulfilled');
+      const failed = results.filter(r => r.status === 'rejected');
+
+      toast.success(`${success.length} lead(s) deleted successfully.`);
+      if (failed.length > 0) {
+        toast.warn(`${failed.length} lead(s) failed to delete.`);
+      }
+
+      setLeads(prev => prev.filter(lead => !leadIdsToDelete.includes(lead._id)));
+      setSelectedLeads([]);
+    } catch (err) {
+      console.error('❌ Bulk Delete error:', err);
+      toast.error('Bulk delete failed.');
+    } finally {
+      closeModal();
+    }
+  };
+
+  const confirmConvert = (leadsToConvert) => {
+    setModal({
+      show: true,
+      functionality: 'convert',
+      title: '🔁 Convert Lead to Contact',
+      message: 'Do you want to convert this lead into a contact?',
+      action: () => handleConvertLead(leadsToConvert)
+    });
+  };
+
+  const handleConvertLead = async (leadIdsToConvert) => {
+    const token = localStorage.getItem('token');
+
+    if (leadIdsToConvert.length === 0) {
+      toast.warn("Please select at least one lead to convert.");
+      return;
+    }
+
+    const leadsToConvert = leads.filter(lead => leadIdsToConvert.includes(lead._id));
+
+    const convertPromises = leadsToConvert.map(async (lead) => {
+      const contactData = {
+        fullName: lead.fullName,
+        email: lead.email,
+        phone: lead.phone,
+        company: lead.companyName,
+      };
+
+      try {
+        await axios.post("http://localhost:8000/contact/add-converted-contact", contactData, {
+          headers: { Authorization: token ? `Bearer ${token}` : undefined }
+        });
+
+        await axios.get(`http://localhost:8000/lead/convert-lead/${lead._id}`, {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+
+        return { status: 'fulfilled', id: lead._id };
+      } catch (error) {
+        console.error(`❌ Failed to convert lead ${lead._id}:`, error.message);
+        return { status: 'rejected', id: lead._id };
+      }
+    }); 
+
+    const results = await Promise.allSettled(convertPromises);
+
+    const success = results.filter(r => r.status === 'fulfilled');
+    const failed = results.filter(r => r.status === 'rejected');
+
+    toast.success(`${success.length} lead(s) converted.`);
+    if (failed.length > 0) toast.warn(`${failed.length} failed to convert.`);
+
+    closeModal();
+    setSelectedLeads([]);
+  };
+
+  const closeModal = () => {
+    setModal({
+      show: false,
+      functionality: '',
+      action: null,
+      title: '',
+      message: ''
+    });
+  };
+
+  const sendBulkMail = async (leadsIds) => {
+    if (leadsIds.length === 0) {
+      toast.warn("Please select at least one lead to send email.");
+      return;
+    }
+    // Extract emails array from selected leads
+    const leads = filteredLeads.filter((c) => leadsIds.includes(c._id));
+    const leadEmails = leads.map((c) => c.email);
+    console.log("Sending bulk email to: ", leadEmails);
+    navigate("/dashboard/send-email", {
+      state: { recipients: leadEmails }
+    });
+  };
+
+  if (!leads.length) {
+    return (
+      <Container className="text-center text-dark mt-5">
+        <h4>No leads found. Please add some leads.</h4>
+      </Container>
+    );
+  }
+
   return (
     <Container className="lead-list position-relative">
       <ToastContainer autoClose={2000} />
@@ -151,6 +291,7 @@ const LeadList = () => {
         style={{ marginTop: "-100px" }}
       >
         <h2 className="board-title m-0">📋 Lead List</h2>
+
         <Button
           variant="success"
           className="mt-3"
@@ -158,6 +299,13 @@ const LeadList = () => {
         >
           📤 Export to Excel
         </Button>
+
+        <div className="d-flex justify-content-center align-items-center gap-3">
+          <Button variant="warning" className="mt-3" onClick={() => sendBulkMail(selectedLeads)}> 📧 Send Bulk Email </Button>
+          <Button variant="danger" className="mt-3" onClick={() => confirmDelete(selectedLeads)}> 🗑️ Delete Leads </Button>
+          <Button variant="primary" className="mt-3" onClick={() => confirmConvert(selectedLeads)}> 🔁 Convert to Contact </Button>
+          <Button variant="dark" className="mt-3" onClick={() => navigate("/dashboard/add-lead")}> ➕ Add New Lead </Button>
+        </div>
 
         <div className="search-toggle d-flex align-items-center position-absolute top-0 end-0">
           {searchVisible && (
@@ -340,6 +488,27 @@ const LeadList = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+
+      {/* Confirmation Modal */}
+      <Modal show={modal.show} onHide={() => setModal({ ...modal, show: false })} className="mt-5">
+        <Modal.Header closeButton>
+          <Modal.Title>{modal.title}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{modal.message}</Modal.Body>
+        <Modal.Footer>
+          <Button variant={modal.functionality === 'delete' ? 'danger' : 'primary'} 
+            onClick={() => {
+              modal.action?.(); // call the intended function
+              setModal({ ...modal, show: false }); // close modal
+            }}>
+            { modal.functionality === 'delete' ? 'Yes, Delete' : 'Yes, Convert' }
+          </Button>
+          <Button variant="secondary" onClick={() => setModal({ ...modal, show: false })}>
+            Cancel
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
     </Container>
   );
 };
