@@ -32,23 +32,23 @@ const Main = () => {
           <Button variant='get' onClick={handleGetStarted}>Get Started</Button> {/* Add the onClick event */}
         </div>
 
-        <div className="company-section">
-          <p className="company-text">Used and loved by people at brilliant companies</p>
-          <div className="marquee-wrapper">
-            <div className="marquee">
-              <span>BARCLAYS</span>
-              <span>HOPIN</span>
-              <span>AFTERPAY</span>
-              <span>NOVARTIS</span>
-              <span>BNP PARIBAS</span>
-              <span>PAYPAL</span>
-              <span>AMAZON</span>
-              <span>INFOSYS</span>
-              <span>BARCLAYS</span>
-              <span>HOPIN</span>
-            </div>
-          </div>
-        </div>
+       <div className="company-section">
+  <p className="company-text">Why Teams Love Our CRM</p>
+  <div className="marquee-wrapper">
+    <div className="marquee">
+       <span>⚡ Fast & Easy</span>
+      <span>📋 Task Manager</span>
+      <span>📞 Contact Hub</span>
+      <span>🔔 Instant Alerts</span>
+      <span>📊 Smart Reports</span>
+      <span>🤖 AI Chatbot</span>
+      <span>✉️ Email Writer</span>
+      <span>🧰 All-in-One Tools</span>
+      <span>📁 Export to Excel</span>
+    </div>
+  </div>
+</div>
+
       </Container>
     </div>
   );

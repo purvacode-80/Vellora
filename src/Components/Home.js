@@ -3,17 +3,18 @@ import React, { useState, useEffect } from 'react';
 import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import { FaUserFriends, FaComments, FaChartLine  } from 'react-icons/fa';
 import '../css/Homecss.css';
+import dashboardImage from '../Assets/dashboard.png';
 
 const offerings = [
   {
     icon: <FaUserFriends size={35} style={{color:"#9d4edd"}} />,
-    title: 'User-friendly platform to learn more',
-    description: 'Packed with modern tech, classroom learning which used to be done conventionally.',
+    title: 'User-Friendly Platform to Manage and Grow',
+    description: 'Packed with modern features and intuitive design to streamline your business workflow effortlessly.',
   },
   {
     icon: <FaComments size={35} style={{color:"#9d4edd"}}/>,
-    title: 'Seamless Communication Tools',
-    description: 'Stay connected with your team and clients with powerful and easy-to-use tools.',
+    title: 'Smart Lead & Contact Management',
+    description: 'Effortlessly track leads, manage contacts, and build strong client relationships with intuitive, powerful tools.',
   },
   {
     icon: <FaChartLine size={35} style={{color:"#9d4edd"}}/>,
@@ -38,9 +39,9 @@ const featureData = [
   {
     title: 'Dashboard Overview',
     description: 'Our dashboard offers seamless integration of features tailored to your business needs.',
-    image: 'https://i.ytimg.com/vi/6PvqAt590-0/hq720.jpg?sqp=-oaymwE7CK4FEIIDSFryq4qpAy0IARUAAAAAGAElAADIQj0AgKJD8AEB-AHUCoACgAaKAgwIABABGDAgKSh_MA8=&rs=AOn4CLCvL7EamCfFJKHi3ikxNoBjT3cIQQ',
+    image: dashboardImage,
     imageLeft: false,
-    imageBelow: true,
+    
   },
 ];
 
@@ -109,11 +110,7 @@ const Home = () => {
   <div className="feature-content">
     <h3>{feature.title}</h3>
     <p>{feature.description}</p>
-     <div className="d-flex justify-content-center mt-3">
-    <Button variant="primary" className="explore-btn mt-3">
-      Explore
-    </Button>
-    </div>
+     
   </div>
 </Col><br/>
       {!feature.imageLeft && (
