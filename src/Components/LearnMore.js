@@ -1,5 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+
+
 import '../css/LearnMore.css';
 import Navbar from '../Components/Navbar.js'
 import  Footer from '../Components/footer.js';
@@ -7,6 +9,24 @@ import heroImage from '../Assets/testimonials1.jpg';
 import crmIcon1 from '../Assets/customer.webp';
 import crmIcon2 from '../Assets/data.png';
 import crmIcon3 from '../Assets/testimonials5.jpg';
+import site1 from '../Assets/ss1.png';
+import site2 from '../Assets/ss2.png';
+import site3 from '../Assets/ss3.png';
+import site4 from '../Assets/ss4.png';
+import site5 from '../Assets/ss5.png';
+import site6 from '../Assets/ss6.png';
+import site7 from '../Assets/ss7.png';
+import site8 from '../Assets/ss8.png';
+import site9 from '../Assets/ss9.png';
+import site10 from '../Assets/ss10.png';
+import site11 from '../Assets/ss11.png';
+import site12 from '../Assets/ss12.png';
+import site13 from '../Assets/ss13.png';
+import site14 from '../Assets/ss14.png';
+import site15 from '../Assets/ss17.png';
+import site16 from '../Assets/ss16.png';
+
+
 import {
   FaUsers,
   FaProjectDiagram,
@@ -38,6 +58,13 @@ const LearnMoreHero = () => {
     { icon: <FaHandshake />, title: 'Convert to Clients', desc: 'Move deals through your pipeline.' },
     { icon: <FaChartBar />, title: 'Monitor Performance', desc: 'Use dashboards to get performance insights.' }
   ];
+  const images = [
+  site1, site2, site3, site4,
+  site5, site6, site7, site8,
+  site9, site10, site11, site12,site13,site14,site15,site16,
+];
+
+
     
   const navigate = useNavigate();
 
@@ -121,6 +148,17 @@ const LearnMoreHero = () => {
         </div>
       </div>
     </section>
+     <section className="showcase-section">
+      <h2 className="showcase-title">Our Website Gallery</h2>
+      <div className="showcase-grid">
+        {images.map((img, index) => (
+          <div key={index} className="showcase-card">
+            <img src={img} alt={`Website Screenshot ${index + 1}`} />
+          </div>
+        ))}
+      </div>
+    </section>
+    
        <Footer/>
     </>
   );
