@@ -173,11 +173,11 @@ const ContactList = () => {
       <ToastContainer autoClose={2000} />
       <div className="title-wrapper text-center position-relative mb-4" style={{ marginTop: "-120px" }}>
         <h2 className="contact-list-title m-0">📋 Contact List</h2>
-        <div className="d-flex justify-content-center align-items-center gap-3">
+        <div className="btn-grid">
           <Button variant="success" className="mt-3" onClick={() => setShowExportModal(true)}> 📤 Export to Excel </Button>
-          <Button variant="warning" className="mt-3" onClick={() => sendBulkMail(selectedContacts)}> 📧 Send Bulk Email </Button>
+          <Button variant="warning" className="mt-3" onClick={() => sendBulkMail(selectedContacts)}> 📧 Send Email </Button>
           <Button variant="danger" className="mt-3" onClick={() => setShowDeleteModal(true)}> 🗑️ Delete Contacts </Button>
-          <Button variant="dark" className="mt-3" onClick={() => navigate("/dashboard/add-contact")}> ➕ Add New Contact </Button>
+          <Button variant="dark" className="mt-3" onClick={() => navigate("/dashboard/add-contact")}> ➕ Add Contact </Button>
         </div>
 
         <div className="search-toggle d-flex align-items-center position-absolute top-0 end-0">

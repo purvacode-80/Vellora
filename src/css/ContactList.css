@@ -34,7 +34,14 @@ body {
   font-weight: 600;
   color: var(--highlight);
   margin-top: -110px;
-  margin-bottom: 20px;
+}
+
+.btn-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 /* Table Wrapper */
@@ -89,7 +96,6 @@ body {
   background-color: var(--highlight-hover);
   transform: scale(1.05);
 }
-
 
 .title-wrapper {
   text-align: center;
@@ -175,4 +181,18 @@ body {
 
 .form-check-input {
   background-color: var(--highlight) !important;
+}
+
+@media (max-width: 768px) {
+  .btn-grid {
+    flex-wrap: wrap;
+    gap: 10px !important;
+  }
+
+  .btn-grid .btn {
+    flex: 1 1 calc(50% - 1rem);
+    font-size: 0.9rem !important;
+    padding: 4px 6px !important;
+    margin-top: 0px !important;
+  }
 }

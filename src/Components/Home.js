@@ -1,9 +1,13 @@
-// Home.jsx
-import React, { useState, useEffect } from 'react';
-import { Container, Row, Col, Card, Button } from 'react-bootstrap';
+import { Container, Row, Col, Card } from 'react-bootstrap';
 import { FaUserFriends, FaComments, FaChartLine  } from 'react-icons/fa';
 import '../css/Homecss.css';
-import dashboardImage from '../Assets/dashboard.png';
+import img2 from '../Assets/ss2.png';
+import img9 from '../Assets/ss9.png';
+import img11 from '../Assets/ss11.png';
+import img12 from '../Assets/ss12.png';
+import img14 from '../Assets/ss14.png';
+import img16 from '../Assets/ss16.png';
+import img18 from '../Assets/ss18.png';
 
 const offerings = [
   {
@@ -25,37 +29,50 @@ const offerings = [
 
 const featureData = [
   {
-    title: 'Live chat functionality includes two different room categories',
-    description: 'The live chat functionality on our platform is thoughtfully designed to provide users with versatile communication options.',
-    image: 'https://i.pinimg.com/736x/63/be/9c/63be9c11f61e40100fd1c5cae3788b70.jpg',
+    title: 'Easy Contact & Lead Management System',
+    description: 'Seamlessly view, update, delete, convert, and organize your valuable connections to optimize your workflow and enhance your success.',
+    image: img9,
     imageLeft: false,
   },
   {
-    title: 'Easily understand how your leads are distributed across different stages',
-    description: 'The live chat functionality on our platform is thoughtfully designed to provide users with versatile communication options.',
-    image: 'https://www.cloudways.com/blog/wp-content/uploads/B2B-Lead-Generation.jpg',
+    title: 'Dynamic Analytics Dashboard',
+    description: 'Visualize real-time insights about leads, contacts, emails, and user activity across weekly, monthly, or yearly intervals.',
+    image: img2,
     imageLeft: true,
   },
   {
-    title: 'Dashboard Overview',
-    description: 'Our dashboard offers seamless integration of features tailored to your business needs.',
-    image: dashboardImage,
+    title: 'Conversational CRM Bot',
+    description: 'Ask anything — the AI chatbot reads your CRM data to answer, guide, and act like a smart virtual assistant.',
+    image: img16,
     imageLeft: false,
-    
+  },
+  {
+    title: 'Bulk Email Campaigns',
+    description: 'Select multiple leads or contacts and send personalized emails in one go — with tracking and AI content generation.',
+    image: img18,
+    imageLeft: true,
+  },
+  {
+    title: 'Calendar Integration',
+    description: 'Easily add tasks, reminders about meetings, follow-ups, and task deadlines to a unified calendar and add notifications to keep you reminded of things.',
+    image: img11,
+    imageLeft: false,
+  },
+  {
+    title: 'Interactive Kanban Task Board',
+    description: 'Organize and visualize your tasks across intuitive categories like Not Started, In Progress, Deferred, and Completed. With drag-and-drop functionality, effortlessly update task status in real time',
+    image: img12,
+    imageLeft: true,
+  },
+  {
+    title: 'Integrated Meeting Scheduler',
+    description: 'Plan and manage meetings directly within your CRM. Schedule one-on-one or team meetings with contacts or leads, assign agendas.',
+    image: img14,
+    imageLeft: false,
   },
 ];
 
 const Home = () => {
-  const [theme, setTheme] = useState('light');
-
-  const toggleTheme = () => {
-    setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
-  };
-
-  useEffect(() => {
-    document.body.classList.remove('theme-light', 'theme-dark');
-    document.body.classList.add(`theme-${theme}`);
-  }, [theme]);
 
   return (
     <div className="home-container">
@@ -65,9 +82,6 @@ const Home = () => {
           <p className="section-desc">
             From foundational courses that lay the groundwork for your educational journey to advanced specializations.
           </p>
-          {/* <Button variant="outline-secondary" onClick={toggleTheme}>
-            Switch to {theme === "light" ? "Dark" : "Light"} Mode
-          </Button> */}
         </div>
         <Row>
           {offerings.map((item, index) => (
@@ -109,8 +123,7 @@ const Home = () => {
       <Col md={6}>
   <div className="feature-content">
     <h3>{feature.title}</h3>
-    <p>{feature.description}</p>
-     
+    <p>{feature.description}</p> 
   </div>
 </Col><br/>
       {!feature.imageLeft && (
@@ -126,8 +139,6 @@ const Home = () => {
   </div>
 ))}
       </Container>
-
-      
       </div>
     
   );

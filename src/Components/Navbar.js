@@ -5,10 +5,11 @@ import Image from 'react-bootstrap/Image';
 import { Link } from 'react-router-dom';  // Import Link here
 import logo from '../Assets/logo-removebg-preview.png';
 import '../App.css';
+import '../css/Navbar.css';
 
 function CustomNavbar() {
   return (
-    <Navbar expand="lg" className="sticky-top" style={{ backgroundColor: "#3b3b3b", height: "60px", zIndex: 1030 }}>
+    <Navbar expand="lg" className="sticky-top navbar">
       <Container className="d-flex align-items-center">
         <Image
           src={logo}
@@ -17,12 +18,11 @@ function CustomNavbar() {
           width="60"
           className="me-2"
           rounded
-          style={{ marginLeft: "-80px" }}
         />
 
         <Link 
           to="/" 
-          className="gradient-text" style={{ marginRight: "auto", textDecoration: 'none' }}
+          className="gradient-text link"
         >
           Vellora
         </Link>
@@ -30,7 +30,7 @@ function CustomNavbar() {
         {/* Add About Us Link */}
         <Link 
           to="/about" 
-          style={{ color: 'white', textDecoration: 'none',marginRight:"-60px", fontWeight: 'bold',fontSize:"20px" }}
+          className='link about-us'
         >
           About Us
         </Link>

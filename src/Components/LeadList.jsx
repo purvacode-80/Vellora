@@ -292,19 +292,12 @@ const LeadList = () => {
       >
         <h2 className="board-title m-0">📋 Lead List</h2>
 
-        <Button
-          variant="success"
-          className="mt-3"
-          onClick={() => setShowExportModal(true)}
-        >
-          📤 Export to Excel
-        </Button>
-
-        <div className="d-flex justify-content-center align-items-center gap-3">
-          <Button variant="warning" className="mt-3" onClick={() => sendBulkMail(selectedLeads)}> 📧 Send Bulk Email </Button>
+        <div className="btn-grid">
+          <Button variant="success" className="mt-3" onClick={() => setShowExportModal(true)}> 📤 Export to Excel </Button>
+          <Button variant="warning" className="mt-3" onClick={() => sendBulkMail(selectedLeads)}> 📧 Send Email </Button>
           <Button variant="danger" className="mt-3" onClick={() => confirmDelete(selectedLeads)}> 🗑️ Delete Leads </Button>
+          <Button variant="dark" className="mt-3" onClick={() => navigate("/dashboard/add-lead")}> ➕ Add Lead </Button>
           <Button variant="primary" className="mt-3" onClick={() => confirmConvert(selectedLeads)}> 🔁 Convert to Contact </Button>
-          <Button variant="dark" className="mt-3" onClick={() => navigate("/dashboard/add-lead")}> ➕ Add New Lead </Button>
         </div>
 
         <div className="search-toggle d-flex align-items-center position-absolute top-0 end-0">

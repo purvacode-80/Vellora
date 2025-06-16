@@ -125,7 +125,7 @@
   .footer-grid {
     flex-direction: column;
     text-align: left;
-    gap: var(--footer-gap);
+    /* gap: var(--footer-gap); */
   }
 
   .footer-logo {
@@ -135,5 +135,8 @@
   .footer-description,
   .footer-col p {
     font-size: var(--footer-font-sm);
+  }
+  .footer-col {
+    flex: 1 1 100%;
   }
 }

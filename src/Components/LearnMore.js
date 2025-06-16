@@ -89,7 +89,6 @@ const LearnMoreHero = () => {
               <button className="learnmore-btn-primary" onClick={handleLoginRedirect}>
                 Start Free Trial
               </button>
-              <button className="learnmore-btn-secondary">Request Demo</button>
             </div>
           </div>
           <div className="learnmore-hero-image">
@@ -142,7 +141,6 @@ const LearnMoreHero = () => {
               <div className="howitworks-icon">{step.icon}</div>
               <h4 className="howitworks-step-title">{step.title}</h4>
               <p className="howitworks-step-desc">{step.desc}</p>
-              {index < steps.length - 1 && <div className="howitworks-arrow">→</div>}
             </div>
           ))}
         </div>
