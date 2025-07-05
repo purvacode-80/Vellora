@@ -2,15 +2,16 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { Form, Button, Container } from "react-bootstrap";
 import { useParams, useNavigate } from "react-router-dom";
-import {toast, ToastContainer} from "react-toastify";
-import "../css/Forms.css"; // Make sure this file contains your custom styles
+import { toast, ToastContainer } from "react-toastify";
+import RequiredLabel from "./RequiredLabel";
+import "../css/Forms.css";
 
 const ContactProfileEdit = () => {
   const { id } = useParams();
   const navigate = useNavigate();
 
   const [contact, setContact] = useState({
-    name: "",
+    fullName: "",
     email: "",
     phone: "",
     company: "",
@@ -18,7 +19,7 @@ const ContactProfileEdit = () => {
     address: "",
     notes: "",
     linkedin: "",
-    status: "",
+    status: "Active",
   });
 
   useEffect(() => {
@@ -32,6 +33,7 @@ const ContactProfileEdit = () => {
         setContact(response.data);
       } catch (error) {
         console.error("Error fetching contact: ", error);
+        toast.error("Failed to load contact.");
       }
     };
     fetchContact();
@@ -53,11 +55,12 @@ const ContactProfileEdit = () => {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      toast.success("Contact updated successfully..!");
-      navigate("/dashboard/contacts");
+      toast.success("Contact updated successfully!", {
+        onClose: () => navigate("/dashboard/contacts"),
+      });
     } catch (error) {
       console.error("Error updating profile: ", error);
-      toast.error("Failed to update profile.");
+      toast.error("Failed to update contact.");
     }
   };
 
@@ -65,13 +68,15 @@ const ContactProfileEdit = () => {
     <Container className="p-4">
       <ToastContainer autoClose={2000} />
       <h3 className="board-title text-center mb-4">✏️ Edit Contact Profile</h3>
+
       <Form className="card1" onSubmit={handleSubmit}>
         <div className="form-container1">
+
           <Form.Group className="mb-3">
-            <Form.Label>Name</Form.Label>
+            <Form.Label><RequiredLabel label="Full Name" required /></Form.Label>
             <Form.Control
               type="text"
-              name="name"
+              name="fullName"
               value={contact.fullName}
               onChange={handleInputChange}
               required
@@ -79,7 +84,7 @@ const ContactProfileEdit = () => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Email</Form.Label>
+            <Form.Label><RequiredLabel label="Email" required /></Form.Label>
             <Form.Control
               type="email"
               name="email"
@@ -90,9 +95,9 @@ const ContactProfileEdit = () => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Phone</Form.Label>
+            <Form.Label><RequiredLabel label="Phone" required /></Form.Label>
             <Form.Control
-              type="text"
+              type="tel"
               name="phone"
               value={contact.phone}
               onChange={handleInputChange}
@@ -123,7 +128,8 @@ const ContactProfileEdit = () => {
           <Form.Group className="mb-3">
             <Form.Label>Address</Form.Label>
             <Form.Control
-              type="text"
+              as="textarea"
+              rows={2}
               name="address"
               value={contact.address}
               onChange={handleInputChange}
@@ -131,10 +137,21 @@ const ContactProfileEdit = () => {
           </Form.Group>
 
           <Form.Group className="mb-3">
+            <Form.Label>LinkedIn</Form.Label>
+            <Form.Control
+              type="url"
+              name="linkedin"
+              value={contact.linkedin}
+              onChange={handleInputChange}
+              placeholder="https://linkedin.com/in/..."
+            />
+          </Form.Group>
+
+          <Form.Group className="mb-3">
             <Form.Label>Notes</Form.Label>
             <Form.Control
               as="textarea"
-              rows={4}
+              rows={3}
               name="notes"
               value={contact.notes}
               onChange={handleInputChange}
@@ -148,16 +165,26 @@ const ContactProfileEdit = () => {
               value={contact.status}
               onChange={handleInputChange}
             >
-              <option value="Active">Active</option>
-              <option value="Inactive">Inactive</option>
-              <option value="Prospect">Prospect</option>
-              <option value="Closed">Closed</option>
+              <option>Active</option>
+              <option>Inactive</option>
+              <option>Prospect</option>
+              <option>Closed</option>
             </Form.Select>
           </Form.Group>
 
-          <Button className="update" type="submit">
-            💾 Update Contact
-          </Button>
+          <div className="button-group-row mt-4">
+            <Button className="button-save" type="submit">
+              💾 Update Contact
+            </Button>
+            <Button
+              className="button-back ms-3"
+              variant="secondary"
+              type="button"
+              onClick={() => navigate(-1)}
+            >
+              🔙 Cancel
+            </Button>
+          </div>
         </div>
       </Form>
     </Container>

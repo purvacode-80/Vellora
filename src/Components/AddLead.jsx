@@ -4,6 +4,7 @@ import { Form, Button, Container } from "react-bootstrap";
 import "../css/Forms.css";
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import RequiredLabel from "./RequiredLabel";
 
 const AddLead = () => {
   const navigate = useNavigate();
@@ -91,7 +92,7 @@ const AddLead = () => {
       <Form className="card1" onSubmit={handleSubmit}>
         <div className="form-container1">
           <Form.Group className="mb-3">
-            <Form.Label>Company Name</Form.Label>
+            <RequiredLabel label="Company Name" required />
             <Form.Control
               type="text"
               name="companyName"
@@ -103,7 +104,7 @@ const AddLead = () => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Full Name</Form.Label>
+            <RequiredLabel label="Full Name" required />
             <Form.Control
               type="text"
               name="fullName"
@@ -115,7 +116,7 @@ const AddLead = () => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Email</Form.Label>
+            <RequiredLabel label="Email" required />
             <Form.Control
               type="email"
               name="email"
@@ -127,7 +128,7 @@ const AddLead = () => {
           </Form.Group>
 
           <Form.Group className="mb-3">
-            <Form.Label>Phone</Form.Label>
+            <RequiredLabel label="Phone" required />
             <Form.Control
               type="tel"
               name="phone"

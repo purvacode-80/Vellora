@@ -4,6 +4,7 @@ import { Form, Button, Container } from "react-bootstrap";
 import '../css/Forms.css'; 
 import { toast, ToastContainer } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import RequiredLabel from "./RequiredLabel";
 
 const AddContact = () => {
   const [form, setForm] = useState({
@@ -142,33 +143,33 @@ const AddContact = () => {
         )}
 
         <Form.Group className="mb-3">
-          <Form.Label>Full Name</Form.Label>
-          <Form.Control type="text" name="fullName" value={form.fullName} onChange={handleChange} placeholder="Full Name" required/>
+          <RequiredLabel label="Full Name" required />
+          <Form.Control type="text" name="fullName" value={form.fullName} onChange={handleChange} placeholder="Full Name" required />
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Email</Form.Label>
-          <Form.Control type="email" name="email" value={form.email} onChange={handleChange} placeholder="Email" required/>
+          <RequiredLabel label="Email" required />
+          <Form.Control type="email" name="email" value={form.email} onChange={handleChange} placeholder="Email" required />
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Phone</Form.Label>
-          <Form.Control type="tel" name="phone" value={form.phone} onChange={handleChange} placeholder="Phone Number" required/>
+          <RequiredLabel label="Phone" required />
+          <Form.Control type="tel" name="phone" value={form.phone} onChange={handleChange} placeholder="Phone Number" required />
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Company</Form.Label>
-          <Form.Control type="text" name="company" value={form.company} onChange={handleChange} placeholder="Company Name" required/>
+          <RequiredLabel label="Company" required />
+          <Form.Control type="text" name="company" value={form.company} onChange={handleChange} placeholder="Company Name" required />
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Position</Form.Label>
-          <Form.Control type="text" name="position" value={form.position} onChange={handleChange} placeholder="Job Title" required/>
+          <RequiredLabel label="Position" required />
+          <Form.Control type="text" name="position" value={form.position} onChange={handleChange} placeholder="Job Title" required />
         </Form.Group>
 
         <Form.Group className="mb-3">
-          <Form.Label>Address</Form.Label>
-          <Form.Control as="textarea" rows={2} name="address" value={form.address} onChange={handleChange} placeholder="Address" required/>
+          <RequiredLabel label="Address" required />
+          <Form.Control as="textarea" rows={2} name="address" value={form.address} onChange={handleChange} placeholder="Address" required />
         </Form.Group>
 
         <Form.Group className="mb-3">
